@@ -1,0 +1,25 @@
+## Interface: 20501
+## Title: ZeldaLoot BCC
+## Notes: Plays a different Legend of Zelda Item Sound when you loot a legendary (orange), epic (purple), rare (blue) or non common (green) item. Based on ZeldaLoot from Rickyk.
+## Notes-frFR: Joue différents sons de Zelda quand des objets légendaires (oranges), épiques (violets), rares (bleus) ou inhabituels (verts) sont récupérés. Basé sur ZeldaLoot par Rickyk.
+## Notes-esES: Escuchar los sonidos diferentes por los objetos legendario (naranja), épico (púrpura), raras (azul) o poco común (verde). Sobre la base de ZeldaLoot por Rickyk.
+## Notes-deDE: Spielen verschiedene Töne, wenn Objekte Zelda legendäre (orange), epische (lila), selten (blau) oder ungewöhnliche (grün). Basierend auf ZeldaLoot von Rickyk.
+## Author: Chris221221 Credits: Zethriller, modified by Darth Killer - Original 'Zelda Loot' by Rickyk.
+## Version: 1.1.0
+## SavedVariables: zl_config zl_config_temp
+## X-License: GNU GPL v3, 29 June 2007
+## X-Category: Audio & Video
+## X-Part-Of: Zelda Loot
+
+ConfigPanel_scripts.lua
+ConfigPanel.xml
+
+SlashCommands.lua
+
+Locale\ZL_deDE.lua
+Locale\ZL_esES.lua
+Locale\ZL_frFR.lua
+Locale\ZL_enUS.lua
+
+ZeldaLoot_BCC.lua
+ZeldaLoot_BCC.xml

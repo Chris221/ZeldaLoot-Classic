@@ -1,18 +1,20 @@
-local zle = {};
+local zl = {};
 
-function zle.SlashCommandHandler(msg)
-	local frame = getglobal("ZLE_ConfigPanel")
+function zl.SlashCommandHandler(msg)
+	local frame = getglobal("ZL_ConfigPanel")
 
 	if (frame) then
 		if (frame:IsVisible()) then
 			--frame:Hide();
-			hide_zle_frame();
+			hide_zl_frame();
 		else
 			--frame:Show();
-			show_zle_frame();
+			show_zl_frame();
 		end
 	end
 end
 
-SLASH_ZLE1 = "/zle";
-SlashCmdList["ZLE"] = zle.SlashCommandHandler;
+SLASH_ZL1 = "/zl";
+SLASH_ZELDALOOT1 = "/zeldaloot";
+SlashCmdList["ZL"] = zl.SlashCommandHandler;
+SlashCmdList["ZELDALOOT"] = zl.SlashCommandHandler;
