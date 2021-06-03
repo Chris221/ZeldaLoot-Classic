@@ -1,4 +1,4 @@
-AddonVersion = "|cff00ff001.1.0|r"
+AddonVersion = "|cff00ff001.1.1|r"
 ZL_AddonName = "ZeldaLoot BCC"
 ZL_AddonColor = "|cff00ffff"
 

@@ -11,6 +11,10 @@ Configure which sounds you want and when: loot from enemies, received (letterbox
 ### Localization
 English, french, spanish and deutch languages are supported, and you can write your own, see files in **\Locale** subdirectory
 
-## Changes in 1.1.0
+## Changes
+### Changes in 1.1.1
+- Fixed a bug where you weren't able to open the settings.
+
+### Changes in 1.1.0
 - You can now select which sound set to use for each of the item levels.
-- You can also type **/zl** for the settings
+- You can also type **/zl** for the settings.

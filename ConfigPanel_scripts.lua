@@ -2,10 +2,17 @@ debug = false
 
 function update_config()
 	local set
-	if ((zl_config["sounds"]["set"] ~= nil)) then
-		set = zl_config["sounds"]["set"]
-		zl_config["sounds"]["set"] = nil
-		zl_config_temp["sounds"]["set"] = nil
+
+	if (debug) then
+		dump_config("update_config")
+	end
+
+	if (zl_config["sounds"] ~= nil) then
+		if (zl_config["sounds"]["set"] ~= nil) then
+			set = zl_config["sounds"]["set"]
+			zl_config["sounds"]["set"] = nil
+			zl_config_temp["sounds"]["set"] = nil
+		end
 	end
 
 	if ((zl_config_temp["green"]["set"] == nil) or (zl_config["green"]["set"] == nil)) then
@@ -17,6 +24,7 @@ function update_config()
 			zl_config_temp["green"]["set"] = 0
 		end
 	end
+
 	if ((zl_config_temp["blue"]["set"] == nil) or (zl_config["blue"]["set"] == nil)) then
 		if (set ~= nil) then
 			zl_config["blue"]["set"] = set
@@ -26,6 +34,7 @@ function update_config()
 			zl_config_temp["blue"]["set"] = 0
 		end
 	end
+
 	if ((zl_config_temp["purple"]["set"] == nil) or (zl_config["purple"]["set"] == nil)) then
 		if (set ~= nil) then
 			zl_config["purple"]["set"] = set
@@ -35,6 +44,7 @@ function update_config()
 			zl_config_temp["purple"]["set"] = 0
 		end
 	end
+
 	if ((zl_config_temp["orange"]["set"] == nil) or (zl_config["orange"]["set"] == nil)) then
 		if (set ~= nil) then
 			zl_config["orange"]["set"] = set
@@ -44,6 +54,24 @@ function update_config()
 			zl_config_temp["orange"]["set"] = 0
 		end
 	end
+
+end
+
+function dump_config(text)
+	local value
+	print("Dumping... |cff00ff00" .. text)
+	for top_level_key, top_level_value in pairs(zl_config) do
+		for second_level_key, second_level_value in pairs(top_level_value) do
+			if (second_level_value == true) then value = "true"
+			elseif (second_level_value == false) then value = "false"
+			else value = second_level_value
+			end
+			print("top_level_key: |cff00ffff" .. top_level_key .. "|r second_level_key: |cff00ffff" .. second_level_key .. "|r second_level_value: |cff00ffff" .. value)
+		end
+	end
+	print("Finsihed dumping... |cff00ff00" .. text)
+	print("")
+	print("")
 end
 
 -- Hide zl config frame (if visible)

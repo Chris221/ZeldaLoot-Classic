@@ -5,11 +5,10 @@
 ## Notes-esES: Escuchar los sonidos diferentes por los objetos legendario (naranja), épico (púrpura), raras (azul) o poco común (verde). Sobre la base de ZeldaLoot por Rickyk.
 ## Notes-deDE: Spielen verschiedene Töne, wenn Objekte Zelda legendäre (orange), epische (lila), selten (blau) oder ungewöhnliche (grün). Basierend auf ZeldaLoot von Rickyk.
 ## Author: Chris221221 Credits: Zethriller, modified by Darth Killer - Original 'Zelda Loot' by Rickyk.
-## Version: 1.1.0
+## Version: 1.1.1
 ## SavedVariables: zl_config zl_config_temp
 ## X-License: GNU GPL v3, 29 June 2007
 ## X-Category: Audio & Video
-## X-Part-Of: Zelda Loot
 
 ConfigPanel_scripts.lua
 ConfigPanel.xml
