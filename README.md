@@ -11,6 +11,9 @@ Configure which sounds you want and when: loot from enemies, received (letterbox
 ### Localization
 English, french, spanish and deutch languages are supported, and you can write your own, see files in **\Locale** subdirectory
 
+## Retail
+For a retail version please use [ZeldaLoot Extended by LegendaryHero20](https://www.curseforge.com/wow/addons/zeldaloot-extended)
+
 ## Changes
 ### Changes in 1.1.1
 - Fixed a bug where you weren't able to open the settings.
