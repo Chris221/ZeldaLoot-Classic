@@ -1,4 +1,4 @@
-local debug_bool = true
+local debug_bool = false
 
 function update_config()
 	local set
@@ -264,19 +264,24 @@ function dropdown_sound_Show(self)
 
 	UIDropDownMenu_SetText(self, zl_config_temp[item_level]["sound"])
 
+	if (zl_config_temp[item_level]["set"] == 0) then sound_set = 'ALTTP'
+	elseif (zl_config_temp[item_level]["set"] == 1) then sound_set = 'OOT'
+	elseif (zl_config_temp[item_level]["set"] == 2) then sound_set = 'TP'
+	end
+
 	local info
 	local item_sets = {
-		{ 1, 2, 3, 4, 5},
-		{ 1, 2, 3, 4 },
-		{ 1, 2, 3, 4, 5}
+		ALTTP = { 1, 2, 3, 4, 5 },
+		OOT = { 1, 2, 3, 4 },
+		TP = { 1, 2, 3, 4, 5 }
 	}
-	local items = item_sets[zl_config_temp[item_level]["set"]]
+	local items = item_sets[sound_set]
 
-	for k,v in pairs(items) do
+	for k,v in ipairs(items) do
 		info = UIDropDownMenu_CreateInfo()
 		info.text = v
 		info.value = v
-		if (selected == v) then info.checked = true
+		if (zl_config_temp[item_level]["sound"] == v) then info.checked = true
 		else info.checked = false
 		end
 		info.arg1 = self

@@ -1,4 +1,4 @@
-AddonVersion = "|cff00ff001.1.1|r"
+AddonVersion = "|cff00ff001.2.0|r"
 ZL_AddonName = "ZeldaLoot BCC"
 ZL_AddonColor = "|cff00ffff"
 
@@ -11,22 +11,6 @@ function play_zeldaSound(index, sound_file)
 
 	update_config()
 	PlaySoundFile("Interface\\AddOns\\ZeldaLoot_BCC\\Sounds\\Sets\\"..sound_set.."\\" .. sound_file .. ".ogg")
-
-	-- if (index == 5)
-	-- 	then PlaySoundFile("Interface\\AddOns\\ZeldaLoot_BCC\\Sounds\\Sets\\"..sound_set.."\\04 - Orange - Legendary objects.wav")
-	-- end
-
-	-- if (index == 4)
-	-- 	then PlaySoundFile("Interface\\AddOns\\ZeldaLoot_BCC\\Sounds\\Sets\\"..sound_set.."\\03 - Purple - Epic objects.wav")
-	-- end
-
-	-- if (index == 3)
-	-- 	then PlaySoundFile("Interface\\AddOns\\ZeldaLoot_BCC\\Sounds\\Sets\\"..sound_set.."\\02 - Blue - Rare objects.wav")
-	-- end
-
-	-- if (index == 2)
-	-- 	then PlaySoundFile("Interface\\AddOns\\ZeldaLoot_BCC\\Sounds\\Sets\\"..sound_set.."\\01 - Green - Not common objects.wav")
-	-- end
 end
 
 function zeldaFrame_OnEvent(self, event, ...)
