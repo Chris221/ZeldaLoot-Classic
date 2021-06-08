@@ -1,4 +1,4 @@
-debug = false
+debug = true
 
 function update_config()
 	local set
@@ -53,6 +53,30 @@ function update_config()
 			zl_config["orange"]["set"] = 0
 			zl_config_temp["orange"]["set"] = 0
 		end
+	end
+
+	if ((zl_config_temp["green"]["sound"] == nil) or (zl_config["green"]["sound"] == nil)) then
+		zl_config["green"]["sound"] = 1
+		zl_config_temp["green"]["sound"] = 1
+	end
+
+	if ((zl_config_temp["blue"]["sound"] == nil) or (zl_config["blue"]["sound"] == nil)) then
+		zl_config["blue"]["sound"] = 2
+		zl_config_temp["blue"]["sound"] = 2
+	end
+
+	if ((zl_config_temp["purple"]["sound"] == nil) or (zl_config["purple"]["sound"] == nil)) then
+		zl_config["purple"]["sound"] = 3
+		zl_config_temp["purple"]["sound"] = 3
+	end
+
+	if ((zl_config_temp["orange"]["sound"] == nil) or (zl_config["orange"]["sound"] == nil)) then
+		zl_config["orange"]["sound"] = 4
+		zl_config_temp["orange"]["sound"] = 4
+	end
+
+	if (debug) then
+		dump_config("end update_config")
 	end
 
 end
@@ -116,7 +140,12 @@ end
 
 -- Sound test
 function test_zl_sound(index)
-	play_zeldaSound(index)
+	local qualities_dic = {nil, nil, "green", "blue", "purple", "orange"}
+	local zl_group
+
+	zl_group = qualities_dic[index + 1]
+
+	play_zeldaSound(index, zl_config_temp[zl_group]["sound"])
 end
 
 function btn_ok_onclick()
@@ -180,19 +209,23 @@ end
 -- Debug prints to see when "UIDropDownMenu_Initialize" is called for your dropdown:
 hooksecurefunc("UIDropDownMenu_Initialize", function(frame, func) end)
 
+function dropdown_set_Initialize(self)
+	UIDropDownMenu_SetWidth(self, 90)
+end
+
 function dropdown_sound_Initialize(self)
 	UIDropDownMenu_SetWidth(self, 90)
 end
 
-function dropdown_sound_Show(self)
+function dropdown_set_Show(self)
 	local selected
 	local name = self:GetName()
 	local item_level
 
-	if (name == 'dropdown_greenloot') then item_level = 'green'
-	elseif (name == 'dropdown_blueloot') then item_level = 'blue'
-	elseif (name == 'dropdown_purpleloot') then item_level = 'purple'
-	elseif (name == 'dropdown_orangeloot') then item_level = 'orange'
+	if (name == 'dropdown_greenloot_set') then item_level = 'green'
+	elseif (name == 'dropdown_blueloot_set') then item_level = 'blue'
+	elseif (name == 'dropdown_purpleloot_set') then item_level = 'purple'
+	elseif (name == 'dropdown_orangeloot_set') then item_level = 'orange'
 	end
 
 	if (zl_config_temp[item_level]["set"] == 0) then selected = 'ALTTP'
@@ -213,14 +246,48 @@ function dropdown_sound_Show(self)
 		end
 		info.arg1 = self
 		info.arg2 = item_level .. "_" .. v
+		info.func = dropdown_set_OnClick
+		UIDropDownMenu_AddButton(info)
+	end
+end
+
+function dropdown_sound_Show(self)
+	local sound_set, selected
+	local name = self:GetName()
+	local item_level
+
+	if (name == 'dropdown_greenloot_sound') then item_level = 'green'
+	elseif (name == 'dropdown_blueloot_sound') then item_level = 'blue'
+	elseif (name == 'dropdown_purpleloot_sound') then item_level = 'purple'
+	elseif (name == 'dropdown_orangeloot_sound') then item_level = 'orange'
+	end
+
+	UIDropDownMenu_SetText(self, zl_config_temp[item_level]["sound"])
+
+	local info
+	local item_sets = {
+		{ 1, 2, 3, 4, 5},
+		{ 1, 2, 3, 4 },
+		{ 1, 2, 3, 4, 5}
+	}
+	local items = item_sets[zl_config_temp[item_level]["set"]]
+
+	for k,v in pairs(items) do
+		info = UIDropDownMenu_CreateInfo()
+		info.text = v
+		info.value = v
+		if (selected == v) then info.checked = true
+		else info.checked = false
+		end
+		info.arg1 = self
+		info.arg2 = item_level .. "_" .. v
 		info.func = dropdown_sound_OnClick
 		UIDropDownMenu_AddButton(info)
 	end
 end
 
-function dropdown_sound_OnClick(self, arg1, arg2)
-	local item_level
-	local selected
+function dropdown_set_OnClick(self, arg1, arg2)
+	local item_level, selected
 
 	for k, v in string.gmatch(arg2, "(%w+)_(%w+)") do
 		item_level = k
@@ -235,7 +302,14 @@ function dropdown_sound_OnClick(self, arg1, arg2)
 	end
 end
 
-function MYFRAME12345_OnLoad()
-	-- Comment or uncomment this line for testing:
-	UIDropDownMenu_Initialize(dropdown_greenloot, MYBUTTON12345_Initialize)
+function dropdown_sound_OnClick(self, arg1, arg2)
+	local item_level, selected
+
+	for k, v in string.gmatch(arg2, "(%w+)_(%w+)") do
+		item_level = k
+		selected = tonumber(v)
+	end
+
+	UIDropDownMenu_SetText(arg1, selected)
+	zl_config_temp[item_level]["sound"] = selected
 end

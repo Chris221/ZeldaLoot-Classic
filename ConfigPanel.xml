@@ -99,10 +99,70 @@
 					<OnClick>check_loot_onclick(self, 5, 0);</OnClick>
 				</Scripts>
 			</CheckButton>
-			<Button name="dropdown_greenloot" inherits="UIDropDownMenuTemplate">
+			<Button name="dropdown_greenloot_set" inherits="UIDropDownMenuTemplate">
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset x="16" y="-104" />
+					</Anchor>
+                </Anchors>
+				<Scripts>
+					<OnLoad>
+						UIDropDownMenu_Initialize(self, dropdown_set_Initialize)
+					</OnLoad>
+					<OnShow>
+						UIDropDownMenu_Initialize(self, dropdown_set_Show)
+					</OnShow>
+				</Scripts>
+			</Button>
+			<Button name="dropdown_blueloot_set" inherits="UIDropDownMenuTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="150" y="-104" />
+					</Anchor>
+                </Anchors>
+				<Scripts>
+					<OnLoad>
+						UIDropDownMenu_Initialize(self, dropdown_set_Initialize)
+					</OnLoad>
+					<OnShow>
+						UIDropDownMenu_Initialize(self, dropdown_set_Show)
+					</OnShow>
+				</Scripts>
+            </Button>
+			<Button name="dropdown_purpleloot_set" inherits="UIDropDownMenuTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="272" y="-104" />
+					</Anchor>
+                </Anchors>
+				<Scripts>
+					<OnLoad>
+						UIDropDownMenu_Initialize(self, dropdown_set_Initialize)
+					</OnLoad>
+					<OnShow>
+						UIDropDownMenu_Initialize(self, dropdown_set_Show)
+					</OnShow>
+				</Scripts>
+            </Button>
+			<Button name="dropdown_orangeloot_set" inherits="UIDropDownMenuTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="390" y="-104" />
+					</Anchor>
+                </Anchors>
+				<Scripts>
+					<OnLoad>
+						UIDropDownMenu_Initialize(self, dropdown_set_Initialize)
+					</OnLoad>
+					<OnShow>
+						UIDropDownMenu_Initialize(self, dropdown_set_Show)
+					</OnShow>
+				</Scripts>
+            </Button>
+			<Button name="dropdown_greenloot_sound" inherits="UIDropDownMenuTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="16" y="-134" />
 					</Anchor>
                 </Anchors>
 				<Scripts>
@@ -114,10 +174,10 @@
 					</OnShow>
 				</Scripts>
 			</Button>
-			<Button name="dropdown_blueloot" inherits="UIDropDownMenuTemplate">
+			<Button name="dropdown_blueloot_sound" inherits="UIDropDownMenuTemplate">
 				<Anchors>
 					<Anchor point="TOPLEFT">
-						<Offset x="150" y="-104" />
+						<Offset x="150" y="-134" />
 					</Anchor>
                 </Anchors>
 				<Scripts>
@@ -128,11 +188,11 @@
 						UIDropDownMenu_Initialize(self, dropdown_sound_Show)
 					</OnShow>
 				</Scripts>
-            </Button>
-			<Button name="dropdown_purpleloot" inherits="UIDropDownMenuTemplate">
+			</Button>
+			<Button name="dropdown_purpleloot_sound" inherits="UIDropDownMenuTemplate">
 				<Anchors>
 					<Anchor point="TOPLEFT">
-						<Offset x="272" y="-104" />
+						<Offset x="272" y="-134" />
 					</Anchor>
                 </Anchors>
 				<Scripts>
@@ -143,11 +203,11 @@
 						UIDropDownMenu_Initialize(self, dropdown_sound_Show)
 					</OnShow>
 				</Scripts>
-            </Button>
-			<Button name="dropdown_orangeloot" inherits="UIDropDownMenuTemplate">
+			</Button>
+			<Button name="dropdown_orangeloot_sound" inherits="UIDropDownMenuTemplate">
 				<Anchors>
 					<Anchor point="TOPLEFT">
-						<Offset x="390" y="-104" />
+						<Offset x="390" y="-134" />
 					</Anchor>
                 </Anchors>
 				<Scripts>
@@ -158,14 +218,14 @@
 						UIDropDownMenu_Initialize(self, dropdown_sound_Show)
 					</OnShow>
 				</Scripts>
-            </Button>
+			</Button>
 			<Button name="test_greensound" inherits="UIPanelButtonTemplate" text="ZL_TEST">
 				<Size>
 					<AbsDimension x="75" y="23" />
 				</Size>
 				<Anchors>
 					<Anchor point="TOPLEFT">
-						<Offset x="45" y="-142" />
+						<Offset x="45" y="-172" />
 					</Anchor>
 				</Anchors>
 				<Scripts>
@@ -178,7 +238,7 @@
 				</Size>
 				<Anchors>
 					<Anchor point="TOPLEFT">
-						<Offset x="175" y="-142" />
+						<Offset x="175" y="-172" />
 					</Anchor>
 				</Anchors>
 				<Scripts>
@@ -191,7 +251,7 @@
 				</Size>
 				<Anchors>
 					<Anchor point="TOPLEFT">
-						<Offset x="298" y="-142" />
+						<Offset x="298" y="-172" />
 					</Anchor>
 				</Anchors>
 				<Scripts>
@@ -204,13 +264,130 @@
 				</Size>
 				<Anchors>
 					<Anchor point="TOPLEFT">
-						<Offset x="420" y="-142" />
+						<Offset x="420" y="-172" />
 					</Anchor>
 				</Anchors>
 				<Scripts>
 					<OnClick>test_zl_sound(5);</OnClick>
 				</Scripts>
 			</Button>
+			<CheckButton name="check_greencrafts" inherits="UICheckButtonTemplate" text="">
+				<Size>
+					<AbsDimension x="20" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="45" y="-209" />
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>check_loot_onclick(self, 2, 1);</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="check_greenreceived" inherits="UICheckButtonTemplate" text="">
+				<Size>
+					<AbsDimension x="20" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="45" y="-235" />
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>check_loot_onclick(self, 2, 2);</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="check_bluecrafts" inherits="UICheckButtonTemplate" text="">
+				<Size>
+					<AbsDimension x="20" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="177" y="-209" />
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>check_loot_onclick(self, 3, 1);</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="check_bluereceived" inherits="UICheckButtonTemplate" text="CheckButton2">
+				<Size>
+					<AbsDimension x="20" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="177" y="-235" />
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>check_loot_onclick(self, 3, 2);</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="check_purplecrafts" inherits="UICheckButtonTemplate">
+				<Size>
+					<AbsDimension x="20" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="299" y="-209" />
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>check_loot_onclick(self, 4, 1);</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="check_purplereceived" inherits="UICheckButtonTemplate">
+				<Size>
+					<AbsDimension x="20" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="299" y="-235" />
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>check_loot_onclick(self, 4, 2);</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="check_orangecrafts" inherits="UICheckButtonTemplate">
+				<Size>
+					<AbsDimension x="20" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="419" y="-209" />
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>check_loot_onclick(self, 5, 1);</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="check_orangereceived" inherits="UICheckButtonTemplate">
+				<Size>
+					<AbsDimension x="20" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="419" y="-235" />
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>check_loot_onclick(self, 5, 2);</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="check_inheritedstuff" inherits="UICheckButtonTemplate">
+				<Size>
+					<AbsDimension x="20" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="419" y="-306" />
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>check_inheritedstuff_onclick(self);</OnClick>
+				</Scripts>
+			</CheckButton>
 			<Button name="btn_ok" inherits="UIPanelButtonTemplate" text="ZL_OK">
 				<Size>
 					<AbsDimension x="75" y="23" />
@@ -237,217 +414,10 @@
 					<OnClick>btn_cancel_onclick();</OnClick>
 				</Scripts>
 			</Button>
-			<CheckButton name="check_greencrafts" inherits="UICheckButtonTemplate" text="">
-				<Size>
-					<AbsDimension x="20" y="20" />
-				</Size>
-				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="45" y="-179" />
-					</Anchor>
-				</Anchors>
-				<Scripts>
-					<OnClick>check_loot_onclick(self, 2, 1);</OnClick>
-				</Scripts>
-			</CheckButton>
-			<CheckButton name="check_greenreceived" inherits="UICheckButtonTemplate" text="">
-				<Size>
-					<AbsDimension x="20" y="20" />
-				</Size>
-				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="45" y="-205" />
-					</Anchor>
-				</Anchors>
-				<Scripts>
-					<OnClick>check_loot_onclick(self, 2, 2);</OnClick>
-				</Scripts>
-			</CheckButton>
-			<CheckButton name="check_bluecrafts" inherits="UICheckButtonTemplate" text="">
-				<Size>
-					<AbsDimension x="20" y="20" />
-				</Size>
-				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="177" y="-179" />
-					</Anchor>
-				</Anchors>
-				<Scripts>
-					<OnClick>check_loot_onclick(self, 3, 1);</OnClick>
-				</Scripts>
-			</CheckButton>
-			<CheckButton name="check_bluereceived" inherits="UICheckButtonTemplate" text="CheckButton2">
-				<Size>
-					<AbsDimension x="20" y="20" />
-				</Size>
-				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="177" y="-205" />
-					</Anchor>
-				</Anchors>
-				<Scripts>
-					<OnClick>check_loot_onclick(self, 3, 2);</OnClick>
-				</Scripts>
-			</CheckButton>
-			<CheckButton name="check_purplecrafts" inherits="UICheckButtonTemplate">
-				<Size>
-					<AbsDimension x="20" y="20" />
-				</Size>
-				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="299" y="-179" />
-					</Anchor>
-				</Anchors>
-				<Scripts>
-					<OnClick>check_loot_onclick(self, 4, 1);</OnClick>
-				</Scripts>
-			</CheckButton>
-			<CheckButton name="check_purplereceived" inherits="UICheckButtonTemplate">
-				<Size>
-					<AbsDimension x="20" y="20" />
-				</Size>
-				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="299" y="-205" />
-					</Anchor>
-				</Anchors>
-				<Scripts>
-					<OnClick>check_loot_onclick(self, 4, 2);</OnClick>
-				</Scripts>
-			</CheckButton>
-			<CheckButton name="check_orangecrafts" inherits="UICheckButtonTemplate">
-				<Size>
-					<AbsDimension x="20" y="20" />
-				</Size>
-				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="419" y="-179" />
-					</Anchor>
-				</Anchors>
-				<Scripts>
-					<OnClick>check_loot_onclick(self, 5, 1);</OnClick>
-				</Scripts>
-			</CheckButton>
-			<CheckButton name="check_orangereceived" inherits="UICheckButtonTemplate">
-				<Size>
-					<AbsDimension x="20" y="20" />
-				</Size>
-				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="419" y="-205" />
-					</Anchor>
-				</Anchors>
-				<Scripts>
-					<OnClick>check_loot_onclick(self, 5, 2);</OnClick>
-				</Scripts>
-			</CheckButton>
-			<CheckButton name="check_inheritedstuff" inherits="UICheckButtonTemplate">
-				<Size>
-					<AbsDimension x="20" y="20" />
-				</Size>
-				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="419" y="-276" />
-					</Anchor>
-				</Anchors>
-				<Scripts>
-					<OnClick>check_inheritedstuff_onclick(self);</OnClick>
-				</Scripts>
-			</CheckButton>
 		</Frames>
 		<Layers>
 			<Layer level="OVERLAY">
-				<FontString name="FontString1" inherits="GameFontNormal" text="ZL_GREENLOOT" justifyH="LEFT">
-					<Size>
-						<AbsDimension x="88" y="33" />
-					</Size>
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset x="71" y="-63" />
-						</Anchor>
-					</Anchors>
-				</FontString>
-				<FontString name="FontString2" inherits="GameFontNormal" text="ZL_BLUELOOT" justifyH="LEFT">
-					<Size>
-						<AbsDimension x="82" y="33" />
-					</Size>
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset x="203" y="-63" />
-						</Anchor>
-					</Anchors>
-				</FontString>
-				<FontString name="FontString3" inherits="GameFontNormal" text="ZL_PURPLELOOT" justifyH="LEFT">
-					<Size>
-						<AbsDimension x="80" y="33" />
-					</Size>
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset x="325" y="-63" />
-						</Anchor>
-					</Anchors>
-				</FontString>
-				<FontString name="FontString4" inherits="GameFontNormal" text="ZL_ORANGELOOT" justifyH="LEFT">
-					<Size>
-						<AbsDimension x="109" y="33" />
-					</Size>
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset x="445" y="-63" />
-						</Anchor>
-					</Anchors>
-				</FontString>
-				<FontString name="FontString5" inherits="GameFontNormal" text="ZL_CRAFTS" justifyH="LEFT">
-					<Size>
-						<AbsDimension x="88" y="20" />
-					</Size>
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset x="325" y="-179" />
-						</Anchor>
-					</Anchors>
-				</FontString>
-				<FontString name="FontString6" inherits="GameFontNormal" text="ZL_RECEIVED" justifyH="LEFT">
-					<Size>
-						<AbsDimension x="95" y="20" />
-					</Size>
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset x="325" y="-205" />
-						</Anchor>
-					</Anchors>
-				</FontString>
-				<FontString name="FontString7" inherits="GameFontNormal" text="ZL_CRAFTS" justifyH="LEFT">
-					<Size>
-						<AbsDimension x="80" y="20" />
-					</Size>
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset x="445" y="-179" />
-						</Anchor>
-					</Anchors>
-				</FontString>
-				<FontString name="FontString8" inherits="GameFontNormal" text="ZL_RECEIVED" justifyH="LEFT">
-					<Size>
-						<AbsDimension x="94" y="20" />
-					</Size>
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset x="445" y="-205" />
-						</Anchor>
-					</Anchors>
-				</FontString>
-				<FontString name="FontString9" inherits="GameFontNormal" text="ZL_INHERITED" justifyH="LEFT">
-					<Size>
-						<AbsDimension x="109" y="20" />
-					</Size>
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset x="445" y="-276" />
-						</Anchor>
-					</Anchors>
-				</FontString>
-				<FontString name="FontString10" inherits="GameFontNormal" text="ZL_CONFIG_TITLE">
+				<FontString name="FontString1" inherits="GameFontNormal" text="ZL_CONFIG_TITLE">
 					<Size>
 						<AbsDimension x="506" y="20" />
 					</Size>
@@ -460,93 +430,183 @@
 						<AbsValue val="15" />
 					</FontHeight>
 				</FontString>
-				<FontString name="FontString11" inherits="GameFontNormal" text="ZL_CRAFTS" justifyH="LEFT">
+				<FontString name="FontString2" inherits="GameFontNormal" text="ZL_GREENLOOT" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="88" y="33" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset x="71" y="-63" />
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="FontString3" inherits="GameFontNormal" text="ZL_BLUELOOT" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="82" y="33" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset x="203" y="-63" />
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="FontString4" inherits="GameFontNormal" text="ZL_PURPLELOOT" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="80" y="33" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset x="325" y="-63" />
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="FontString5" inherits="GameFontNormal" text="ZL_ORANGELOOT" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="109" y="33" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset x="445" y="-63" />
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="FontString6" inherits="GameFontNormal" text="ZL_CRAFTS" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="88" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset x="325" y="-209" />
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="FontString7" inherits="GameFontNormal" text="ZL_RECEIVED" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="95" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset x="325" y="-235" />
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="FontString8" inherits="GameFontNormal" text="ZL_CRAFTS" justifyH="LEFT">
 					<Size>
 						<AbsDimension x="80" y="20" />
 					</Size>
 					<Anchors>
 						<Anchor point="TOPLEFT">
-							<Offset x="71" y="-179" />
+							<Offset x="445" y="-209" />
 						</Anchor>
 					</Anchors>
 				</FontString>
-				<FontString name="FontString12" inherits="GameFontNormal" text="ZL_RECEIVED" justifyH="LEFT">
+				<FontString name="FontString9" inherits="GameFontNormal" text="ZL_RECEIVED" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="94" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset x="445" y="-235" />
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="FontString10" inherits="GameFontNormal" text="ZL_CRAFTS" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="80" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset x="71" y="-209" />
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="FontString11" inherits="GameFontNormal" text="ZL_RECEIVED" justifyH="LEFT">
 					<Size>
 						<AbsDimension x="91" y="20" />
 					</Size>
 					<Anchors>
 						<Anchor point="TOPLEFT">
-							<Offset x="71" y="-205" />
+							<Offset x="71" y="-235" />
 						</Anchor>
 					</Anchors>
 				</FontString>
-				<FontString name="FontString13" inherits="GameFontNormal" text="ZL_CRAFTS" justifyH="LEFT">
+				<FontString name="FontString12" inherits="GameFontNormal" text="ZL_CRAFTS" justifyH="LEFT">
 					<Size>
 						<AbsDimension x="90" y="20" />
 					</Size>
 					<Anchors>
 						<Anchor point="TOPLEFT">
-							<Offset x="203" y="-179" />
+							<Offset x="203" y="-209" />
 						</Anchor>
 					</Anchors>
 				</FontString>
-				<FontString name="FontString14" inherits="GameFontNormal" text="ZL_RECEIVED" justifyH="LEFT">
+				<FontString name="FontString13" inherits="GameFontNormal" text="ZL_RECEIVED" justifyH="LEFT">
 					<Size>
 						<AbsDimension x="90" y="20" />
 					</Size>
 					<Anchors>
 						<Anchor point="TOPLEFT">
-							<Offset x="203" y="-205" />
+							<Offset x="203" y="-235" />
 						</Anchor>
 					</Anchors>
 				</FontString>
-				<FontString name="FontString15" inherits="GameFontNormal" text="ZL_INCLUDEALSO" justifyV="BOTTOM" justifyH="LEFT">
+				<FontString name="FontString14" inherits="GameFontNormal" text="ZL_INCLUDEALSO" justifyV="BOTTOM" justifyH="LEFT">
 					<Size>
 						<AbsDimension x="147" y="39" />
 					</Size>
 					<Anchors>
 						<Anchor point="TOPLEFT">
-							<Offset x="407" y="-231" />
+							<Offset x="407" y="-261" />
 						</Anchor>
 					</Anchors>
 				</FontString>
-				<FontString name="FontString16" inherits="GameFontNormal" text="ZL_SET_ALTTP" justifyH="LEFT">
+				<FontString name="FontString15" inherits="GameFontNormal" text="ZL_INHERITED" justifyH="LEFT">
 					<Size>
-						<AbsDimension x="292" y="16" />
+						<AbsDimension x="109" y="20" />
 					</Size>
 					<Anchors>
 						<Anchor point="TOPLEFT">
-							<Offset x="45" y="-266" />
+							<Offset x="445" y="-306" />
 						</Anchor>
 					</Anchors>
 				</FontString>
-				<FontString name="FontString17" inherits="GameFontNormal" text="ZL_SET_OOT" justifyH="LEFT">
-					<Size>
-						<AbsDimension x="292" y="16" />
-					</Size>
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset x="45" y="-282" />
-						</Anchor>
-					</Anchors>
-				</FontString>
-				<FontString name="FontString18" inherits="GameFontNormal" text="ZL_SET_TP" justifyH="LEFT">
-					<Size>
-						<AbsDimension x="292" y="16" />
-					</Size>
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset x="45" y="-298" />
-						</Anchor>
-					</Anchors>
-				</FontString>
-				<FontString name="FontString19" inherits="GameFontNormal" text="ZL_USE_SOUND_SET" justifyH="LEFT">
+				<FontString name="FontString16" inherits="GameFontNormal" text="ZL_USE_SOUND_SET" justifyH="LEFT">
 					<Size>
 						<AbsDimension x="316" y="16" />
 					</Size>
 					<Anchors>
 						<Anchor point="TOPLEFT">
-							<Offset x="45" y="-250" />
+							<Offset x="45" y="-280" />
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="FontString17" inherits="GameFontNormal" text="ZL_SET_ALTTP" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="292" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset x="45" y="-296" />
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="FontString18" inherits="GameFontNormal" text="ZL_SET_OOT" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="292" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset x="45" y="-312" />
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="FontString19" inherits="GameFontNormal" text="ZL_SET_TP" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="292" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset x="45" y="-328" />
 						</Anchor>
 					</Anchors>
 				</FontString>

@@ -6,26 +6,27 @@ function zl_Print(msg)
 	DEFAULT_CHAT_FRAME:AddMessage(ZL_AddonColor .. ZL_AddonName .. '|r ' .. tostring(msg))
 end
 
-function play_zeldaSound(index)
+function play_zeldaSound(index, sound_file)
 	local sound_set = get_sound_set(index)
 
 	update_config()
+	PlaySoundFile("Interface\\AddOns\\ZeldaLoot_BCC\\Sounds\\Sets\\"..sound_set.."\\" .. sound_file .. ".ogg")
 
-	if (index == 5)
-		then PlaySoundFile("Interface\\AddOns\\ZeldaLoot_BCC\\Sounds\\Sets\\"..sound_set.."\\04 - Orange - Legendary objects.wav")
-	end
+	-- if (index == 5)
+	-- 	then PlaySoundFile("Interface\\AddOns\\ZeldaLoot_BCC\\Sounds\\Sets\\"..sound_set.."\\04 - Orange - Legendary objects.wav")
+	-- end
 
-	if (index == 4)
-		then PlaySoundFile("Interface\\AddOns\\ZeldaLoot_BCC\\Sounds\\Sets\\"..sound_set.."\\03 - Purple - Epic objects.wav")
-	end
+	-- if (index == 4)
+	-- 	then PlaySoundFile("Interface\\AddOns\\ZeldaLoot_BCC\\Sounds\\Sets\\"..sound_set.."\\03 - Purple - Epic objects.wav")
+	-- end
 
-	if (index == 3)
-		then PlaySoundFile("Interface\\AddOns\\ZeldaLoot_BCC\\Sounds\\Sets\\"..sound_set.."\\02 - Blue - Rare objects.wav")
-	end
+	-- if (index == 3)
+	-- 	then PlaySoundFile("Interface\\AddOns\\ZeldaLoot_BCC\\Sounds\\Sets\\"..sound_set.."\\02 - Blue - Rare objects.wav")
+	-- end
 
-	if (index == 2)
-		then PlaySoundFile("Interface\\AddOns\\ZeldaLoot_BCC\\Sounds\\Sets\\"..sound_set.."\\01 - Green - Not common objects.wav")
-	end
+	-- if (index == 2)
+	-- 	then PlaySoundFile("Interface\\AddOns\\ZeldaLoot_BCC\\Sounds\\Sets\\"..sound_set.."\\01 - Green - Not common objects.wav")
+	-- end
 end
 
 function zeldaFrame_OnEvent(self, event, ...)
@@ -52,28 +53,32 @@ function zeldaFrame_OnEvent(self, event, ...)
 					active   = true,
 					received = false,
 					crafted  = false,
-					set = 0
+					set = 0,
+					sound = 1
 				},
 
 				blue = {
 					active   = true,
 					received = false,
 					crafted  = false,
-					set = 0
+					set = 0,
+					sound = 2
 				},
 
 				purple = {
 					active   = true,
 					received = false,
 					crafted  = false,
-					set = 0
+					set = 0,
+					sound = 3
 				},
 
 				orange = {
 					active   = true,
 					received = false,
 					crafted  = false,
-					set = 0
+					set = 0,
+					sound = 4
 				},
 
 				inherited = {
@@ -133,10 +138,11 @@ function zeldaFrame_OnEvent(self, event, ...)
 
 			if (zl_config[zl_group]["active"]) then
 				if (
-				    (strfind(arg1, ZL_LOOTMESSAGE)) or
+					(strfind(arg1, ZL_LOOTMESSAGE)) or
 					(((strfind(arg1, ZL_CRAFTMESSAGE)) or (strfind(arg1, ZL_CRAFTMESSAGE2))) and zl_config[zl_group]["crafted"]) or
 					((strfind(arg1, ZL_RECEIVEMESSAGE)) and zl_config[zl_group]["received"])
-				   ) then play_zeldaSound(quality - 1)
+				) then
+					play_zeldaSound(quality - 1, zl_config[zl_group]["sound"])
 				end
 			end
 		end
