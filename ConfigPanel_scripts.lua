@@ -1,9 +1,9 @@
-debug = true
+local debug_bool = true
 
 function update_config()
 	local set
 
-	if (debug) then
+	if (debug_bool) then
 		dump_config("update_config")
 	end
 
@@ -75,7 +75,7 @@ function update_config()
 		zl_config_temp["orange"]["sound"] = 4
 	end
 
-	if (debug) then
+	if (debug_bool) then
 		dump_config("end update_config")
 	end
 
@@ -194,7 +194,7 @@ function check_loot_onclick(obj, quality, loot_type)
 	local qualities_dic  = {nil, nil, "green", "blue", "purple", "orange"}
 	local loot_types_dic = {"active", "crafted", "received"}
 
-	if (debug) then
+	if (debug_bool) then
 		print('qualities_dic: '..qualities_dic[quality + 1]..' loot_types_dic: '..loot_types_dic[loot_type + 1]..' value:'..(obj:GetChecked() and 'true' or 'false'))
 	end
 
