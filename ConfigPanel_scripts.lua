@@ -1,9 +1,14 @@
-local debug_bool = false
-
-function update_config()
+function update_config(allow_debug)
 	local set
+	if (allow_debug == nil) then
+		allow_debug = true
+	end
 
-	if (debug_bool) then
+	if (zl_debug_bool == nil) then
+		zl_debug_bool = false
+	end
+
+	if (zl_debug_bool and allow_debug) then
 		dump_config("update_config")
 	end
 
@@ -75,7 +80,7 @@ function update_config()
 		zl_config_temp["orange"]["sound"] = 4
 	end
 
-	if (debug_bool) then
+	if (zl_debug_bool and allow_debug) then
 		dump_config("end update_config")
 	end
 
@@ -83,19 +88,17 @@ end
 
 function dump_config(text)
 	local value
-	print("Dumping... |cff00ff00" .. text)
+	zl_Print("Dumping config... |cff00ff00" .. text)
 	for top_level_key, top_level_value in pairs(zl_config) do
 		for second_level_key, second_level_value in pairs(top_level_value) do
 			if (second_level_value == true) then value = "true"
 			elseif (second_level_value == false) then value = "false"
 			else value = second_level_value
 			end
-			print("top_level_key: |cff00ffff" .. top_level_key .. "|r second_level_key: |cff00ffff" .. second_level_key .. "|r second_level_value: |cff00ffff" .. value)
+			zl_Print("top_level_key: |cff00ffff" .. top_level_key .. "|r second_level_key: |cff00ffff" .. second_level_key .. "|r second_level_value: |cff00ffff" .. value)
 		end
 	end
-	print("Finsihed dumping... |cff00ff00" .. text)
-	print("")
-	print("")
+	zl_Print("Finsihed dumping config... |cff00ff00" .. text)
 end
 
 -- Hide zl config frame (if visible)
@@ -151,6 +154,11 @@ end
 function btn_ok_onclick()
 	-- Write temporary conf to current conf
 	zl_config = zl_config_temp
+
+	if (zl_debug_bool) then
+		dump_config("Config saved")
+	end
+
 	hide_zl_frame()
 end
 
@@ -194,7 +202,7 @@ function check_loot_onclick(obj, quality, loot_type)
 	local qualities_dic  = {nil, nil, "green", "blue", "purple", "orange"}
 	local loot_types_dic = {"active", "crafted", "received"}
 
-	if (debug_bool) then
+	if (zl_debug_bool) then
 		print('qualities_dic: '..qualities_dic[quality + 1]..' loot_types_dic: '..loot_types_dic[loot_type + 1]..' value:'..(obj:GetChecked() and 'true' or 'false'))
 	end
 
@@ -301,9 +309,17 @@ function dropdown_set_OnClick(self, arg1, arg2)
 
 	UIDropDownMenu_SetText(arg1, selected)
 
-	if (selected == 'ALTTP') then zl_config_temp[item_level]["set"] = 0
-	elseif (selected == 'OOT') then zl_config_temp[item_level]["set"] = 1
-	elseif (selected == 'TP') then zl_config_temp[item_level]["set"] = 2
+	if (selected == 'ALTTP') then
+		zl_config_temp[item_level]["set"] = 0
+	elseif (selected == 'OOT') then
+		zl_config_temp[item_level]["set"] = 1
+		if (zl_config_temp[item_level]["sound"] == 5) then
+			zl_config_temp[item_level]["sound"] = 4
+			obj = getglobal("dropdown_" .. item_level .. "loot_sound")
+			UIDropDownMenu_SetText(obj, 4)
+		end
+	elseif (selected == 'TP') then
+		zl_config_temp[item_level]["set"] = 2
 	end
 end
 

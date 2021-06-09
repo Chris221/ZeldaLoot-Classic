@@ -15,6 +15,13 @@ English, french, spanish and deutch languages are supported, and you can write y
 For a retail version please use [ZeldaLoot Extended by LegendaryHero20](https://www.curseforge.com/wow/addons/zeldaloot-extended)
 
 ## Changes
+### Changes in 1.2.1
+- Added a help menu: **/zeldaloot help** or **/zl help**
+- Added a the ability to toggle debug mode: **/zeldaloot debug** or **/zl debug**
+- Added a the ability to reset the config: **/zeldaloot reset** or **/zl reset**
+- Added a the ability to dump the config: **/zeldaloot dump** or **/zl dump**
+- Fixed a bug where the sounds wouldn't play due to old config.
+
 ### Changes in 1.2.0
 - Added more sounds from [ZeldaLoot Extended by LegendaryHero20](https://www.curseforge.com/wow/addons/zeldaloot-extended).
 - Added the option to select which sound effect you want to use for each loot type.
