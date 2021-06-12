@@ -15,6 +15,9 @@ English, french, spanish and deutch languages are supported, and you can write y
 For a retail version please use [ZeldaLoot Extended by LegendaryHero20](https://www.curseforge.com/wow/addons/zeldaloot-extended)
 
 ## Changes
+### Changes in 1.2.2
+- Converted the sound files from ogg to wav.
+
 ### Changes in 1.2.1
 - Added a help menu: **/zeldaloot help** or **/zl help**
 - Added a the ability to toggle debug mode: **/zeldaloot debug** or **/zl debug**

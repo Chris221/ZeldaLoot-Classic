@@ -1,4 +1,4 @@
-AddonVersion = "|cff00ff001.2.1|r"
+AddonVersion = "|cff00ff001.2.2|r"
 ZL_AddonName = "ZeldaLoot BCC"
 ZL_AddonColor = "|cff00ffff"
 
@@ -10,7 +10,7 @@ function play_zeldaSound(index, sound_file)
 	local sound_set = get_sound_set(index)
 
 	update_config()
-	PlaySoundFile("Interface\\AddOns\\ZeldaLoot_BCC\\Sounds\\Sets\\"..sound_set.."\\" .. sound_file .. ".ogg")
+	PlaySoundFile("Interface\\AddOns\\ZeldaLoot_BCC\\Sounds\\Sets\\"..sound_set.."\\" .. sound_file .. ".wav")
 end
 
 function zeldaFrame_OnEvent(self, event, ...)
