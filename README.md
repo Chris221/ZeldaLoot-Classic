@@ -1,4 +1,4 @@
-# ZeldaLoot-BCC
+# [ZeldaLoot-BCC](https://www.curseforge.com/wow/addons/zeldaloot-bcc)
 Based on [ZeldaLoot Extended](https://www.curseforge.com/wow/addons/zeldaloot) (abandoned now) which was based on the original [ZeldaLoot from Rickyk](http://wow.curseforge.com/addons/project-15326/) (abandoned), I used to love this addon so I decided to create a WoW BCC version. It will play zelda sounds when you loot an uncommmon (green) or better item, may be useful after raid sessions to know if you have won or just as a sound enhancement. I do plan to upgrade the addon further.
 
 ## New features summary
