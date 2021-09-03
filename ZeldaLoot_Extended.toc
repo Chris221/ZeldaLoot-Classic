@@ -1,4 +1,4 @@
-## Interface: 20501
+## Interface: 20502
 ## Title: ZeldaLoot Extended BCC
 ## Notes: Plays a different Legend of Zelda Item Sound when you loot a legendary (orange), epic (purple), rare (blue) or non common (green) item. Based on ZeldaLoot from Rickyk.
 ## Notes-frFR: Joue différents sons de Zelda quand des objets légendaires (oranges), épiques (violets), rares (bleus) ou inhabituels (verts) sont récupérés. Basé sur ZeldaLoot par Rickyk.
