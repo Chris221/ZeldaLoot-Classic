@@ -1,0 +1,13 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+	<Script file="ZeldaLoot_BCC.lua" />
+	<Frame name="zeldaFrame">
+		<Scripts>
+			<OnLoad>
+				self:RegisterEvent("CHAT_MSG_LOOT")
+				self:RegisterEvent("ADDON_LOADED")
+				self:RegisterEvent("PLAYER_LOGOUT")
+			</OnLoad>
+			<OnEvent function="zeldaFrame_OnEvent"/>
+		</Scripts>
+	</Frame>
+</Ui>
