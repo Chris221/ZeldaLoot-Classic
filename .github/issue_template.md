@@ -4,7 +4,6 @@ about: Default Issue Template
 title: "[Issue] Please enter a meaningful title"
 labels: bug
 assignees: Chris221
-
 ---
 
 **Describe the issue**
