@@ -1,0 +1,62 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug]: "
+labels: ["bug"]
+assignees:
+  - Chris221
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Also tell us, what did you expect to happen?
+      placeholder: Tell us what you see!
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps To Reproduce
+      description: What are the steps to reproduce the bug?
+      placeholder: 1. Click the button 2. '....' 3. Error?
+    validations:
+      required: true
+  - type: input
+    id: addon-version
+    attributes:
+      label: Addon Version
+      description: What addon version are you on?
+      placeholder: ex. 1.x.x
+    validations:
+      required: false
+  - type: input
+    id: os
+    attributes:
+      label: OS
+      description: What computer OS are you on?
+      placeholder: ex. Windows/Mac
+    validations:
+      required: true
+  - type: input
+    id: client-version
+    attributes:
+      label: Client Version
+      description: What client version are you on?
+      placeholder: ex. 3.4.0
+    validations:
+      required: true
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here.
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: shell
