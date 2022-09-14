@@ -1,5 +1,5 @@
-# [ZeldaLoot-BCC](https://www.curseforge.com/wow/addons/zeldaloot-bcc)
-Based on [ZeldaLoot Extended](https://www.curseforge.com/wow/addons/zeldaloot) (abandoned now) which was based on the original [ZeldaLoot from Rickyk](http://wow.curseforge.com/addons/project-15326/) (abandoned), I used to love this addon so I decided to create a WoW BCC version. It will play zelda sounds when you loot an uncommmon (green) or better item, may be useful after raid sessions to know if you have won or just as a sound enhancement. I do plan to upgrade the addon further.
+# [ZeldaLoot Classic](https://www.curseforge.com/wow/addons/zeldaloot-classic)
+Based on [ZeldaLoot Extended](https://www.curseforge.com/wow/addons/zeldaloot) (abandoned now) which was based on the original [ZeldaLoot from Rickyk](http://wow.curseforge.com/addons/project-15326/) (abandoned), I used to love this addon so I decided to create a WoW Classic version. It will play zelda sounds when you loot an uncommmon (green) or better item, may be useful after raid sessions to know if you have won or just as a sound enhancement. I do plan to upgrade the addon further.
 
 ## New features summary
 ### Sounds
@@ -15,6 +15,13 @@ English, french, spanish and deutch languages are supported, and you can write y
 For a retail version please use [ZeldaLoot Extended by LegendaryHero20](https://www.curseforge.com/wow/addons/zeldaloot-extended)
 
 ## Changes
+### Changes in 1.2.4
+- Updated for version 3.4.0
+- Changed the name from "ZeldaLoot BCC" to "ZeldaLoot Classic"
+
+### Changes in 1.2.3
+- Updated for version 2.5.2
+
 ### Changes in 1.2.2
 - Converted the sound files from ogg to wav.
 

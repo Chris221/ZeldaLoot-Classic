@@ -1,5 +1,5 @@
 AddonVersion = "|cff00ff001.2.2|r"
-ZL_AddonName = "ZeldaLoot BCC"
+ZL_AddonName = "ZeldaLoot Classic"
 ZL_AddonColor = "|cff00ffff"
 
 function zl_Print(msg)
@@ -10,7 +10,7 @@ function play_zeldaSound(index, sound_file)
 	local sound_set = get_sound_set(index)
 
 	update_config()
-	PlaySoundFile("Interface\\AddOns\\ZeldaLoot_BCC\\Sounds\\Sets\\"..sound_set.."\\" .. sound_file .. ".wav")
+	PlaySoundFile("Interface\\AddOns\\ZeldaLoot_Classic\\Sounds\\Sets\\"..sound_set.."\\" .. sound_file .. ".wav")
 end
 
 function zeldaFrame_OnEvent(self, event, ...)
@@ -24,7 +24,7 @@ function zeldaFrame_OnEvent(self, event, ...)
 
 	local arg1 = select(1, ...)
 
-	if ((event == "ADDON_LOADED") and (arg1 == "ZeldaLoot_BCC")) then
+	if ((event == "ADDON_LOADED") and (arg1 == "ZeldaLoot_Classic")) then
 		update_config(false)
 		zl_Print(AddonVersion..' Loaded.')
 		zl_Print('Type |cffffff00/zeldaloot|r or |cffffff00/zl|r for the settings')
@@ -33,7 +33,7 @@ function zeldaFrame_OnEvent(self, event, ...)
 		end
 	end
 
-	if (((event == "ADDON_LOADED") and (arg1 == "ZeldaLoot_BCC")) or (event == "PLAYER_LOGOUT")) then
+	if (((event == "ADDON_LOADED") and (arg1 == "ZeldaLoot_Classic")) or (event == "PLAYER_LOGOUT")) then
 		if ((zl_config == nil) or (zl_config_temp == nil)) then
 			-- First initialization
 			reset_config(false)
