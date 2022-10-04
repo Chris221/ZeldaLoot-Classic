@@ -1,6 +1,7 @@
-AddonVersion = "|cff00ff001.2.2|r"
+AddonVersion = "|cff00ff001.2.5|r"
 ZL_AddonName = "ZeldaLoot Classic"
 ZL_AddonColor = "|cff00ffff"
+ZL_soundHandle = 0
 
 function zl_Print(msg)
 	DEFAULT_CHAT_FRAME:AddMessage(ZL_AddonColor .. ZL_AddonName .. '|r ' .. tostring(msg))
@@ -8,9 +9,27 @@ end
 
 function play_zeldaSound(index, sound_file)
 	local sound_set = get_sound_set(index)
+	local willPlay = nil
+	local sound_ext = "ogg"
+	local sound_channel = "SFX"
+	if (ZL_soundHandle ~= 0) then
+		if (zl_debug_bool) then
+			zl_Print("Stopping sound for " .. ZL_soundHandle)
+		end
+		StopSound(ZL_soundHandle, 0)
+	end
 
-	update_config()
-	PlaySoundFile("Interface\\AddOns\\ZeldaLoot_Classic\\Sounds\\Sets\\"..sound_set.."\\" .. sound_file .. ".wav")
+
+	update_config(false)
+	willPlay, ZL_soundHandle = PlaySoundFile("Interface\\AddOns\\ZeldaLoot_Classic\\Sounds\\Sets\\" .. sound_set .. "\\" .. sound_file .. "." .. sound_ext, sound_channel)
+	if (zl_debug_bool) then
+		local mess = "[" .. sound_set .. "\\" .. sound_file .. "." .. sound_ext .. "] on sound channel [" .. sound_channel .. "]"
+		if (willPlay) then
+			zl_Print("Playing sound for " .. mess)
+		else
+			zl_Print("NOT playing sound for " .. mess .. " likey due to [" .. sound_channel .. "] being muted")
+		end
+	end
 end
 
 function zeldaFrame_OnEvent(self, event, ...)

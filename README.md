@@ -15,6 +15,11 @@ English, french, spanish and deutch languages are supported, and you can write y
 For a retail version please use [ZeldaLoot Extended by LegendaryHero20](https://www.curseforge.com/wow/addons/zeldaloot-extended)
 
 ## Changes
+### Changes in 1.2.5
+- It will now prevent running multiple sounds at the same time.
+- Reduced the size by correcting the sound files
+- Files should be supported on all clients
+
 ### Changes in 1.2.4
 - Updated for version 3.4.0
 - Changed the name from "ZeldaLoot BCC" to "ZeldaLoot Classic"
