@@ -5,11 +5,15 @@ Based on [ZeldaLoot Extended](https://www.curseforge.com/wow/addons/zeldaloot)�
 ### Sounds
 4 new sounds for different item qualities, from uncommon (green) to legendary (orange). Note inherited objects (linked to account) can play sound when received too (same as for legandaries items). Sounds provided by: Darth Killer, from Zelda Ocarina of Time (original from games), and Chrisgess, from *Zelda Ocarina of Time Orchestrated* album [www.zreomusic.com](http://zreomusic.com/), even higher sound quality!
 
+The audio plays on the SFX audio channel.
+
 ### Interface
 Configure which sounds you want and when: loot from enemies, received (letterbox, seller, etc), crafted (professions and some special items like Eternal Water). Settings will be saved between sessions for all your characters. Type **/zeldaloot** or **/zl** for the settings menu.
 
 ### Localization
 English, french, spanish and deutch languages are supported, and you can write your own, see files in **\Locale** subdirectory
+
+**If you are using another language please let me know to ensure you are recieving the notifications and not missing the sound effects**
 
 ## Retail
 For a retail version please use [ZeldaLoot Extended by LegendaryHero20](https://www.curseforge.com/wow/addons/zeldaloot-extended)
