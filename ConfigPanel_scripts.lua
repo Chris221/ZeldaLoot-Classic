@@ -8,6 +8,10 @@ function update_config(allow_debug)
 		zl_debug_bool = false
 	end
 
+	if (zl_warning_bool == nil) then
+		zl_warning_bool = true
+	end
+
 	if (zl_debug_bool and allow_debug) then
 		dump_config("update_config")
 	end
@@ -18,6 +22,16 @@ function update_config(allow_debug)
 			zl_config["sounds"]["set"] = nil
 			zl_config_temp["sounds"]["set"] = nil
 		end
+	end
+
+	if ((zl_config_temp["settings"]["ext"] == nil) or (zl_config["settings"]["ext"] == nil)) then
+		zl_config["settings"]["ext"] = "wav"
+		zl_config_temp["settings"]["ext"] = "wav"
+	end
+
+	if ((zl_config_temp["settings"]["channel"] == nil) or (zl_config["settings"]["channel"] == nil)) then
+		zl_config["settings"]["channel"] = "SFX"
+		zl_config_temp["settings"]["channel"] = "SFX"
 	end
 
 	if ((zl_config_temp["green"]["set"] == nil) or (zl_config["green"]["set"] == nil)) then
@@ -168,12 +182,46 @@ function btn_cancel_onclick()
 	hide_zl_frame()
 end
 
-
 function zl_toBool(num)
 	if (num == 1) then
 		return true
 	else
 		return false
+	end
+end
+
+function get_sound_ext()
+	local sound_channel
+
+	sound_channel = zl_config['settings'].ext
+
+	if ((sound_channel == nil) or (sound_channel == "wav"))
+		then return "wav"
+	elseif (sound_channel == "ogg")
+		then return "ogg"
+	else
+		return "wav"
+	end
+end
+
+function get_sound_channel()
+	local sound_channel
+
+	sound_channel = zl_config['settings'].channel
+
+	-- "Master", "SFX" (Sound), "Music", "Ambience", "Dialog"
+	if ((sound_channel == nil) or (sound_channel == "SFX"))
+		then return "SFX"
+	elseif (sound_channel == "Master")
+		then return "Master"
+	elseif (sound_channel == "Music")
+		then return "Music"
+	elseif (sound_channel == "Ambience")
+		then return "Ambience"
+	elseif (sound_channel == "Dialog")
+		then return "Dialog"
+	else
+		return "SFX"
 	end
 end
 

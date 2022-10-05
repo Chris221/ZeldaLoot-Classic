@@ -1,6 +1,18 @@
 # [ZeldaLoot Classic](https://www.curseforge.com/wow/addons/zeldaloot-classic)
 
 ## Changes
+### Changes in 1.3.0
+- There are new warnings if the sound fails to play for any reason. You can disable these with **/zl warnings**.
+- Use **/zl ext** to switch file types. This will be an actual settings opion in the future.
+- Use **/zl channel <channel>** to change the audio channel the sound effect plays on; **the default is SFX (Sound)**. This will be an actual settings opion in the future.
+  - Channel options: 
+    - "Master"
+    - "SFX" (Sound)
+    - "Music"
+    - "Ambience"
+    - "Dialog"
+- Re-added old files to ensure all clients work
+
 ### Changes in 1.2.5
 - It will now prevent running multiple sounds at the same time.
 - Reduced the size by correcting the sound files
