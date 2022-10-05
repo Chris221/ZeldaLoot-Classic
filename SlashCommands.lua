@@ -35,6 +35,18 @@ function zl.SlashCommandHandler(msg)
 			zl_warning_bool = true
 			zl_Print('Warnings have been enabled')
 		end
+	elseif (msg == 'ext mp3') then
+		zl_config["settings"]["ext"] = "mp3"
+		zl_config_temp["settings"]["ext"] = "mp3"
+		zl_Print("Audio ext has been switched to .mp3 files [Experimental]")
+	elseif (msg == 'ext wav') then
+		zl_config["settings"]["ext"] = "wav"
+		zl_config_temp["settings"]["ext"] = "wav"
+		zl_Print("Audio ext has been switched to .wav files [Recommended for better client support]")
+	elseif (msg == 'ext ogg') then
+		zl_config["settings"]["ext"] = "ogg"
+		zl_config_temp["settings"]["ext"] = "ogg"
+		zl_Print("Audio ext has been switched to .ogg files [Blizard Recommended, doesn't seem to work on all clients]")
 	elseif (msg == 'ext') then
 		if (zl_config["settings"]["ext"] == "wav") then
 			zl_config["settings"]["ext"] = "ogg"
