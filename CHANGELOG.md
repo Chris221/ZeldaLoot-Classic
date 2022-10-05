@@ -7,7 +7,7 @@
 - Use **/zl channel <channel>** to change the audio channel the sound effect plays on; **the default is SFX (Sound)**. This will be an actual settings opion in the future.
   - Channel options: 
     - "Master"
-    - "SFX" (Sound)
+    - "SFX"
     - "Music"
     - "Ambience"
     - "Dialog"
