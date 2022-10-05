@@ -127,32 +127,32 @@ function reset_config(print_text)
 	zl_config = {
 		green = {
 			active   = true,
-			received = false,
-			crafted  = false,
+			received = true,
+			crafted  = true,
 			set = 0,
 			sound = 1
 		},
 
 		blue = {
 			active   = true,
-			received = false,
-			crafted  = false,
+			received = true,
+			crafted  = true,
 			set = 0,
 			sound = 2
 		},
 
 		purple = {
 			active   = true,
-			received = false,
-			crafted  = false,
+			received = true,
+			crafted  = true,
 			set = 0,
 			sound = 3
 		},
 
 		orange = {
 			active   = true,
-			received = false,
-			crafted  = false,
+			received = true,
+			crafted  = true,
 			set = 0,
 			sound = 4
 		},
