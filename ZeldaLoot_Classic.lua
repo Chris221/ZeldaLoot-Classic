@@ -56,6 +56,16 @@ function zeldaFrame_OnEvent(self, event, ...)
 		if (zl_debug_bool) then
 			zl_Print('Debug mode is enabled')
 		end
+
+		local panel = getglobal("ZL_ConfigPanel")
+		panel.name = ZL_AddonName
+		panel.okay = btn_ok_onclick
+		panel.cancel = btn_cancel_onclick
+		panel.default = reset_config
+		panel.refresh = refresh_zl_frame
+
+		InterfaceOptions_AddCategory(panel, true)
+		InterfaceAddOnsList_Update()
 	end
 
 	if (((event == "ADDON_LOADED") and (arg1 == "ZeldaLoot_Classic")) or (event == "PLAYER_LOGOUT")) then

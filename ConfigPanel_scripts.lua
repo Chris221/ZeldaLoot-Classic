@@ -135,6 +135,16 @@ function hide_zl_frame()
 	end
 end
 
+function refresh_zl_frame()
+	local frame = getglobal("ZL_ConfigPanel")
+	if (frame) then
+		if (frame:IsVisible()) then
+			frame:Hide();
+			frame:Show();
+		end
+	end
+end
+
 -- Show zl config frame (if not visible)
 function show_zl_frame()
 	local frame = getglobal("ZL_ConfigPanel")

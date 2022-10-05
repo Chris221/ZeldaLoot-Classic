@@ -1,7 +1,7 @@
 local zl = {};
 
 function zl.SlashCommandHandler(msg)
-	if (msg == 'help') then
+	if (msg == 'help' or msg == '?' or msg == 'h') then
 		zl_Print('Slash Commands:')
 		print('|cffffaa00/zl |r- Opens the settings.')
 		print('|cffffaa00/zeldaloot |r- Opens the settings.')
@@ -86,17 +86,7 @@ function zl.SlashCommandHandler(msg)
 	elseif (msg == 'reset') then
 		reset_config(true)
 	else
-		local frame = getglobal("ZL_ConfigPanel")
-
-		if (frame) then
-			if (frame:IsVisible()) then
-				--frame:Hide();
-				hide_zl_frame();
-			else
-				--frame:Show();
-				show_zl_frame();
-			end
-		end
+		InterfaceOptionsFrame_OpenToCategory(ZL_AddonName)
 	end
 end
 
