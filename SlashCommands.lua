@@ -69,7 +69,7 @@ function zl.SlashCommandHandler(msg)
 		else
 			zl_config["settings"]["channel"] = "SFX"
 			zl_config_temp["settings"]["channel"] = "SFX"
-			zl_Print('Audio channel was changed to default "SFX" (Sound) [Recommended]')
+			zl_Print('Audio channel was changed to the default: "SFX" (Sound) [Recommended]')
 		end
 	elseif (msg == 'reset') then
 		reset_config(true)
