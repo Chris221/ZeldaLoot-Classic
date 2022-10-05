@@ -24,6 +24,16 @@ function update_config(allow_debug)
 		end
 	end
 
+	if ((zl_config_temp["settings"] == nil) or (zl_config["settings"] == nil)) then
+		local settings = {
+			ext = "wav",
+			channel = "SFX"
+		}
+
+		zl_config["settings"] = settings
+		zl_config_temp["settings"] = settings
+	end
+
 	if ((zl_config_temp["settings"]["ext"] == nil) or (zl_config["settings"]["ext"] == nil)) then
 		zl_config["settings"]["ext"] = "wav"
 		zl_config_temp["settings"]["ext"] = "wav"
