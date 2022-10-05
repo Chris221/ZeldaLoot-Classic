@@ -201,13 +201,15 @@ function zl_toBool(num)
 end
 
 function get_sound_ext()
-	local sound_channel
+	local sound_ext
 
-	sound_channel = zl_config['settings'].ext
+	sound_ext = zl_config['settings'].ext
 
-	if ((sound_channel == nil) or (sound_channel == "wav"))
+	if ((sound_ext == nil) or (sound_ext == "wav"))
 		then return "wav"
-	elseif (sound_channel == "ogg")
+	elseif (sound_ext == "mp3")
+		then return "mp3"
+	elseif (sound_ext == "ogg")
 		then return "ogg"
 	else
 		return "wav"
