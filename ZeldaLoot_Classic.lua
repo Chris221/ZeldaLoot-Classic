@@ -14,7 +14,7 @@ function play_zeldaSound(index, sound_file)
 	local sound_channel = get_sound_channel()
 	local warning_text = ""
 
-	if (ZL_soundHandle ~= 0) then
+	if (ZL_soundHandle ~= 0 and ZL_soundHandle ~= nil) then
 		if (zl_debug_bool) then
 			zl_Print("Stopping sound for " .. ZL_soundHandle)
 		end
