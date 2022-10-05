@@ -10,7 +10,7 @@ end
 function play_zeldaSound(index, sound_file)
 	local sound_set = get_sound_set(index)
 	local willPlay = nil
-	local sound_ext = get_sound_type()
+	local sound_ext = get_sound_ext()
 	local sound_channel = get_sound_channel()
 	local warning_text = ""
 
