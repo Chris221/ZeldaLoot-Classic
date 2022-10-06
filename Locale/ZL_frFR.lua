@@ -2,7 +2,7 @@
 
 if (GetLocale() == "frFR") then
 
-	ZL_CONFIG_TITLE = "Configuration de ZeldaLoot"
+	ZL_CONFIG_TITLE   = "Configuration de ZeldaLoot"
 
 	ZL_TEST           = "Tester"
 	ZL_OK             = "OK"
@@ -28,4 +28,10 @@ if (GetLocale() == "frFR") then
 	ZL_RECEIVEMESSAGE = "Vous recevez"
 	ZL_CRAFTMESSAGE   = "Vous créez"
 	ZL_CRAFTMESSAGE2  = "Vous recevez l'objet"
+
+	ZL_FILE_TYPE      = "Type de fichier"
+	ZL_FILE_CHANNEL   = "Canal audio"
+
+	ZL_DEBUG          = "Activer le débogage"
+	ZL_WARN           = "Activer les avertissements"
 end
