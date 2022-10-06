@@ -1,54 +1,62 @@
+/**
+ * ZeldaLoot Classic Build Script
+ * By: Chris Siena (Chris221)
+ * Site: https://ChrisSiena.com/
+ * 
+ * This script was written for my ZeldaLoot Classic zip-file compiling.
+ * Normally working on windows this isn't needed due to not adding extras
+ * to the .zip file on creation. Mac unfortunately does not do that..
+ * Apple decided to add stupid files like .DS_Store in every folder which
+ * serves 0 purpose. They also add __MACOSX folders which seem to just be
+ * metadata? either way normal zips are supported and should be the normal
+ * 
+ * So here we are...
+ */
 const JSZip = require('jszip');
 const path = require('path');
 const fs = require('fs');
 
-const version = require('./package.json').version;
-const dir = 'build/';
-
-const file_name = `ZeldaLoot_Classic_v${version}`;
+//Setup for Zip
 const zip = new JSZip()
 const base = zip.folder("ZeldaLoot_Classic");
 const rootDirectoryPath = path.join(__dirname, '');
 
+//Addon Data
+const version = fs.readFileSync("ZeldaLoot_Classic.toc").toString().match(/## Version: ([0-9.]+)/)[1];
+const dir = 'build/';
+const file_name = `ZeldaLoot_Classic_v${version}.zip`;
 
-const bcc = fs.readFileSync("ZeldaLoot_Classic-TBC.toc").toString().match(/## Interface: ([0-9]+)/)[1];
-const classic = fs.readFileSync("ZeldaLoot_Classic-Vanilla.toc").toString().match(/## Interface: ([0-9]+)/)[1];
-const wrath = fs.readFileSync("ZeldaLoot_Classic-WOTLKC.toc").toString().match(/## Interface: ([0-9]+)/)[1];
-const retail = fs.readFileSync("ZeldaLoot_Classic.toc").toString().match(/## Interface: ([0-9]+)/)[1];
-
-const base_release = {
-  nolib: false,
-  metadata: [
-    {
-      flavor: "classic",
-      interface: parseInt(classic),
-    },
-    {
-      flavor: "bcc",
-      interface: parseInt(bcc),
-    },
-    {
-      flavor: "wrath",
-      interface: parseInt(wrath),
-    },
-    {
-      flavor: "mainline",
-      interface: parseInt(retail),
-    }
-  ]
-};
-
+//For release
 var release_data = {
-  releases: [],
+  releases: [
+    {
+      name: "ZeldaLoot Classic",
+      version: `v${version}`,
+      filename: file_name,
+      nolib: false,
+      metadata: [
+        {
+          flavor: "classic",
+          interface: parseInt(fs.readFileSync("ZeldaLoot_Classic-Vanilla.toc").toString().match(/## Interface: ([0-9]+)/)[1]),
+        },
+        {
+          flavor: "bcc",
+          interface: parseInt(fs.readFileSync("ZeldaLoot_Classic-TBC.toc").toString().match(/## Interface: ([0-9]+)/)[1]),
+        },
+        {
+          flavor: "wrath",
+          interface: parseInt(fs.readFileSync("ZeldaLoot_Classic-WOTLKC.toc").toString().match(/## Interface: ([0-9]+)/)[1]),
+        },
+        {
+          flavor: "mainline",
+          interface: parseInt(fs.readFileSync("ZeldaLoot_Classic.toc").toString().match(/## Interface: ([0-9]+)/)[1]),
+        }
+      ]
+    }
+  ],
 };
 
-const zipnames = [
-  '',
-  '-bcc',
-  '-wotlk',
-  '-classic',
-];
-
+//For Zip
 const folderPaths = [
   'Locale',
   'Sounds/Sets/ALTTP',
@@ -76,6 +84,7 @@ var removeList = [
   'build',
 ];
 
+//Script - Zip
 new Promise(res => fs.readdir(rootDirectoryPath, (err, files) => {
   var list = [];
 
@@ -129,22 +138,11 @@ new Promise(res => fs.readdir(rootDirectoryPath, (err, files) => {
       fs.mkdirSync(dir);
     }
 
-    await Promise.all(zipnames.map(name => {
-      let n = file_name + name + '.zip';
+    await zip.generateNodeStream({ type: 'nodebuffer', streamFiles: true ,compression: "DEFLATE", compressionOptions: { level: 9 } })
+      .pipe(fs.createWriteStream(dir + file_name))
+      .on('finish', () => console.log(`${file_name} saved!`))
 
-      release_data.releases.push({ filename: n, ...base_release });
-
-      return new Promise(res => 
-        zip.generateNodeStream({ type: 'nodebuffer', streamFiles: true })
-          .pipe(fs.createWriteStream(dir + n))
-          .on('finish', () => {
-            console.log(`${n} saved!`);
-            res();
-          })
-      );
-    }));
-
-    fs.writeFile(dir + 'release.json', JSON.stringify(release_data, null, 2), (err) => {
+    await fs.writeFile(dir + 'release.json', JSON.stringify(release_data, null, 2), (err) => {
       if (err) return console.error(err);
 
       console.log('release.json saved!');

@@ -1,0 +1,28 @@
+{
+  "releases": [
+    {
+      "name": "ZeldaLoot Classic",
+      "version": "v2.0.1",
+      "filename": "ZeldaLoot_Classic_v2.0.1.zip",
+      "nolib": false,
+      "metadata": [
+        {
+          "flavor": "classic",
+          "interface": 11403
+        },
+        {
+          "flavor": "bcc",
+          "interface": 20504
+        },
+        {
+          "flavor": "wrath",
+          "interface": 30400
+        },
+        {
+          "flavor": "mainline",
+          "interface": 90207
+        }
+      ]
+    }
+  ]
+}
