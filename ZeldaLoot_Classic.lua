@@ -1,4 +1,4 @@
-AddonVersion = "|cff00ff002.0.0|r"
+AddonVersion = "|cff00ff002.0.1|r"
 ZL_AddonName = "ZeldaLoot Classic"
 ZL_AddonColor = "|cff00ffff"
 ZL_soundHandle = 0

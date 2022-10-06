@@ -6,7 +6,7 @@
 ## Notes-deDE: Spielen verschiedene Töne, wenn Objekte Zelda legendäre (orange), epische (lila), selten (blau) oder ungewöhnliche (grün). Basierend auf ZeldaLoot von Rickyk.
 ## Notes-ruRU: Воспроизводит другой звук предмета Legend of Zelda, когда вы получаете легендарный (оранжевый), эпический (фиолетовый), редкий (синий) или необычный (зеленый) предмет. На основе ZeldaLoot от Rickyk.
 ## Author: Chris221221
-## Version: 2.0.0
+## Version: 2.0.1
 ## SavedVariables: zl_config zl_debug_bool zl_warning_bool
 ## OptionalDeps: 
 

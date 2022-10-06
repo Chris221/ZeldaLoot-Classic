@@ -19,6 +19,10 @@ English, French, Spanish, German, and Russian languages are supported, and you c
 For a retail version please use [ZeldaLoot Extended by LegendaryHero20](https://www.curseforge.com/wow/addons/zeldaloot-extended)
 
 ## Changes
+### Changes in 2.0.1
+- Added support for Vanilla
+
+
 ### Changes in 2.0.0
 - Now with mp3 files
 - The settings panel has been moved in to the interface settings for easier access

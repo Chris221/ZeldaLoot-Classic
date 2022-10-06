@@ -1,6 +1,9 @@
 # [ZeldaLoot Classic](https://www.curseforge.com/wow/addons/zeldaloot-classic)
 
 ## Changes
+### Changes in 2.0.1
+- Added support for Vanilla
+
 ### Changes in 2.0.0
 - Now with mp3 files
 - The settings panel has been moved in to the interface settings for easier access
