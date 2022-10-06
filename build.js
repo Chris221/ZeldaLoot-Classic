@@ -81,6 +81,7 @@ var removeList = [
   'Old Sounds',
   'Sounds',
   'Locale',
+  'Images',
   'build',
 ];
 
