@@ -15,6 +15,7 @@
 ## X-License: GNU GPL v3, 29 June 2007
 ## X-Category: Audio & Video
 ## X-Curse-Project-ID: 487037
+## X-WoWI-ID: 26421
 
 ConfigPanel_scripts.lua
 ConfigPanel.xml
