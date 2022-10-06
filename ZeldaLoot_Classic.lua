@@ -1,4 +1,4 @@
-AddonVersion = "|cff00ff001.3.0|r"
+AddonVersion = "|cff00ff002.0.0|r"
 ZL_AddonName = "ZeldaLoot Classic"
 ZL_AddonColor = "|cff00ffff"
 ZL_soundHandle = 0
@@ -53,6 +53,7 @@ function zeldaFrame_OnEvent(self, event, ...)
 		update_config(false)
 		zl_Print(AddonVersion..' Loaded.')
 		zl_Print('Type |cffffff00/zeldaloot|r or |cffffff00/zl|r for the settings')
+		zl_Print('Type |cffffff00/zeldaloot ?|r or |cffffff00/zl ?|r for the help menu')
 		if (zl_debug_bool) then
 			zl_Print('Debug mode is enabled')
 		end
@@ -69,7 +70,7 @@ function zeldaFrame_OnEvent(self, event, ...)
 	end
 
 	if (((event == "ADDON_LOADED") and (arg1 == "ZeldaLoot_Classic")) or (event == "PLAYER_LOGOUT")) then
-		if ((zl_config == nil) or (zl_config_temp == nil)) then
+		if ((zl_config == nil)) then
 			-- First initialization
 			reset_config(false)
 		end
@@ -84,6 +85,12 @@ function zeldaFrame_OnEvent(self, event, ...)
 
 			obj = getglobal("check_inheritedstuff")
 			obj:SetChecked(zl_config["inherited"]["include"])
+
+			obj = getglobal("check_warnings")
+			obj:SetChecked(zl_warning_bool)
+
+			obj = getglobal("check_debug")
+			obj:SetChecked(zl_debug_bool)
 		end
 	end
 
@@ -177,7 +184,15 @@ function reset_config(print_text)
 		}
 	}
 
-	zl_config_temp = zl_config
+	if (zl_debug_bool) then
+		zl_debug_bool = false
+		zl_Print('Debug mode has been disabled. Type |cffffff00/zl debug|r to re-enable')
+	end
+
+	if (zl_warning_bool ~= true) then
+		zl_warning_bool = true
+		zl_Print('Warnings have been enabled. Type |cffffff00/zl warn|r to disable')
+	end
 
 	if (print_text) then
 		zl_Print('Config has been reset')

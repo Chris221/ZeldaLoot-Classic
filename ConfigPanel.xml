@@ -35,6 +35,19 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>check_loot_onclick(self, 2, 0);</OnClick>
+					<OnLoad>
+						self.title = ZL_GREENLOOT;
+						self.tooltip = "Enables/Disables audio effects for green items";
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
 			</CheckButton>
 			<CheckButton name="check_blueloot" inherits="UICheckButtonTemplate">
@@ -48,6 +61,19 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>check_loot_onclick(self, 3, 0);</OnClick>
+					<OnLoad>
+						self.title = ZL_BLUELOOT;
+						self.tooltip = "Enables/Disables audio effects for blue items";
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
 			</CheckButton>
 			<CheckButton name="check_purpleloot" inherits="UICheckButtonTemplate">
@@ -61,6 +87,19 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>check_loot_onclick(self, 4, 0);</OnClick>
+					<OnLoad>
+						self.title = ZL_PURPLELOOT;
+						self.tooltip = "Enables/Disables audio effects for purple items";
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
 			</CheckButton>
 			<CheckButton name="check_orangeloot" inherits="UICheckButtonTemplate">
@@ -74,6 +113,19 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>check_loot_onclick(self, 5, 0);</OnClick>
+					<OnLoad>
+						self.title = ZL_ORANGELOOT;
+						self.tooltip = "Enables/Disables audio effects for orange items";
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
 			</CheckButton>
 			<Button name="dropdown_greenloot_set" inherits="UIDropDownMenuTemplate">
@@ -81,14 +133,25 @@
 					<Anchor point="TOPLEFT">
 						<Offset x="16" y="-104" />
 					</Anchor>
-                </Anchors>
+        </Anchors>
 				<Scripts>
 					<OnLoad>
 						UIDropDownMenu_Initialize(self, dropdown_set_Initialize)
+						self.title = "Green Set";
+						self.tooltip = "Green audio set";
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, dropdown_set_Show)
 					</OnShow>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
 			</Button>
 			<Button name="dropdown_blueloot_set" inherits="UIDropDownMenuTemplate">
@@ -96,14 +159,25 @@
 					<Anchor point="TOPLEFT">
 						<Offset x="150" y="-104" />
 					</Anchor>
-                </Anchors>
+        </Anchors>
 				<Scripts>
 					<OnLoad>
 						UIDropDownMenu_Initialize(self, dropdown_set_Initialize)
+						self.title = "Blue Set";
+						self.tooltip = "Blue audio set";
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, dropdown_set_Show)
 					</OnShow>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
       </Button>
 			<Button name="dropdown_purpleloot_set" inherits="UIDropDownMenuTemplate">
@@ -111,14 +185,25 @@
 					<Anchor point="TOPLEFT">
 						<Offset x="272" y="-104" />
 					</Anchor>
-                </Anchors>
+        </Anchors>
 				<Scripts>
 					<OnLoad>
 						UIDropDownMenu_Initialize(self, dropdown_set_Initialize)
+						self.title = "Purple Set";
+						self.tooltip = "Purple audio set";
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, dropdown_set_Show)
 					</OnShow>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
       </Button>
 			<Button name="dropdown_orangeloot_set" inherits="UIDropDownMenuTemplate">
@@ -126,14 +211,25 @@
 					<Anchor point="TOPLEFT">
 						<Offset x="390" y="-104" />
 					</Anchor>
-                </Anchors>
+        </Anchors>
 				<Scripts>
 					<OnLoad>
 						UIDropDownMenu_Initialize(self, dropdown_set_Initialize)
+						self.title = "Orange Set";
+						self.tooltip = "Orange audio set";
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, dropdown_set_Show)
 					</OnShow>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
       </Button>
 			<Button name="dropdown_greenloot_sound" inherits="UIDropDownMenuTemplate">
@@ -141,14 +237,25 @@
 					<Anchor point="TOPLEFT">
 						<Offset x="16" y="-134" />
 					</Anchor>
-                </Anchors>
+        </Anchors>
 				<Scripts>
 					<OnLoad>
 						UIDropDownMenu_Initialize(self, dropdown_sound_Initialize)
+						self.title = "Green Effect";
+						self.tooltip = "Green audio sound effect";
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, dropdown_sound_Show)
 					</OnShow>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
 			</Button>
 			<Button name="dropdown_blueloot_sound" inherits="UIDropDownMenuTemplate">
@@ -156,14 +263,25 @@
 					<Anchor point="TOPLEFT">
 						<Offset x="150" y="-134" />
 					</Anchor>
-                </Anchors>
+        </Anchors>
 				<Scripts>
 					<OnLoad>
 						UIDropDownMenu_Initialize(self, dropdown_sound_Initialize)
+						self.title = "Blue Effect";
+						self.tooltip = "Blue audio sound effect";
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, dropdown_sound_Show)
 					</OnShow>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
 			</Button>
 			<Button name="dropdown_purpleloot_sound" inherits="UIDropDownMenuTemplate">
@@ -171,14 +289,25 @@
 					<Anchor point="TOPLEFT">
 						<Offset x="272" y="-134" />
 					</Anchor>
-                </Anchors>
+        </Anchors>
 				<Scripts>
 					<OnLoad>
 						UIDropDownMenu_Initialize(self, dropdown_sound_Initialize)
+						self.title = "Purple Effect";
+						self.tooltip = "Purple audio sound effect";
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, dropdown_sound_Show)
 					</OnShow>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
 			</Button>
 			<Button name="dropdown_orangeloot_sound" inherits="UIDropDownMenuTemplate">
@@ -186,14 +315,25 @@
 					<Anchor point="TOPLEFT">
 						<Offset x="390" y="-134" />
 					</Anchor>
-                </Anchors>
+        </Anchors>
 				<Scripts>
 					<OnLoad>
 						UIDropDownMenu_Initialize(self, dropdown_sound_Initialize)
+						self.title = "Orange Effect";
+						self.tooltip = "Orange audio sound effect";
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, dropdown_sound_Show)
 					</OnShow>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
 			</Button>
 			<Button name="test_greensound" inherits="UIPanelButtonTemplate" text="ZL_TEST">
@@ -207,6 +347,19 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>test_zl_sound(2);</OnClick>
+					<OnLoad>
+						self.title = "Test green audio";
+						self.tooltip = "Test the green audio effect";
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
 			</Button>
 			<Button name="test_bluesound" inherits="UIPanelButtonTemplate" text="ZL_TEST">
@@ -220,6 +373,19 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>test_zl_sound(3);</OnClick>
+					<OnLoad>
+						self.title = "Test blue audio";
+						self.tooltip = "Test the blue audio effect";
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
 			</Button>
 			<Button name="test_epicsound" inherits="UIPanelButtonTemplate" text="ZL_TEST">
@@ -233,6 +399,19 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>test_zl_sound(4);</OnClick>
+					<OnLoad>
+						self.title = "Test purple audio";
+						self.tooltip = "Test the purple audio effect";
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
 			</Button>
 			<Button name="test_legendsound" inherits="UIPanelButtonTemplate" text="ZL_TEST">
@@ -246,9 +425,22 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>test_zl_sound(5);</OnClick>
+					<OnLoad>
+						self.title = "Test orange audio";
+						self.tooltip = "Test the orange audio effect";
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
 			</Button>
-			<CheckButton name="check_greencrafts" inherits="UICheckButtonTemplate" text="">
+			<CheckButton name="check_greencrafts" inherits="UICheckButtonTemplate">
 				<Size>
 					<AbsDimension x="20" y="20" />
 				</Size>
@@ -259,9 +451,22 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>check_loot_onclick(self, 2, 1);</OnClick>
+					<OnLoad>
+						self.title = "Green Crafted";
+						self.tooltip = "Green items that are crafted";
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
 			</CheckButton>
-			<CheckButton name="check_greenreceived" inherits="UICheckButtonTemplate" text="">
+			<CheckButton name="check_greenreceived" inherits="UICheckButtonTemplate" >
 				<Size>
 					<AbsDimension x="20" y="20" />
 				</Size>
@@ -272,9 +477,22 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>check_loot_onclick(self, 2, 2);</OnClick>
+					<OnLoad>
+						self.title = "Green Received";
+						self.tooltip = "Green items received through quests, trade, and the mail";
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
 			</CheckButton>
-			<CheckButton name="check_bluecrafts" inherits="UICheckButtonTemplate" text="">
+			<CheckButton name="check_bluecrafts" inherits="UICheckButtonTemplate">
 				<Size>
 					<AbsDimension x="20" y="20" />
 				</Size>
@@ -285,9 +503,22 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>check_loot_onclick(self, 3, 1);</OnClick>
+					<OnLoad>
+						self.title = "Blue Crafted";
+						self.tooltip = "Blue items that are crafted";
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
 			</CheckButton>
-			<CheckButton name="check_bluereceived" inherits="UICheckButtonTemplate" text="CheckButton2">
+			<CheckButton name="check_bluereceived" inherits="UICheckButtonTemplate">
 				<Size>
 					<AbsDimension x="20" y="20" />
 				</Size>
@@ -298,6 +529,19 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>check_loot_onclick(self, 3, 2);</OnClick>
+					<OnLoad>
+						self.title = "Blue Received";
+						self.tooltip = "Blue items received through quests, trade, and the mail";
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
 			</CheckButton>
 			<CheckButton name="check_purplecrafts" inherits="UICheckButtonTemplate">
@@ -311,6 +555,19 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>check_loot_onclick(self, 4, 1);</OnClick>
+					<OnLoad>
+						self.title = "Purple Crafted";
+						self.tooltip = "Purple items that are crafted";
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
 			</CheckButton>
 			<CheckButton name="check_purplereceived" inherits="UICheckButtonTemplate">
@@ -324,6 +581,19 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>check_loot_onclick(self, 4, 2);</OnClick>
+					<OnLoad>
+						self.title = "Purple Received";
+						self.tooltip = "Purple items received through quests, trade, and the mail";
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
 			</CheckButton>
 			<CheckButton name="check_orangecrafts" inherits="UICheckButtonTemplate">
@@ -337,6 +607,19 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>check_loot_onclick(self, 5, 1);</OnClick>
+					<OnLoad>
+						self.title = "Orange Crafted";
+						self.tooltip = "Orange items that are crafted";
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
 			</CheckButton>
 			<CheckButton name="check_orangereceived" inherits="UICheckButtonTemplate">
@@ -350,6 +633,19 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>check_loot_onclick(self, 5, 2);</OnClick>
+					<OnLoad>
+						self.title = "Orange Received";
+						self.tooltip = "Orange items received through quests, trade, and the mail";
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
 			</CheckButton>
 			<CheckButton name="check_inheritedstuff" inherits="UICheckButtonTemplate">
@@ -363,34 +659,125 @@
 				</Anchors>
 				<Scripts>
 					<OnClick>check_inheritedstuff_onclick(self);</OnClick>
+					<OnLoad>
+						self.title = ZL_INHERITED;
+						self.tooltip = "Enables audio sounds for account bound items";
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
 			</CheckButton>
-			<!-- <Button name="btn_ok" inherits="UIPanelButtonTemplate" text="ZL_OK">
-				<Size>
-					<AbsDimension x="75" y="23" />
-				</Size>
+			<Button name="dropdown_setting_ext" inherits="UIDropDownMenuTemplate">
 				<Anchors>
 					<Anchor point="TOPLEFT">
-						<Offset x="210" y="-367" />
+						<Offset x="16" y="-390" />
 					</Anchor>
-				</Anchors>
+        </Anchors>
 				<Scripts>
-					<OnClick>btn_ok_onclick();</OnClick>
+					<OnLoad>
+						UIDropDownMenu_Initialize(self, dropdown_settings_Initialize)
+						self.title = ZL_FILE_TYPE;
+						self.tooltip = "Select which file type you would like to use";
+					</OnLoad>
+					<OnShow>
+						UIDropDownMenu_Initialize(self, dropdown_settings_Show)
+					</OnShow>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
 			</Button>
-			<Button name="btn_cancel" inherits="UIPanelButtonTemplate" text="ZL_CANCEL">
+			<Button name="dropdown_setting_channel" inherits="UIDropDownMenuTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="150" y="-390" />
+					</Anchor>
+        </Anchors>
+				<Scripts>
+					<OnLoad>
+						UIDropDownMenu_Initialize(self, dropdown_settings_Initialize)
+						self.title = ZL_FILE_CHANNEL;
+						self.tooltip = "Select which audio channel you would like to use.\n\nSFX is Recommended";
+					</OnLoad>
+					<OnShow>
+						UIDropDownMenu_Initialize(self, dropdown_settings_Show)
+					</OnShow>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</Button>
+			<CheckButton name="check_warnings" inherits="UICheckButtonTemplate">
 				<Size>
-					<AbsDimension x="75" y="23" />
+					<AbsDimension x="20" y="20" />
 				</Size>
 				<Anchors>
 					<Anchor point="TOPLEFT">
-						<Offset x="291" y="-367" />
+						<Offset x="45" y="-440" />
 					</Anchor>
 				</Anchors>
 				<Scripts>
-					<OnClick>btn_cancel_onclick();</OnClick>
+					<OnClick>toggle_warnings(self);</OnClick>
+					<OnLoad>
+						self.title = ZL_WARN;
+						self.tooltip = "Enables/Disables warnings\n\nRecommended to leave this on.";
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
 				</Scripts>
-			</Button> -->
+			</CheckButton>
+			<CheckButton name="check_debug" inherits="UICheckButtonTemplate">
+				<Size>
+					<AbsDimension x="20" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="45" y="-466" />
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>toggle_debug(self);</OnClick>
+					<OnLoad>
+						self.title = ZL_DEBUG;
+						self.tooltip = "Enables/Disables debug mode\n\n|cffff0000THIS WILL FLOOD THE CHAT!!";
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
+						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+			</CheckButton>
 		</Frames>
 		<Layers>
 			<Layer level="OVERLAY">
@@ -584,6 +971,46 @@
 					<Anchors>
 						<Anchor point="TOPLEFT">
 							<Offset x="45" y="-328" />
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="FontString20" inherits="GameFontNormal" text="ZL_FILE_TYPE" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="88" y="33" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset x="36" y="-360" />
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="FontString21" inherits="GameFontNormal" text="ZL_FILE_CHANNEL" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="88" y="33" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset x="170" y="-360" />
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="FontString22" inherits="GameFontNormal" text="ZL_WARN" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="120" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset x="71" y="-440" />
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="FontString23" inherits="GameFontNormal" text="ZL_DEBUG" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="120" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset x="71" y="-466" />
 						</Anchor>
 					</Anchors>
 				</FontString>

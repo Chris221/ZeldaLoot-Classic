@@ -11,7 +11,7 @@ The audio plays on the SFX audio channel.
 Configure which sounds you want and when: loot from enemies, received (letterbox, seller, etc), crafted (professions and some special items like Eternal Water). Settings will be saved between sessions for all your characters. Type **/zeldaloot** or **/zl** for the settings menu.
 
 ### Localization
-English, french, spanish and deutch languages are supported, and you can write your own, see files in **\Locale** subdirectory
+English, French, Spanish, German, and Russian languages are supported, and you can write your own, see files in **\Locale** subdirectory
 
 **If you are using another language please let me know to ensure you are recieving the notifications and not missing the sound effects**
 
@@ -19,6 +19,16 @@ English, french, spanish and deutch languages are supported, and you can write y
 For a retail version please use [ZeldaLoot Extended by LegendaryHero20](https://www.curseforge.com/wow/addons/zeldaloot-extended)
 
 ## Changes
+### Changes in 2.0.0
+- Now with mp3 files
+- The settings panel has been moved in to the interface settings for easier access
+- The settings no longer need to be saved for them to take effect
+- You can control the file types and the audio channel from the settings now
+- The settings now has toggles for warnings and deubg mode (**VERY SPAMMY**)
+- **/zl** and **/zeldaloot** now take you to the new panel
+- You can also default the settings from the new panel
+- Added support for Russian
+
 ### Changes in 1.3.0
 - There are new warnings if the sound fails to play for any reason. You can disable these with **/zl warnings**.
 - Use **/zl ext** to switch file types. This will be an actual settings opion in the future.
