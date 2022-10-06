@@ -10,7 +10,7 @@ assignees: Chris221
 A clear and concise description of what the issue is.
 
 **Addon version**
-1.x.x
+2.x.x
 
 **To Reproduce**
 Steps to reproduce the behavior:
