@@ -19,9 +19,6 @@ if ((GetLocale() ~= "frFR") and (GetLocale() ~= "esES") and (GetLocale() ~= "deD
 	ZL_INCLUDEALSO    = "Include also these objects:"
 
 	ZL_USE_SOUND_SET  = "Sound sets:"
-	ZL_SET_ALTTP      = "ALTTP: A Link to the Past"
-	ZL_SET_OOT        = "OOT: Ocarina of Time Orchestrated"
-	ZL_SET_TP         = "TP: Twilight Princess"
 
 	-- Messages (for events)
 	ZL_LOOTMESSAGE    = "You receive loot"
@@ -35,3 +32,8 @@ if ((GetLocale() ~= "frFR") and (GetLocale() ~= "esES") and (GetLocale() ~= "deD
 	ZL_DEBUG          = "Enable debugging"
 	ZL_WARN           = "Enable warnings"
 end
+
+-- Global text variables
+ZL_SET_ALTTP = "ALTTP: A Link to the Past"
+ZL_SET_OOT   = "OOT: Ocarina of Time Orchestrated"
+ZL_SET_TP    = "TP: Twilight Princess"

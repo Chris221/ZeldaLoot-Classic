@@ -18,9 +18,6 @@ if (GetLocale() == "ruRU") then
 	ZL_INCLUDEALSO    = "Включите также эти объекты:"
 
 	ZL_USE_SOUND_SET  = "Наборы звуков:"
-	ZL_SET_ALTTP      = "ALTTP: A Link to the Past"
-	ZL_SET_OOT        = "OOT: Ocarina of Time Orchestrated"
-	ZL_SET_TP         = "TP: Twilight Princess"
 
 	-- Messages (for events)
 	ZL_LOOTMESSAGE    = "Вы получаете добычу"

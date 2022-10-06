@@ -19,9 +19,6 @@ if (GetLocale() == "frFR") then
 	ZL_INCLUDEALSO    = "Inclure également\nces objets:"
 
 	ZL_USE_SOUND_SET  = "Ensembles de sons:"
-	ZL_SET_ALTTP      = "ALTTP: A Link to the Past"
-	ZL_SET_OOT        = "OOT: Ocarina of Time Orchestrated"
-	ZL_SET_TP         = "TP: Twilight Princess"
 
 	-- Messages (for events)
 	ZL_LOOTMESSAGE    = "Vous recevez le butin"

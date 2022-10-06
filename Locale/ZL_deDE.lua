@@ -19,9 +19,6 @@ if (GetLocale() == "deDE") then
 	ZL_INCLUDEALSO    = "Auch diese Objekte einschließen:"
 
 	ZL_USE_SOUND_SET  = "Geluidssets:"
-	ZL_SET_ALTTP      = "ALTTP: A Link to the Past"
-	ZL_SET_OOT        = "OOT: Ocarina of Time Orchestrated"
-	ZL_SET_TP         = "TP: Twilight Princess"
 
 	-- Messages (for events)
 	ZL_LOOTMESSAGE    = "Ihr erhaltet Beute"
