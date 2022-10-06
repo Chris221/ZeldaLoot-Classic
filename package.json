@@ -1,0 +1,20 @@
+{
+  "name": "zeldaloot_classic",
+  "version": "2.0.1",
+  "description": "build script for my addon",
+  "main": "build.js",
+  "scripts": {
+    "start": "node build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chris221/ZeldaLoot-Classic.git"
+  },
+  "keywords": [],
+  "author": "chris221221",
+  "license": "ISC",
+  "homepage": "https://github.com/Chris221/ZeldaLoot-Classic",
+  "dependencies": {
+    "jszip": "^3.10.1"
+  }
+}
