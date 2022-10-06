@@ -2,7 +2,7 @@ local zl = {};
 
 function zl.SlashCommandHandler(msg)
 	if (msg == 'help' or msg == '?' or msg == 'h') then
-		zl_Print('Slash Commands:')
+		zl_Print(ZL_SLASH_COMMANDS)
 		print('|cffffaa00/zl |r- Opens the settings.')
 		print('|cffffaa00/zeldaloot |r- Opens the settings.')
 		print('|cffffaa00/zl dump |r- Dumps the config.')

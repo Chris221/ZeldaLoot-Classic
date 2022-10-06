@@ -19,6 +19,9 @@ English, French, Spanish, German, and Russian languages are supported, and you c
 **If you are using another language please let me know to ensure you are recieving the notifications and not missing the sound effects**
 
 ## Changes
+### Changes in 2.1.0
+- Added Locale text for the tooltips and common text set to the console
+
 ### Changes in 2.0.1
 - Added support for Vanilla
 

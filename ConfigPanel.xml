@@ -37,10 +37,10 @@
 					<OnClick>check_loot_onclick(self, 2, 0);</OnClick>
 					<OnLoad>
 						self.title = ZL_GREENLOOT;
-						self.tooltip = "Enables/Disables audio effects for green items";
+						self.tooltip = ZL_XML_TOOLTIP_GREEN_LOOT;
 					</OnLoad>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -63,10 +63,10 @@
 					<OnClick>check_loot_onclick(self, 3, 0);</OnClick>
 					<OnLoad>
 						self.title = ZL_BLUELOOT;
-						self.tooltip = "Enables/Disables audio effects for blue items";
+						self.tooltip = ZL_XML_TOOLTIP_BLUE_LOOT;
 					</OnLoad>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -89,10 +89,10 @@
 					<OnClick>check_loot_onclick(self, 4, 0);</OnClick>
 					<OnLoad>
 						self.title = ZL_PURPLELOOT;
-						self.tooltip = "Enables/Disables audio effects for purple items";
+						self.tooltip = ZL_XML_TOOLTIP_PURPLE_LOOT;
 					</OnLoad>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -115,10 +115,10 @@
 					<OnClick>check_loot_onclick(self, 5, 0);</OnClick>
 					<OnLoad>
 						self.title = ZL_ORANGELOOT;
-						self.tooltip = "Enables/Disables audio effects for orange items";
+						self.tooltip = ZL_XML_TOOLTIP_ORANGE_LOOT;
 					</OnLoad>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -137,14 +137,14 @@
 				<Scripts>
 					<OnLoad>
 						UIDropDownMenu_Initialize(self, dropdown_set_Initialize)
-						self.title = "Green Set";
-						self.tooltip = "Green audio set";
+						self.title = ZL_XML_TITLE_GREEN_SET;
+						self.tooltip = ZL_XML_TOOLTIP_GREEN_SET;
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, dropdown_set_Show)
 					</OnShow>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -163,14 +163,14 @@
 				<Scripts>
 					<OnLoad>
 						UIDropDownMenu_Initialize(self, dropdown_set_Initialize)
-						self.title = "Blue Set";
-						self.tooltip = "Blue audio set";
+						self.title = ZL_XML_TITLE_BLUE_SET;
+						self.tooltip = ZL_XML_TOOLTIP_BLUE_SET;
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, dropdown_set_Show)
 					</OnShow>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -189,14 +189,14 @@
 				<Scripts>
 					<OnLoad>
 						UIDropDownMenu_Initialize(self, dropdown_set_Initialize)
-						self.title = "Purple Set";
-						self.tooltip = "Purple audio set";
+						self.title = ZL_XML_TITLE_PURPLE_SET;
+						self.tooltip = ZL_XML_TOOLTIP_PURPLE_SET;
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, dropdown_set_Show)
 					</OnShow>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -215,14 +215,14 @@
 				<Scripts>
 					<OnLoad>
 						UIDropDownMenu_Initialize(self, dropdown_set_Initialize)
-						self.title = "Orange Set";
-						self.tooltip = "Orange audio set";
+						self.title = ZL_XML_TITLE_ORANGE_SET;
+						self.tooltip = ZL_XML_TOOLTIP_ORANGE_SET;
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, dropdown_set_Show)
 					</OnShow>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -241,14 +241,14 @@
 				<Scripts>
 					<OnLoad>
 						UIDropDownMenu_Initialize(self, dropdown_sound_Initialize)
-						self.title = "Green Effect";
-						self.tooltip = "Green audio sound effect";
+						self.title = ZL_XML_TITLE_GREEN_EFFECT;
+						self.tooltip = ZL_XML_TOOLTIP_GREEN_EFFECT;
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, dropdown_sound_Show)
 					</OnShow>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -267,14 +267,14 @@
 				<Scripts>
 					<OnLoad>
 						UIDropDownMenu_Initialize(self, dropdown_sound_Initialize)
-						self.title = "Blue Effect";
-						self.tooltip = "Blue audio sound effect";
+						self.title = ZL_XML_TITLE_BLUE_EFFECT;
+						self.tooltip = ZL_XML_TOOLTIP_BLUE_EFFECT;
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, dropdown_sound_Show)
 					</OnShow>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -293,14 +293,14 @@
 				<Scripts>
 					<OnLoad>
 						UIDropDownMenu_Initialize(self, dropdown_sound_Initialize)
-						self.title = "Purple Effect";
-						self.tooltip = "Purple audio sound effect";
+						self.title = ZL_XML_TITLE_PURPLE_EFFECT;
+						self.tooltip = ZL_XML_TOOLTIP_PURPLE_EFFECT;
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, dropdown_sound_Show)
 					</OnShow>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -319,14 +319,14 @@
 				<Scripts>
 					<OnLoad>
 						UIDropDownMenu_Initialize(self, dropdown_sound_Initialize)
-						self.title = "Orange Effect";
-						self.tooltip = "Orange audio sound effect";
+						self.title = ZL_XML_TITLE_ORANGE_EFFECT;
+						self.tooltip = ZL_XML_TOOLTIP_ORANGE_EFFECT;
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, dropdown_sound_Show)
 					</OnShow>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -348,11 +348,11 @@
 				<Scripts>
 					<OnClick>test_zl_sound(2);</OnClick>
 					<OnLoad>
-						self.title = "Test green audio";
-						self.tooltip = "Test the green audio effect";
+						self.title = ZL_XML_TITLE_GREEN_TEST;
+						self.tooltip = ZL_XML_TOOLTIP_GREEN_TEST;
 					</OnLoad>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -374,11 +374,11 @@
 				<Scripts>
 					<OnClick>test_zl_sound(3);</OnClick>
 					<OnLoad>
-						self.title = "Test blue audio";
-						self.tooltip = "Test the blue audio effect";
+						self.title = ZL_XML_TITLE_BLUE_TEST;
+						self.tooltip = ZL_XML_TOOLTIP_BLUE_TEST;
 					</OnLoad>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -400,11 +400,11 @@
 				<Scripts>
 					<OnClick>test_zl_sound(4);</OnClick>
 					<OnLoad>
-						self.title = "Test purple audio";
-						self.tooltip = "Test the purple audio effect";
+						self.title = ZL_XML_TITLE_PURPLE_TEST;
+						self.tooltip = ZL_XML_TOOLTIP_PURPLE_TEST;
 					</OnLoad>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -426,11 +426,11 @@
 				<Scripts>
 					<OnClick>test_zl_sound(5);</OnClick>
 					<OnLoad>
-						self.title = "Test orange audio";
-						self.tooltip = "Test the orange audio effect";
+						self.title = ZL_XML_TITLE_ORANGE_TEST;
+						self.tooltip = ZL_XML_TOOLTIP_ORANGE_TEST;
 					</OnLoad>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -452,11 +452,11 @@
 				<Scripts>
 					<OnClick>check_loot_onclick(self, 2, 1);</OnClick>
 					<OnLoad>
-						self.title = "Green Crafted";
-						self.tooltip = "Green items that are crafted";
+						self.title = ZL_XML_TITLE_GREEN_CRAFTED;
+						self.tooltip = ZL_XML_TOOLTIP_GREEN_CRAFTED;
 					</OnLoad>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -478,11 +478,11 @@
 				<Scripts>
 					<OnClick>check_loot_onclick(self, 2, 2);</OnClick>
 					<OnLoad>
-						self.title = "Green Received";
-						self.tooltip = "Green items received through quests, trade, and the mail";
+						self.title = ZL_XML_TITLE_GREEN_RECEIVED;
+						self.tooltip = ZL_XML_TOOLTIP_GREEN_RECEIVED;
 					</OnLoad>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -504,11 +504,11 @@
 				<Scripts>
 					<OnClick>check_loot_onclick(self, 3, 1);</OnClick>
 					<OnLoad>
-						self.title = "Blue Crafted";
-						self.tooltip = "Blue items that are crafted";
+						self.title = ZL_XML_TITLE_BLUE_CRAFTED;
+						self.tooltip = ZL_XML_TOOLTIP_BLUE_CRAFTED;
 					</OnLoad>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -530,11 +530,11 @@
 				<Scripts>
 					<OnClick>check_loot_onclick(self, 3, 2);</OnClick>
 					<OnLoad>
-						self.title = "Blue Received";
-						self.tooltip = "Blue items received through quests, trade, and the mail";
+						self.title = ZL_XML_TITLE_BLUE_RECEIVED;
+						self.tooltip = ZL_XML_TOOLTIP_BLUE_RECEIVED;
 					</OnLoad>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -556,11 +556,11 @@
 				<Scripts>
 					<OnClick>check_loot_onclick(self, 4, 1);</OnClick>
 					<OnLoad>
-						self.title = "Purple Crafted";
-						self.tooltip = "Purple items that are crafted";
+						self.title = ZL_XML_TITLE_PURPLE_CRAFTED;
+						self.tooltip = ZL_XML_TOOLTIP_PURPLE_CRAFTED;
 					</OnLoad>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -582,11 +582,11 @@
 				<Scripts>
 					<OnClick>check_loot_onclick(self, 4, 2);</OnClick>
 					<OnLoad>
-						self.title = "Purple Received";
-						self.tooltip = "Purple items received through quests, trade, and the mail";
+						self.title = ZL_XML_TITLE_PURPLE_RECEIVED;
+						self.tooltip = ZL_XML_TOOLTIP_PURPLE_RECEIVED;
 					</OnLoad>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -608,11 +608,11 @@
 				<Scripts>
 					<OnClick>check_loot_onclick(self, 5, 1);</OnClick>
 					<OnLoad>
-						self.title = "Orange Crafted";
-						self.tooltip = "Orange items that are crafted";
+						self.title = ZL_XML_TITLE_ORANGE_CRAFTED;
+						self.tooltip = ZL_XML_TOOLTIP_ORANGE_CRAFTED;
 					</OnLoad>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -634,11 +634,11 @@
 				<Scripts>
 					<OnClick>check_loot_onclick(self, 5, 2);</OnClick>
 					<OnLoad>
-						self.title = "Orange Received";
-						self.tooltip = "Orange items received through quests, trade, and the mail";
+						self.title = ZL_XML_TITLE_ORANGE_RECEIVED;
+						self.tooltip = ZL_XML_TOOLTIP_ORANGE_RECEIVED;
 					</OnLoad>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -661,10 +661,10 @@
 					<OnClick>check_inheritedstuff_onclick(self);</OnClick>
 					<OnLoad>
 						self.title = ZL_INHERITED;
-						self.tooltip = "Enables audio sounds for account bound items";
+						self.tooltip = ZL_XML_TOOLTIP_INHERITED;
 					</OnLoad>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -684,13 +684,13 @@
 					<OnLoad>
 						UIDropDownMenu_Initialize(self, dropdown_settings_Initialize)
 						self.title = ZL_FILE_TYPE;
-						self.tooltip = "Select which file type you would like to use";
+						self.tooltip = ZL_XML_TOOLTIP_FILE_TYPE;
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, dropdown_settings_Show)
 					</OnShow>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -710,13 +710,13 @@
 					<OnLoad>
 						UIDropDownMenu_Initialize(self, dropdown_settings_Initialize)
 						self.title = ZL_FILE_CHANNEL;
-						self.tooltip = "Select which audio channel you would like to use.\n\nSFX is Recommended";
+						self.tooltip = ZL_XML_TOOLTIP_FILE_CHANNEL;
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, dropdown_settings_Show)
 					</OnShow>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -739,10 +739,10 @@
 					<OnClick>toggle_warnings(self);</OnClick>
 					<OnLoad>
 						self.title = ZL_WARN;
-						self.tooltip = "Enables/Disables warnings\n\nRecommended to leave this on.";
+						self.tooltip = ZL_XML_TOOLTIP_WARN;
 					</OnLoad>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();
@@ -765,10 +765,10 @@
 					<OnClick>toggle_debug(self);</OnClick>
 					<OnLoad>
 						self.title = ZL_DEBUG;
-						self.tooltip = "Enables/Disables debug mode\n\n|cffff0000THIS WILL FLOOD THE CHAT!!";
+						self.tooltip = ZL_XML_TOOLTIP_DEBUG;
 					</OnLoad>
 					<OnEnter>
-						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
 						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
 						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
 						GameTooltip:Show();

@@ -1,6 +1,9 @@
 # [ZeldaLoot Classic](https://www.curseforge.com/wow/addons/zeldaloot-classic)
 
 ## Changes
+### Changes in 2.1.0
+- Added Locale text for the tooltips and common text set to the console
+
 ### Changes in 2.0.1
 - Added support for Vanilla
 

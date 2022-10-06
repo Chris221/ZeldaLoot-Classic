@@ -1,4 +1,4 @@
-AddonVersion = "|cff00ff002.0.1|r"
+AddonVersion = "|cff00ff002.1.0|r"
 ZL_AddonName = "ZeldaLoot Classic"
 ZL_AddonColor = "|cff00ffff"
 ZL_soundHandle = 0
@@ -16,13 +16,13 @@ function play_zeldaSound(index, sound_file)
 
 	if (ZL_soundHandle ~= 0 and ZL_soundHandle ~= nil) then
 		if (zl_debug_bool) then
-			zl_Print("Stopping sound for " .. ZL_soundHandle)
+			zl_Print(ZL_STOPPING_SOUND .. ZL_soundHandle)
 		end
 		StopSound(ZL_soundHandle, 0)
 	end
 
 	if (zl_warning_bool) then
-		warning_text = "|cffffff00WARNING|r "
+		warning_text = "|cffffff00" .. ZL_WARNING .. "|r "
 	end
 
 	update_config(false)
@@ -31,7 +31,7 @@ function play_zeldaSound(index, sound_file)
 	local mess = "[" .. sound_set .. "\\" .. sound_file .. "." .. sound_ext .. "] on sound channel [" .. sound_channel .. "]"
 	if (willPlay) then
 		if (zl_debug_bool) then
-			zl_Print("Playing sound for " .. mess)
+			zl_Print(ZL_STARTING_SOUND .. mess)
 		end
 	elseif (zl_warning_bool or zl_debug_bool) then
 		zl_Print(warning_text .. "NOT playing sound for " .. mess .. " likey due to [" .. sound_channel .. "] being muted")
@@ -41,21 +41,21 @@ end
 function zeldaFrame_OnEvent(self, event, ...)
 	local obj
 
-	local scanCateg = {"green", "blue", "purple", "orange"}
-	local scanValues = {active = "loot", crafted = "crafts", received = "received"}
+	local scanCateg = { "green", "blue", "purple", "orange" }
+	local scanValues = { active = "loot", crafted = "crafts", received = "received" }
 
-	local qualities_dic = {nil, nil, "green", "blue", "purple", "orange"}
+	local qualities_dic = { nil, nil, "green", "blue", "purple", "orange" }
 	local quality, zl_group
 
 	local arg1 = select(1, ...)
 
 	if ((event == "ADDON_LOADED") and (arg1 == "ZeldaLoot_Classic")) then
 		update_config(false)
-		zl_Print(AddonVersion..' Loaded.')
-		zl_Print('Type |cffffff00/zeldaloot|r or |cffffff00/zl|r for the settings')
-		zl_Print('Type |cffffff00/zeldaloot ?|r or |cffffff00/zl ?|r for the help menu')
+		zl_Print(AddonVersion .. ZL_LOADED)
+		zl_Print(ZL_LOADED_TEXT_1)
+		zl_Print(ZL_LOADED_TEXT_2)
 		if (zl_debug_bool) then
-			zl_Print('Debug mode is enabled')
+			zl_Print(ZL_DEBUG_ENABLED)
 		end
 
 		local panel = getglobal("ZL_ConfigPanel")
@@ -186,15 +186,15 @@ function reset_config(print_text)
 
 	if (zl_debug_bool) then
 		zl_debug_bool = false
-		zl_Print('Debug mode has been disabled. Type |cffffff00/zl debug|r to re-enable')
+		zl_Print(ZL_RESET_DEBUG_TEXT)
 	end
 
 	if (zl_warning_bool ~= true) then
 		zl_warning_bool = true
-		zl_Print('Warnings have been enabled. Type |cffffff00/zl warn|r to disable')
+		zl_Print(ZL_RESET_WARNING_TEXT)
 	end
 
 	if (print_text) then
-		zl_Print('Config has been reset')
+		zl_Print(ZL_RESET_DONE)
 	end
 end

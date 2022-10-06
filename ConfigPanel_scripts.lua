@@ -100,7 +100,7 @@ end
 
 function dump_config(text)
 	local value
-	zl_Print("Dumping config... |cff00ff00" .. text)
+	zl_Print(ZL_DUMP_START .. "... |cff00ff00" .. text)
 	for top_level_key, top_level_value in pairs(zl_config) do
 		for second_level_key, second_level_value in pairs(top_level_value) do
 			if (second_level_value == true) then value = "true"
@@ -110,7 +110,7 @@ function dump_config(text)
 			zl_Print("top_level_key: |cff00ffff" .. top_level_key .. "|r second_level_key: |cff00ffff" .. second_level_key .. "|r second_level_value: |cff00ffff" .. value)
 		end
 	end
-	zl_Print("Finsihed dumping config... |cff00ff00" .. text)
+	zl_Print(ZL_DUMP_FINISH .. "... |cff00ff00" .. text)
 end
 
 function refresh_zl_frame()
@@ -413,9 +413,9 @@ function toggle_warnings(obj)
 
 	if (zl_debug_bool) then
 		if (b) then
-			zl_Print('Enabling warnings')
+			zl_Print(ZL_WARNING_ENABLING)
 		else
-			zl_Print('Disabling warnings')
+			zl_Print(ZL_WARNING_DIDABLING)
 		end
 	end
 end
@@ -425,8 +425,8 @@ function toggle_debug(obj)
 	zl_debug_bool = b
 
 	if (b) then
-		zl_Print('Enabling debugging')
+		zl_Print(ZL_DEBUG_ENABLING)
 	else
-		zl_Print('Disabling debugging')
+		zl_Print(ZL_DEBUG_DIDABLING)
 	end
 end
