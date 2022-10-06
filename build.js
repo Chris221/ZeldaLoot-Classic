@@ -100,7 +100,7 @@ new Promise(res => fs.readdir(rootDirectoryPath, (err, files) => {
 }))
   .then(list => list.filter(x => !removeList.includes(x)).filter(x => x))
   .then(list => {
-    console.log('Found under root', list);
+    console.log('Found under root', list.length, list);
 
     list.forEach(f => {
       let data = fs.readFileSync(f);
@@ -124,7 +124,7 @@ new Promise(res => fs.readdir(rootDirectoryPath, (err, files) => {
       }))
       .then(list => list.filter(x => !removeList.includes(x)).filter(x => x))
       .then(list => {
-        console.log('Found under', f_path, list);
+        console.log('Found under', f_path, list.length, list);
 
         list.forEach(async f => {
           let data = await fs.readFileSync(rootDirectoryPath + '/' + f_path + '/' + f);
