@@ -3,42 +3,42 @@ ZL_AddonName = "ZeldaLoot Classic"
 ZL_AddonColor = "|cff00ffff"
 ZL_soundHandle = 0
 
-function zl_Print(msg)
+function ZL_Print(msg)
 	DEFAULT_CHAT_FRAME:AddMessage(ZL_AddonColor .. ZL_AddonName .. '|r ' .. tostring(msg))
 end
 
-function play_zeldaSound(index, sound_file)
-	local sound_set = get_sound_set(index)
+function Play_zeldaSound(index, sound_file)
+	local sound_set = Get_sound_set(index)
 	local willPlay = nil
-	local sound_ext = get_sound_ext()
-	local sound_channel = get_sound_channel()
+	local sound_ext = Get_sound_ext()
+	local sound_channel = Get_sound_channel()
 	local warning_text = ""
 
 	if (ZL_soundHandle ~= 0 and ZL_soundHandle ~= nil) then
-		if (zl_debug_bool) then
-			zl_Print(ZL_STOPPING_SOUND .. ZL_soundHandle)
+		if (ZL_debug_bool) then
+			ZL_Print(ZL_STOPPING_SOUND .. ZL_soundHandle)
 		end
 		StopSound(ZL_soundHandle, 0)
 	end
 
-	if (zl_warning_bool) then
+	if (ZL_warning_bool) then
 		warning_text = "|cffffff00" .. ZL_WARNING .. "|r "
 	end
 
-	update_config(false)
+	Update_config(false)
 	willPlay, ZL_soundHandle = PlaySoundFile("Interface\\AddOns\\ZeldaLoot_Classic\\Sounds\\Sets\\" .. sound_set .. "\\" .. sound_file .. "." .. sound_ext, sound_channel)
 
 	local mess = "[" .. sound_set .. "\\" .. sound_file .. "." .. sound_ext .. "] on sound channel [" .. sound_channel .. "]"
 	if (willPlay) then
-		if (zl_debug_bool) then
-			zl_Print(ZL_STARTING_SOUND .. mess)
+		if (ZL_debug_bool) then
+			ZL_Print(ZL_STARTING_SOUND .. mess)
 		end
-	elseif (zl_warning_bool or zl_debug_bool) then
-		zl_Print(warning_text .. "NOT playing sound for " .. mess .. " likey due to [" .. sound_channel .. "] being muted")
+	elseif (ZL_warning_bool or ZL_debug_bool) then
+		ZL_Print(warning_text .. "NOT playing sound for " .. mess .. " likey due to [" .. sound_channel .. "] being muted")
 	end
 end
 
-function zeldaFrame_OnEvent(self, event, ...)
+function ZeldaFrame_OnEvent(self, event, ...)
 	local obj
 
 	local scanCateg = { "green", "blue", "purple", "orange" }
@@ -50,54 +50,59 @@ function zeldaFrame_OnEvent(self, event, ...)
 	local arg1 = select(1, ...)
 
 	if ((event == "ADDON_LOADED") and (arg1 == "ZeldaLoot_Classic")) then
-		update_config(false)
-		zl_Print(AddonVersion .. ZL_LOADED)
-		zl_Print(ZL_LOADED_TEXT_1)
-		zl_Print(ZL_LOADED_TEXT_2)
-		if (zl_debug_bool) then
-			zl_Print(ZL_DEBUG_ENABLED)
+		-- This will move to the correct global
+		if (ZL_config == nil and zl_config ~= nil) then
+			ZL_config = zl_config
 		end
 
-		local panel = getglobal("ZL_ConfigPanel")
+		Update_config(false)
+		ZL_Print(AddonVersion .. ZL_LOADED)
+		ZL_Print(ZL_LOADED_TEXT_1)
+		ZL_Print(ZL_LOADED_TEXT_2)
+		if (ZL_debug_bool) then
+			ZL_Print(ZL_DEBUG_ENABLED)
+		end
+
+		local panel = getglobal("ZL_configPanel")
 		panel.name = ZL_AddonName
-		panel.okay = btn_ok_onclick
-		panel.cancel = btn_cancel_onclick
-		panel.default = reset_config
-		panel.refresh = refresh_zl_frame
+		panel.okay = Btn_ok_onclick
+		panel.cancel = Btn_cancel_onclick
+		panel.default = Reset_config
+		panel.refresh = Refresh_zl_frame
 
 		InterfaceOptions_AddCategory(panel, true)
 		InterfaceAddOnsList_Update()
 	end
 
 	if (((event == "ADDON_LOADED") and (arg1 == "ZeldaLoot_Classic")) or (event == "PLAYER_LOGOUT")) then
-		if ((zl_config == nil)) then
+		if ((ZL_config == nil)) then
 			-- First initialization
-			reset_config(false)
+			Reset_config(false)
 		end
 
 		if (event ~= "PLAYER_LOGOUT") then
 			for iCat, vCat in ipairs(scanCateg) do
 				for iSub, vSub in pairs(scanValues) do
 					obj = getglobal("check_" .. vCat .. vSub)
-					obj:SetChecked(zl_config[vCat][iSub])
+					obj:SetChecked(ZL_config[vCat][iSub])
 				end
 			end
 
 			obj = getglobal("check_inheritedstuff")
-			obj:SetChecked(zl_config["inherited"]["include"])
+			obj:SetChecked(ZL_config["inherited"]["include"])
 
 			obj = getglobal("check_warnings")
-			obj:SetChecked(zl_warning_bool)
+			obj:SetChecked(ZL_warning_bool)
 
 			obj = getglobal("check_debug")
-			obj:SetChecked(zl_debug_bool)
+			obj:SetChecked(ZL_debug_bool)
 		end
 	end
 
 	if (event == "CHAT_MSG_LOOT") then
 		-- Inherited stuff ("artefacts", bind to account)
 		if (strfind(arg1, "cffe6cc80")) then
-			if (zl_config["inherited"]["include"]) then
+			if (ZL_config["inherited"]["include"]) then
 				quality = 6
 			else
 				quality = nil
@@ -127,21 +132,21 @@ function zeldaFrame_OnEvent(self, event, ...)
 		if (quality) then
 			zl_group = qualities_dic[quality]
 
-			if (zl_config[zl_group]["active"]) then
+			if (ZL_config[zl_group]["active"]) then
 				if (
 					(strfind(arg1, ZL_LOOTMESSAGE)) or
-					(((strfind(arg1, ZL_CRAFTMESSAGE)) or (strfind(arg1, ZL_CRAFTMESSAGE2))) and zl_config[zl_group]["crafted"]) or
-					((strfind(arg1, ZL_RECEIVEMESSAGE)) and zl_config[zl_group]["received"])
+					(((strfind(arg1, ZL_CRAFTMESSAGE)) or (strfind(arg1, ZL_CRAFTMESSAGE2))) and ZL_config[zl_group]["crafted"]) or
+					((strfind(arg1, ZL_RECEIVEMESSAGE)) and ZL_config[zl_group]["received"])
 				) then
-					play_zeldaSound(quality - 1, zl_config[zl_group]["sound"])
+					Play_zeldaSound(quality - 1, ZL_config[zl_group]["sound"])
 				end
 			end
 		end
 	end
 end
 
-function reset_config(print_text)
-	zl_config = {
+function Reset_config(print_text)
+	ZL_config = {
 		green = {
 			active   = true,
 			received = true,
@@ -184,17 +189,17 @@ function reset_config(print_text)
 		}
 	}
 
-	if (zl_debug_bool) then
-		zl_debug_bool = false
-		zl_Print(ZL_RESET_DEBUG_TEXT)
+	if (ZL_debug_bool) then
+		ZL_debug_bool = false
+		ZL_Print(ZL_RESET_DEBUG_TEXT)
 	end
 
-	if (zl_warning_bool ~= true) then
-		zl_warning_bool = true
-		zl_Print(ZL_RESET_WARNING_TEXT)
+	if (ZL_warning_bool ~= true) then
+		ZL_warning_bool = true
+		ZL_Print(ZL_RESET_WARNING_TEXT)
 	end
 
 	if (print_text) then
-		zl_Print(ZL_RESET_DONE)
+		ZL_Print(ZL_RESET_DONE)
 	end
 end

@@ -1,7 +1,7 @@
 -- English translation (default)
 if (GetLocale() == "ruRU") then
 
-	ZL_CONFIG_TITLE       = "Конфигурация ZeldaLoot"
+	ZL_config_TITLE       = "Конфигурация ZeldaLoot"
 
 	ZL_TEST               = "Тест"
 	ZL_OK                 = "ХОРОШО"
@@ -54,6 +54,8 @@ if (GetLocale() == "ruRU") then
 	ZL_LOADED_TEXT_2      = "Введите |cffffff00/zeldaloot ?|r или |cffffff00/zl ?|r для вызова меню справки."
 
 	ZL_SLASH_COMMANDS     = "Слеш-команды:"
+
+	ZL_END_TEXT           = "конец"
 
 	-- XML
 	ZL_XML_TITLE_GREEN_SET = "Зеленый набор"

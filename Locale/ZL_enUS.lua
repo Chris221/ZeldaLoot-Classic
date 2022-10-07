@@ -2,7 +2,7 @@
 
 if ((GetLocale() ~= "frFR") and (GetLocale() ~= "esES") and (GetLocale() ~= "deDE") and (GetLocale() ~= "ruRU")) then
 
-	ZL_CONFIG_TITLE       = "ZeldaLoot configuration"
+	ZL_config_TITLE       = "ZeldaLoot Configuration"
 
 	ZL_TEST               = "Test"
 	ZL_OK                 = "OK"
@@ -56,6 +56,8 @@ if ((GetLocale() ~= "frFR") and (GetLocale() ~= "esES") and (GetLocale() ~= "deD
 
 	ZL_SLASH_COMMANDS     = "Slash Commands:"
 
+	ZL_END_TEXT           = "end"
+
 	-- XML
 	ZL_XML_TITLE_GREEN_SET         = "Green Set"
 	ZL_XML_TITLE_BLUE_SET          = "Blue Set"
@@ -107,10 +109,3 @@ if ((GetLocale() ~= "frFR") and (GetLocale() ~= "esES") and (GetLocale() ~= "deD
 	ZL_XML_TOOLTIP_WARN            = "Enables/Disables warnings\n\nRecommended to leave this on."
 	ZL_XML_TOOLTIP_DEBUG           = "Enables/Disables debug mode\n\n|cffff0000THIS WILL FLOOD THE CHAT!!"
 end
-
--- Global text variables
-ZL_SET_ALTTP            = "ALTTP: A Link to the Past"
-ZL_SET_OOT              = "OOT: Ocarina of Time Orchestrated"
-ZL_SET_TP               = "TP: Twilight Princess"
-
-ZL_TOOLTIP_ANCHOR = "ANCHOR_RIGHT"

@@ -2,7 +2,7 @@ local zl = {};
 
 function zl.SlashCommandHandler(msg)
 	if (msg == 'help' or msg == '?' or msg == 'h') then
-		zl_Print(ZL_SLASH_COMMANDS)
+		ZL_Print(ZL_SLASH_COMMANDS)
 		print('|cffffaa00/zl |r- Opens the settings.')
 		print('|cffffaa00/zeldaloot |r- Opens the settings.')
 		print('|cffffaa00/zl dump |r- Dumps the config.')
@@ -19,62 +19,62 @@ function zl.SlashCommandHandler(msg)
 		print('|cffffaa00/zl reset |r- Resets the config.')
 		print('|cffffaa00/zeldaloot reset |r- Resets the config.')
 	elseif (msg == 'dump') then
-		dump_config(msg)
+		Dump_config(msg)
 	elseif (msg == 'debug') then
-		if (zl_debug_bool) then
-			zl_debug_bool = false
-			zl_Print('Debug mode has been disabled')
+		if (ZL_debug_bool) then
+			ZL_debug_bool = false
+			ZL_Print('Debug mode has been disabled')
 		else
-			zl_debug_bool = true
-			zl_Print('Debug mode has been enabled')
+			ZL_debug_bool = true
+			ZL_Print('Debug mode has been enabled')
 		end
 	elseif (msg == 'warnings' or msg == 'warning' or msg == 'warn') then
-		if (zl_warning_bool) then
-			zl_warning_bool = false
-			zl_Print('Warnings have been disabled')
+		if (ZL_warning_bool) then
+			ZL_warning_bool = false
+			ZL_Print('Warnings have been disabled')
 		else
-			zl_warning_bool = true
-			zl_Print('Warnings have been enabled')
+			ZL_warning_bool = true
+			ZL_Print('Warnings have been enabled')
 		end
 	elseif (msg:find('^ext') ~= nil) then
 		if (msg:find('[mM][pP]3') ~= nil) then
-			zl_config["settings"]["ext"] = "mp3"
-			zl_Print("Audio ext has been switched to .mp3 files [Experimental]")
+			ZL_config["settings"]["ext"] = "mp3"
+			ZL_Print("Audio ext has been switched to .mp3 files [Experimental]")
 		elseif (msg:find('[wW][aA][vV]') ~= nil) then
-			zl_config["settings"]["ext"] = "wav"
-			zl_Print("Audio ext has been switched to .wav files [Recommended for better client support]")
+			ZL_config["settings"]["ext"] = "wav"
+			ZL_Print("Audio ext has been switched to .wav files [Recommended for better client support]")
 		elseif (msg:find('[oO][gG][gG]') ~= nil) then
-			zl_config["settings"]["ext"] = "ogg"
-			zl_Print("Audio ext has been switched to .ogg files [Blizard Recommended, doesn't seem to work on all clients]")
-		elseif (zl_config["settings"]["ext"] == "wav") then
-			zl_config["settings"]["ext"] = "ogg"
-			zl_Print("Audio ext has been switched to .ogg files [Blizard Recommended, doesn't seem to work on all clients]")
+			ZL_config["settings"]["ext"] = "ogg"
+			ZL_Print("Audio ext has been switched to .ogg files [Blizard Recommended, doesn't seem to work on all clients]")
+		elseif (ZL_config["settings"]["ext"] == "wav") then
+			ZL_config["settings"]["ext"] = "ogg"
+			ZL_Print("Audio ext has been switched to .ogg files [Blizard Recommended, doesn't seem to work on all clients]")
 		else
-			zl_config["settings"]["ext"] = "wav"
-			zl_Print("Audio ext has been switched to .wav files [Recommended for better client support]")
+			ZL_config["settings"]["ext"] = "wav"
+			ZL_Print("Audio ext has been switched to .wav files [Recommended for better client support]")
 		end
 	elseif (msg:find('^channel') ~= nil) then
 		if (msg:find('[mM]aster') ~= nil) then
-			zl_config["settings"]["channel"] = "Master"
-			zl_Print("Audio channel was changed to Master [Not Recommended]")
+			ZL_config["settings"]["channel"] = "Master"
+			ZL_Print("Audio channel was changed to Master [Not Recommended]")
 		elseif (msg:find('[sS][fF][xX]') ~= nil) then
-			zl_config["settings"]["channel"] = "SFX"
-			zl_Print("Audio channel was changed to SFX (Sound) [Recommended]")
+			ZL_config["settings"]["channel"] = "SFX"
+			ZL_Print("Audio channel was changed to SFX (Sound) [Recommended]")
 		elseif (msg:find('[mM]usic') ~= nil) then
-			zl_config["settings"]["channel"] = "Music"
-			zl_Print("Audio channel was changed to Music")
+			ZL_config["settings"]["channel"] = "Music"
+			ZL_Print("Audio channel was changed to Music")
 		elseif (msg:find('[aA]mbience') ~= nil) then
-			zl_config["settings"]["channel"] = "Ambience"
-			zl_Print("Audio channel was changed to Ambience")
+			ZL_config["settings"]["channel"] = "Ambience"
+			ZL_Print("Audio channel was changed to Ambience")
 		elseif (msg:find('[dD]ialog') ~= nil) then
-			zl_config["settings"]["channel"] = "Dialog"
-			zl_Print("Audio channel was changed to Dialog [Recommended]")
+			ZL_config["settings"]["channel"] = "Dialog"
+			ZL_Print("Audio channel was changed to Dialog [Recommended]")
 		else
-			zl_config["settings"]["channel"] = "SFX"
-			zl_Print('Audio channel was changed to the default: "SFX" (Sound) [Recommended]')
+			ZL_config["settings"]["channel"] = "SFX"
+			ZL_Print('Audio channel was changed to the default: "SFX" (Sound) [Recommended]')
 		end
 	elseif (msg == 'reset') then
-		reset_config(true)
+		Reset_config(true)
 	else
 		InterfaceOptionsFrame_OpenToCategory(ZL_AddonName)
 	end

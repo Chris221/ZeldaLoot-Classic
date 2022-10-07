@@ -7,7 +7,7 @@
 				self:RegisterEvent("ADDON_LOADED")
 				self:RegisterEvent("PLAYER_LOGOUT")
 			</OnLoad>
-			<OnEvent function="zeldaFrame_OnEvent"/>
+			<OnEvent function="ZeldaFrame_OnEvent"/>
 		</Scripts>
 	</Frame>
 </Ui>

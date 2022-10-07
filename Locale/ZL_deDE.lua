@@ -2,7 +2,7 @@
 
 if (GetLocale() == "deDE") then
 
-	ZL_CONFIG_TITLE       = "Konfiguration von ZeldaLoot"
+	ZL_config_TITLE       = "Konfiguration von ZeldaLoot"
 
 	ZL_TEST               = "Test"
 	ZL_OK                 = "OK"
@@ -55,6 +55,8 @@ if (GetLocale() == "deDE") then
 	ZL_LOADED_TEXT_2      = "Geben Sie |cffffff00/zeldaloot ?|r oder |cffffff00/zl ?|r für das Hilfemenü ein"
 
 	ZL_SLASH_COMMANDS     = "Slash-Befehle:"
+
+	ZL_END_TEXT           = "Ende"
 
 	-- XML
 	ZL_XML_TITLE_GREEN_SET = "Grünes Set"

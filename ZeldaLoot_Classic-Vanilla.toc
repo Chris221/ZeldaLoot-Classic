@@ -7,7 +7,7 @@
 ## Notes-ruRU: Воспроизводит другой звук предмета Legend of Zelda, когда вы получаете легендарный (оранжевый), эпический (фиолетовый), редкий (синий) или необычный (зеленый) предмет. На основе ZeldaLoot от Rickyk.
 ## Author: Chris221221
 ## Version: 2.1.0
-## SavedVariables: zl_config zl_debug_bool zl_warning_bool
+## SavedVariables: ZL_config ZL_debug_bool ZL_warning_bool
 ## OptionalDeps: 
 
 ## X-Localizations: enUS, enGB, deDE, frFR, esES, ruRU
@@ -23,6 +23,7 @@ ConfigPanel.xml
 
 SlashCommands.lua
 
+Locale\ZL_Globals.lua
 Locale\ZL_ruRU.lua
 Locale\ZL_deDE.lua
 Locale\ZL_esES.lua

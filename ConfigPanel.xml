@@ -4,7 +4,7 @@
 	<Script file="Locale\ZL_esES.lua" />
 	<Script file="Locale\ZL_deDE.lua" />
 	<Script file="ConfigPanel_scripts.lua" />
-	<Frame enableMouse="true" resizeable="false" hidden="true" name="ZL_ConfigPanel" parent="UIParent">
+	<Frame enableMouse="true" resizeable="false" hidden="true" name="ZL_configPanel" parent="UIParent">
 		<KeyValues>
 			<KeyValue key="backdropInfo" value="BACKDROP_DIALOG_32_32" type="global"/>
 			<KeyValue key="backdropBorderColorAlpha" value="1" type="number"/>
@@ -34,7 +34,7 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-					<OnClick>check_loot_onclick(self, 2, 0);</OnClick>
+					<OnClick>Check_loot_onclick(self, 2, 0);</OnClick>
 					<OnLoad>
 						self.title = ZL_GREENLOOT;
 						self.tooltip = ZL_XML_TOOLTIP_GREEN_LOOT;
@@ -60,7 +60,7 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-					<OnClick>check_loot_onclick(self, 3, 0);</OnClick>
+					<OnClick>Check_loot_onclick(self, 3, 0);</OnClick>
 					<OnLoad>
 						self.title = ZL_BLUELOOT;
 						self.tooltip = ZL_XML_TOOLTIP_BLUE_LOOT;
@@ -86,7 +86,7 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-					<OnClick>check_loot_onclick(self, 4, 0);</OnClick>
+					<OnClick>Check_loot_onclick(self, 4, 0);</OnClick>
 					<OnLoad>
 						self.title = ZL_PURPLELOOT;
 						self.tooltip = ZL_XML_TOOLTIP_PURPLE_LOOT;
@@ -112,7 +112,7 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-					<OnClick>check_loot_onclick(self, 5, 0);</OnClick>
+					<OnClick>Check_loot_onclick(self, 5, 0);</OnClick>
 					<OnLoad>
 						self.title = ZL_ORANGELOOT;
 						self.tooltip = ZL_XML_TOOLTIP_ORANGE_LOOT;
@@ -136,12 +136,12 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, dropdown_set_Initialize)
+						UIDropDownMenu_Initialize(self, Dropdown_set_Initialize)
 						self.title = ZL_XML_TITLE_GREEN_SET;
 						self.tooltip = ZL_XML_TOOLTIP_GREEN_SET;
 					</OnLoad>
 					<OnShow>
-						UIDropDownMenu_Initialize(self, dropdown_set_Show)
+						UIDropDownMenu_Initialize(self, Dropdown_set_Show)
 					</OnShow>
 					<OnEnter>
 						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
@@ -162,12 +162,12 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, dropdown_set_Initialize)
+						UIDropDownMenu_Initialize(self, Dropdown_set_Initialize)
 						self.title = ZL_XML_TITLE_BLUE_SET;
 						self.tooltip = ZL_XML_TOOLTIP_BLUE_SET;
 					</OnLoad>
 					<OnShow>
-						UIDropDownMenu_Initialize(self, dropdown_set_Show)
+						UIDropDownMenu_Initialize(self, Dropdown_set_Show)
 					</OnShow>
 					<OnEnter>
 						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
@@ -188,12 +188,12 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, dropdown_set_Initialize)
+						UIDropDownMenu_Initialize(self, Dropdown_set_Initialize)
 						self.title = ZL_XML_TITLE_PURPLE_SET;
 						self.tooltip = ZL_XML_TOOLTIP_PURPLE_SET;
 					</OnLoad>
 					<OnShow>
-						UIDropDownMenu_Initialize(self, dropdown_set_Show)
+						UIDropDownMenu_Initialize(self, Dropdown_set_Show)
 					</OnShow>
 					<OnEnter>
 						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
@@ -214,12 +214,12 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, dropdown_set_Initialize)
+						UIDropDownMenu_Initialize(self, Dropdown_set_Initialize)
 						self.title = ZL_XML_TITLE_ORANGE_SET;
 						self.tooltip = ZL_XML_TOOLTIP_ORANGE_SET;
 					</OnLoad>
 					<OnShow>
-						UIDropDownMenu_Initialize(self, dropdown_set_Show)
+						UIDropDownMenu_Initialize(self, Dropdown_set_Show)
 					</OnShow>
 					<OnEnter>
 						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
@@ -240,12 +240,12 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, dropdown_sound_Initialize)
+						UIDropDownMenu_Initialize(self, Dropdown_sound_Initialize)
 						self.title = ZL_XML_TITLE_GREEN_EFFECT;
 						self.tooltip = ZL_XML_TOOLTIP_GREEN_EFFECT;
 					</OnLoad>
 					<OnShow>
-						UIDropDownMenu_Initialize(self, dropdown_sound_Show)
+						UIDropDownMenu_Initialize(self, Dropdown_sound_Show)
 					</OnShow>
 					<OnEnter>
 						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
@@ -266,12 +266,12 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, dropdown_sound_Initialize)
+						UIDropDownMenu_Initialize(self, Dropdown_sound_Initialize)
 						self.title = ZL_XML_TITLE_BLUE_EFFECT;
 						self.tooltip = ZL_XML_TOOLTIP_BLUE_EFFECT;
 					</OnLoad>
 					<OnShow>
-						UIDropDownMenu_Initialize(self, dropdown_sound_Show)
+						UIDropDownMenu_Initialize(self, Dropdown_sound_Show)
 					</OnShow>
 					<OnEnter>
 						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
@@ -292,12 +292,12 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, dropdown_sound_Initialize)
+						UIDropDownMenu_Initialize(self, Dropdown_sound_Initialize)
 						self.title = ZL_XML_TITLE_PURPLE_EFFECT;
 						self.tooltip = ZL_XML_TOOLTIP_PURPLE_EFFECT;
 					</OnLoad>
 					<OnShow>
-						UIDropDownMenu_Initialize(self, dropdown_sound_Show)
+						UIDropDownMenu_Initialize(self, Dropdown_sound_Show)
 					</OnShow>
 					<OnEnter>
 						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
@@ -318,12 +318,12 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, dropdown_sound_Initialize)
+						UIDropDownMenu_Initialize(self, Dropdown_sound_Initialize)
 						self.title = ZL_XML_TITLE_ORANGE_EFFECT;
 						self.tooltip = ZL_XML_TOOLTIP_ORANGE_EFFECT;
 					</OnLoad>
 					<OnShow>
-						UIDropDownMenu_Initialize(self, dropdown_sound_Show)
+						UIDropDownMenu_Initialize(self, Dropdown_sound_Show)
 					</OnShow>
 					<OnEnter>
 						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
@@ -346,7 +346,7 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-					<OnClick>test_zl_sound(2);</OnClick>
+					<OnClick>Test_zl_sound(2);</OnClick>
 					<OnLoad>
 						self.title = ZL_XML_TITLE_GREEN_TEST;
 						self.tooltip = ZL_XML_TOOLTIP_GREEN_TEST;
@@ -372,7 +372,7 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-					<OnClick>test_zl_sound(3);</OnClick>
+					<OnClick>Test_zl_sound(3);</OnClick>
 					<OnLoad>
 						self.title = ZL_XML_TITLE_BLUE_TEST;
 						self.tooltip = ZL_XML_TOOLTIP_BLUE_TEST;
@@ -398,7 +398,7 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-					<OnClick>test_zl_sound(4);</OnClick>
+					<OnClick>Test_zl_sound(4);</OnClick>
 					<OnLoad>
 						self.title = ZL_XML_TITLE_PURPLE_TEST;
 						self.tooltip = ZL_XML_TOOLTIP_PURPLE_TEST;
@@ -424,7 +424,7 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-					<OnClick>test_zl_sound(5);</OnClick>
+					<OnClick>Test_zl_sound(5);</OnClick>
 					<OnLoad>
 						self.title = ZL_XML_TITLE_ORANGE_TEST;
 						self.tooltip = ZL_XML_TOOLTIP_ORANGE_TEST;
@@ -450,7 +450,7 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-					<OnClick>check_loot_onclick(self, 2, 1);</OnClick>
+					<OnClick>Check_loot_onclick(self, 2, 1);</OnClick>
 					<OnLoad>
 						self.title = ZL_XML_TITLE_GREEN_CRAFTED;
 						self.tooltip = ZL_XML_TOOLTIP_GREEN_CRAFTED;
@@ -476,7 +476,7 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-					<OnClick>check_loot_onclick(self, 2, 2);</OnClick>
+					<OnClick>Check_loot_onclick(self, 2, 2);</OnClick>
 					<OnLoad>
 						self.title = ZL_XML_TITLE_GREEN_RECEIVED;
 						self.tooltip = ZL_XML_TOOLTIP_GREEN_RECEIVED;
@@ -502,7 +502,7 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-					<OnClick>check_loot_onclick(self, 3, 1);</OnClick>
+					<OnClick>Check_loot_onclick(self, 3, 1);</OnClick>
 					<OnLoad>
 						self.title = ZL_XML_TITLE_BLUE_CRAFTED;
 						self.tooltip = ZL_XML_TOOLTIP_BLUE_CRAFTED;
@@ -528,7 +528,7 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-					<OnClick>check_loot_onclick(self, 3, 2);</OnClick>
+					<OnClick>Check_loot_onclick(self, 3, 2);</OnClick>
 					<OnLoad>
 						self.title = ZL_XML_TITLE_BLUE_RECEIVED;
 						self.tooltip = ZL_XML_TOOLTIP_BLUE_RECEIVED;
@@ -554,7 +554,7 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-					<OnClick>check_loot_onclick(self, 4, 1);</OnClick>
+					<OnClick>Check_loot_onclick(self, 4, 1);</OnClick>
 					<OnLoad>
 						self.title = ZL_XML_TITLE_PURPLE_CRAFTED;
 						self.tooltip = ZL_XML_TOOLTIP_PURPLE_CRAFTED;
@@ -580,7 +580,7 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-					<OnClick>check_loot_onclick(self, 4, 2);</OnClick>
+					<OnClick>Check_loot_onclick(self, 4, 2);</OnClick>
 					<OnLoad>
 						self.title = ZL_XML_TITLE_PURPLE_RECEIVED;
 						self.tooltip = ZL_XML_TOOLTIP_PURPLE_RECEIVED;
@@ -606,7 +606,7 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-					<OnClick>check_loot_onclick(self, 5, 1);</OnClick>
+					<OnClick>Check_loot_onclick(self, 5, 1);</OnClick>
 					<OnLoad>
 						self.title = ZL_XML_TITLE_ORANGE_CRAFTED;
 						self.tooltip = ZL_XML_TOOLTIP_ORANGE_CRAFTED;
@@ -632,7 +632,7 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-					<OnClick>check_loot_onclick(self, 5, 2);</OnClick>
+					<OnClick>Check_loot_onclick(self, 5, 2);</OnClick>
 					<OnLoad>
 						self.title = ZL_XML_TITLE_ORANGE_RECEIVED;
 						self.tooltip = ZL_XML_TOOLTIP_ORANGE_RECEIVED;
@@ -658,7 +658,7 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-					<OnClick>check_inheritedstuff_onclick(self);</OnClick>
+					<OnClick>Check_inheritedstuff_onclick(self);</OnClick>
 					<OnLoad>
 						self.title = ZL_INHERITED;
 						self.tooltip = ZL_XML_TOOLTIP_INHERITED;
@@ -682,12 +682,12 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, dropdown_settings_Initialize)
+						UIDropDownMenu_Initialize(self, Dropdown_settings_Initialize)
 						self.title = ZL_FILE_TYPE;
 						self.tooltip = ZL_XML_TOOLTIP_FILE_TYPE;
 					</OnLoad>
 					<OnShow>
-						UIDropDownMenu_Initialize(self, dropdown_settings_Show)
+						UIDropDownMenu_Initialize(self, Dropdown_settings_Show)
 					</OnShow>
 					<OnEnter>
 						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
@@ -708,12 +708,12 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, dropdown_settings_Initialize)
+						UIDropDownMenu_Initialize(self, Dropdown_settings_Initialize)
 						self.title = ZL_FILE_CHANNEL;
 						self.tooltip = ZL_XML_TOOLTIP_FILE_CHANNEL;
 					</OnLoad>
 					<OnShow>
-						UIDropDownMenu_Initialize(self, dropdown_settings_Show)
+						UIDropDownMenu_Initialize(self, Dropdown_settings_Show)
 					</OnShow>
 					<OnEnter>
 						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
@@ -736,7 +736,7 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-					<OnClick>toggle_warnings(self);</OnClick>
+					<OnClick>Toggle_warnings(self);</OnClick>
 					<OnLoad>
 						self.title = ZL_WARN;
 						self.tooltip = ZL_XML_TOOLTIP_WARN;
@@ -762,7 +762,7 @@
 					</Anchor>
 				</Anchors>
 				<Scripts>
-					<OnClick>toggle_debug(self);</OnClick>
+					<OnClick>Toggle_debug(self);</OnClick>
 					<OnLoad>
 						self.title = ZL_DEBUG;
 						self.tooltip = ZL_XML_TOOLTIP_DEBUG;
@@ -781,7 +781,7 @@
 		</Frames>
 		<Layers>
 			<Layer level="OVERLAY">
-				<FontString name="FontString1" inherits="GameFontNormal" text="ZL_CONFIG_TITLE">
+				<FontString name="FontString1" inherits="GameFontNormal" text="ZL_config_TITLE">
 					<Size>
 						<AbsDimension x="506" y="20" />
 					</Size>

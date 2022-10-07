@@ -2,7 +2,7 @@
 
 if (GetLocale() == "frFR") then
 
-	ZL_CONFIG_TITLE       = "Configuration de ZeldaLoot"
+	ZL_config_TITLE       = "Configuration de ZeldaLoot"
 
 	ZL_TEST               = "Tester"
 	ZL_OK                 = "OK"
@@ -55,6 +55,8 @@ if (GetLocale() == "frFR") then
 	ZL_LOADED_TEXT_2      = "Tapez |cffffff00/zeldaloot ?|r ou |cffffff00/zl ?|r pour le menu d'aide"
 
 	ZL_SLASH_COMMANDS     = "Commandes de barre oblique:"
+
+	ZL_END_TEXT           = "fin"
 
 	-- XML
 	ZL_XML_TITLE_GREEN_SET = "Ensemble vert"
