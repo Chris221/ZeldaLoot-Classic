@@ -57,6 +57,11 @@ if (GetLocale() == "esES") then
 	ZL_SLASH_COMMANDS     = "Comandos de barra:"
 
 	ZL_END_TEXT           = "final"
+	ZL_SETTINGS_CLOSED    = "Closed settings"
+	ZL_NOT_PLAYING        = "NOT playing sound for"
+	ZL_LIKELY_DUE_TO      = "likey due to"
+	ZL_BEING_MUTED        = "being muted"
+	ZL_ON_SOUND_CHANNEL   = "on sound channel"
 
 	-- XML
 	ZL_XML_TITLE_GREEN_SET = "Conjunto verde"

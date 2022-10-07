@@ -28,13 +28,13 @@ function Play_zeldaSound(index, sound_file)
 	Update_config(false)
 	willPlay, ZL_soundHandle = PlaySoundFile("Interface\\AddOns\\ZeldaLoot_Classic\\Sounds\\Sets\\" .. sound_set .. "\\" .. sound_file .. "." .. sound_ext, sound_channel)
 
-	local mess = "[" .. sound_set .. "\\" .. sound_file .. "." .. sound_ext .. "] on sound channel [" .. sound_channel .. "]"
+	local mess = "[" .. sound_set .. "\\" .. sound_file .. "." .. sound_ext .. "] " .. ZL_ON_SOUND_CHANNEL .. " [" .. sound_channel .. "]"
 	if (willPlay) then
 		if (ZL_debug_bool) then
 			ZL_Print(ZL_STARTING_SOUND .. " " .. mess)
 		end
 	elseif (ZL_warning_bool or ZL_debug_bool) then
-		ZL_Print(warning_text .. ZL_NOT_PLAYING .. " " .. mess .. " likey due to [" .. sound_channel .. "] being muted")
+		ZL_Print(warning_text .. ZL_NOT_PLAYING .. " " .. mess .. " " .. ZL_LIKELY_DUE_TO .. " [" .. sound_channel .. "] " .. ZL_BEING_MUTED)
 	end
 end
 
