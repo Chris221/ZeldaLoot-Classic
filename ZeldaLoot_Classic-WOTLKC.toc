@@ -18,17 +18,17 @@
 ## X-WoWI-ID: 26421
 ## X-Wago-ID: kQAkN3wV
 
-ConfigPanel_scripts.lua
-ConfigPanel.xml
-
-SlashCommands.lua
-
 Locale\ZL_Globals.lua
 Locale\ZL_ruRU.lua
 Locale\ZL_deDE.lua
 Locale\ZL_esES.lua
 Locale\ZL_frFR.lua
 Locale\ZL_enUS.lua
+
+ConfigPanel_scripts.lua
+ConfigPanel.xml
+
+SlashCommands.lua
 
 ZeldaLoot_Classic.lua
 ZeldaLoot_Classic.xml
