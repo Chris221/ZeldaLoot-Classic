@@ -2,7 +2,7 @@
 
 ## Changes
 ### Changes in 2.1.0
-- Added Locale text for the tooltips and common text set to the console
+- Added Locale text for the tooltips and all text sent to the console
 
 ### Changes in 2.0.1
 - Added support for Vanilla
