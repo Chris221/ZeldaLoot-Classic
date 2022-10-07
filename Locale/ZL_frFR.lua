@@ -57,11 +57,11 @@ if (GetLocale() == "frFR") then
 	ZL_SLASH_COMMANDS     = "Commandes de barre oblique:"
 
 	ZL_END_TEXT           = "fin"
-	ZL_SETTINGS_CLOSED    = "Closed settings"
-	ZL_NOT_PLAYING        = "NOT playing sound for"
-	ZL_LIKELY_DUE_TO      = "likey due to"
-	ZL_BEING_MUTED        = "being muted"
-	ZL_ON_SOUND_CHANNEL   = "on sound channel"
+	ZL_SETTINGS_CLOSED    = "Paramètres fermés"
+	ZL_NOT_PLAYING        = "PAS de son pour"
+	ZL_LIKELY_DUE_TO      = "probablement en raison de"
+	ZL_BEING_MUTED        = "être mis en sourdine"
+	ZL_ON_SOUND_CHANNEL   = "sur le canal sonore"
 
 	-- XML
 	ZL_XML_TITLE_GREEN_SET = "Ensemble vert"

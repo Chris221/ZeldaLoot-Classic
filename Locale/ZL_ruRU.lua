@@ -56,11 +56,11 @@ if (GetLocale() == "ruRU") then
 	ZL_SLASH_COMMANDS     = "Слеш-команды:"
 
 	ZL_END_TEXT           = "конец"
-	ZL_SETTINGS_CLOSED    = "Closed settings"
-	ZL_NOT_PLAYING        = "NOT playing sound for"
-	ZL_LIKELY_DUE_TO      = "likey due to"
-	ZL_BEING_MUTED        = "being muted"
-	ZL_ON_SOUND_CHANNEL   = "on sound channel"
+	ZL_SETTINGS_CLOSED    = "Настройки закрыты"
+	ZL_NOT_PLAYING        = "НЕ воспроизводит звук для"
+	ZL_LIKELY_DUE_TO      = "вероятно из-за"
+	ZL_BEING_MUTED        = "отключен"
+	ZL_ON_SOUND_CHANNEL   = "на звуковом канале"
 
 	-- XML
 	ZL_XML_TITLE_GREEN_SET = "Зеленый набор"

@@ -23,18 +23,18 @@ function zl.SlashCommandHandler(msg)
 	elseif (msg == 'debug') then
 		if (ZL_debug_bool) then
 			ZL_debug_bool = false
-			ZL_Print('Debug mode has been disabled')
+			ZL_Print(ZL_SLASH_DEBUG_DISABLED)
 		else
 			ZL_debug_bool = true
-			ZL_Print('Debug mode has been enabled')
+			ZL_Print(ZL_SLASH_DEBUG_ENABLED)
 		end
 	elseif (msg == 'warnings' or msg == 'warning' or msg == 'warn') then
 		if (ZL_warning_bool) then
 			ZL_warning_bool = false
-			ZL_Print('Warnings have been disabled')
+			ZL_Print(ZL_SLASH_WARNING_DISABLED)
 		else
 			ZL_warning_bool = true
-			ZL_Print('Warnings have been enabled')
+			ZL_Print(ZL_SLASH_WARNING_ENABLED)
 		end
 	elseif (msg:find('^ext') ~= nil) then
 		if (msg:find('[mM][pP]3') ~= nil) then

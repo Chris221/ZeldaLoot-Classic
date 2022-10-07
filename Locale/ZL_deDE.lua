@@ -57,6 +57,11 @@ if (GetLocale() == "deDE") then
 	ZL_SLASH_COMMANDS     = "Slash-Befehle:"
 
 	ZL_END_TEXT           = "Ende"
+	ZL_SETTINGS_CLOSED    = "Einstellungen geschlossen"
+	ZL_NOT_PLAYING        = "KEINE Tonwiedergabe für"
+	ZL_LIKELY_DUE_TO      = "wahrscheinlich wegen"
+	ZL_BEING_MUTED        = "stummgeschaltet werden"
+	ZL_ON_SOUND_CHANNEL   = "auf Tonkanal"
 
 	-- XML
 	ZL_XML_TITLE_GREEN_SET = "Grünes Set"

@@ -57,11 +57,11 @@ if (GetLocale() == "esES") then
 	ZL_SLASH_COMMANDS     = "Comandos de barra:"
 
 	ZL_END_TEXT           = "final"
-	ZL_SETTINGS_CLOSED    = "Closed settings"
-	ZL_NOT_PLAYING        = "NOT playing sound for"
-	ZL_LIKELY_DUE_TO      = "likey due to"
-	ZL_BEING_MUTED        = "being muted"
-	ZL_ON_SOUND_CHANNEL   = "on sound channel"
+	ZL_SETTINGS_CLOSED    = "Ajustes cerrados"
+	ZL_NOT_PLAYING        = "NO reproducir sonido para"
+	ZL_LIKELY_DUE_TO      = "probablemente debido a"
+	ZL_BEING_MUTED        = "estar silenciado"
+	ZL_ON_SOUND_CHANNEL   = "en el canal de sonido"
 
 	-- XML
 	ZL_XML_TITLE_GREEN_SET = "Conjunto verde"

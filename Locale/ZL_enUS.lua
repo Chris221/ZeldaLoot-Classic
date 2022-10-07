@@ -57,9 +57,9 @@ if ((GetLocale() ~= "frFR") and (GetLocale() ~= "esES") and (GetLocale() ~= "deD
 	ZL_SLASH_COMMANDS     = "Slash Commands:"
 
 	ZL_END_TEXT           = "end"
-	ZL_SETTINGS_CLOSED    = "Closed settings"
+	ZL_SETTINGS_CLOSED    = "Settings closed"
 	ZL_NOT_PLAYING        = "NOT playing sound for"
-	ZL_LIKELY_DUE_TO      = "likey due to"
+	ZL_LIKELY_DUE_TO      = "likely due to"
 	ZL_BEING_MUTED        = "being muted"
 	ZL_ON_SOUND_CHANNEL   = "on sound channel"
 
@@ -113,5 +113,11 @@ if ((GetLocale() ~= "frFR") and (GetLocale() ~= "esES") and (GetLocale() ~= "deD
 	ZL_XML_TOOLTIP_FILE_TYPE       = "Select which file type you would like to use"
 	ZL_XML_TOOLTIP_WARN            = "Enables/Disables warnings\n\nRecommended to leave this on."
 	ZL_XML_TOOLTIP_DEBUG           = "Enables/Disables debug mode\n\n|cffff0000THIS WILL FLOOD THE CHAT!!"
+
+	-- SLASH COMMANDS
+	ZL_SLASH_DEBUG_ENABLED = "Debug mode has been enabled"
+	ZL_SLASH_DEBUG_DISABLED = "Debug mode has been disabled"
+	ZL_SLASH_WARNING_ENABLED = "Warnings have been enabled"
+	ZL_SLASH_WARNING_DISABLED = "Warnings have been disabled"
 end
 
