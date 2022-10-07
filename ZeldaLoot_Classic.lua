@@ -1,8 +1,3 @@
-AddonVersion = "|cff00ff002.1.0|r"
-ZL_AddonName = "ZeldaLoot Classic"
-ZL_AddonColor = "|cff00ffff"
-ZL_soundHandle = 0
-
 function ZL_Print(msg)
 	DEFAULT_CHAT_FRAME:AddMessage(ZL_AddonColor .. ZL_AddonName .. '|r ' .. tostring(msg))
 end
@@ -56,7 +51,7 @@ function ZeldaFrame_OnEvent(self, event, ...)
 		end
 
 		Update_config(false)
-		ZL_Print(AddonVersion .. ZL_LOADED)
+		ZL_Print(ZL_AddonVersion .. ZL_LOADED)
 		ZL_Print(ZL_LOADED_TEXT_1)
 		ZL_Print(ZL_LOADED_TEXT_2)
 		if (ZL_debug_bool) then
