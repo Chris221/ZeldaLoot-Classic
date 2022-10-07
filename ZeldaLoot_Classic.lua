@@ -79,18 +79,26 @@ function ZeldaFrame_OnEvent(self, event, ...)
 			for iCat, vCat in ipairs(scanCateg) do
 				for iSub, vSub in pairs(scanValues) do
 					obj = getglobal("check_" .. vCat .. vSub)
-					obj:SetChecked(ZL_config[vCat][iSub])
+					if (obj ~= nil) then
+						obj:SetChecked(ZL_config[vCat][iSub])
+					end
 				end
 			end
 
 			obj = getglobal("check_inheritedstuff")
-			obj:SetChecked(ZL_config["inherited"]["include"])
+			if (obj ~= nil) then
+				obj:SetChecked(ZL_config["inherited"]["include"])
+			end
 
 			obj = getglobal("check_warnings")
-			obj:SetChecked(ZL_warning_bool)
+			if (obj ~= nil) then
+				obj:SetChecked(ZL_warning_bool)
+			end
 
 			obj = getglobal("check_debug")
-			obj:SetChecked(ZL_debug_bool)
+			if (obj ~= nil) then
+				obj:SetChecked(ZL_debug_bool)
+			end
 		end
 	end
 
