@@ -16,7 +16,6 @@
 ## X-Category: Audio & Video
 ## X-Curse-Project-ID: 487037
 ## X-WoWI-ID: 26421
-## X-Wago-ID: kQAkN3wV
 
 Locale\ZL_Globals.lua
 Locale\ZL_ruRU.lua
