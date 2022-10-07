@@ -113,5 +113,32 @@ if (GetLocale() == "esES") then
 	ZL_XML_TOOLTIP_FILE_TYPE = "Seleccione qué tipo de archivo le gustaría usar"
 	ZL_XML_TOOLTIP_WARN = "Habilita/deshabilita las advertencias\n\nSe recomienda dejar esto activado."
 	ZL_XML_TOOLTIP_DEBUG = "Habilita/deshabilita el modo de depuración\n\n|cffff0000¡¡ESTO INUNDARÁ EL CHAT!!"
-	
+
+	-- SLASH COMMANDS
+	ZL_SLASH_DEBUG_ENABLED = "Se ha habilitado el modo de depuración"
+	ZL_SLASH_DEBUG_DISABLED = "Se ha deshabilitado el modo de depuración"
+	ZL_SLASH_WARNING_ENABLED = "Se han activado las advertencias"
+	ZL_SLASH_WARNING_DISABLED = "Se han desactivado las advertencias"
+
+	ZL_SLASH_OPEN_SETTINGS = "Abre la configuración."
+	ZL_SLASH_DUMP_CONFIG = "Vuelca la configuración."
+	ZL_SLASH_DEBUG = "Habilita/deshabilita el modo de depuración."
+	ZL_SLASH_WARNINGS = "Habilita/deshabilita las advertencias."
+	ZL_SLASH_EXT = "Cambia el tipo de archivo de audio entre archivos ogg y wav."
+	ZL_SLASH_EXT_2 = "Cambia el canal según el tipo de archivo de audio que se reproduce. (Consulte `Opciones de tipo`)"
+	ZL_SLASH_EXT_EXTRA = 'Opciones de tipo: "wav", "ogg" [Predeterminado], "mp3"'
+	ZL_SLASH_CHANNELS = "Cambia el canal en el que se reproduce el audio. (Consulte `Opciones de canal`)"
+	ZL_SLASH_CHANNELS_EXTRA = 'Opciones de canal: "Maestro", "SFX" (Sonido) [Predeterminado], "Música", "Ambiente", "Diálogo"'
+	ZL_SLASH_RESETS = "Restablece la configuración."
+
+	ZL_SLASH_MP3 = "La extensión de audio se ha cambiado a archivos .mp3 [Experimental]"
+	ZL_SLASH_WAV = "La extensión de audio se ha cambiado a archivos .wav [Recomendado para una mejor asistencia al cliente]"
+	ZL_SLASH_OGG = "La extensión de audio se ha cambiado a archivos .ogg [Recomendado por Blizard, no parece funcionar en todos los clientes]"
+
+	ZL_SLASH_MASTER = "El canal de audio se cambió a Maestro [No recomendado]"
+	ZL_SLASH_SFX = "El canal de audio se cambió a SFX (Sonido) [Recomendado]"
+	ZL_SLASH_MUSIC = "El canal de audio se cambió a Música"
+	ZL_SLASH_AMBIENCE = "El canal de audio se cambió a Ambience"
+	ZL_SLASH_DIALOG = "El canal de audio se cambió a Diálogo [Recomendado]"
+	ZL_SLASH_DEFAULT = 'El canal de audio se cambió al predeterminado: "SFX" (Sonido) [Recomendado]'
 end

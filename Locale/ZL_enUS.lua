@@ -119,5 +119,26 @@ if ((GetLocale() ~= "frFR") and (GetLocale() ~= "esES") and (GetLocale() ~= "deD
 	ZL_SLASH_DEBUG_DISABLED = "Debug mode has been disabled"
 	ZL_SLASH_WARNING_ENABLED = "Warnings have been enabled"
 	ZL_SLASH_WARNING_DISABLED = "Warnings have been disabled"
-end
 
+	ZL_SLASH_OPEN_SETTINGS = "Opens the settings."
+	ZL_SLASH_DUMP_CONFIG = "Dumps the config."
+	ZL_SLASH_DEBUG = "Enables/Disables debug mode."
+	ZL_SLASH_WARNINGS = "Enables/Disables warnings."
+	ZL_SLASH_EXT = "Switches the audio file type between ogg and wav files."
+	ZL_SLASH_EXT_2 = "Switches the channel the audio file type that plays. (See `Type Options`)"
+	ZL_SLASH_EXT_EXTRA = 'Type Options: "wav", "ogg" [Default], "mp3"'
+	ZL_SLASH_CHANNELS = "Switches the channel the audio plays on. (See `Channel Options`)"
+	ZL_SLASH_CHANNELS_EXTRA = 'Channel Options: "Master", "SFX" (Sound) [Default], "Music", "Ambience", "Dialog"'
+	ZL_SLASH_RESETS = "Resets the config."
+
+	ZL_SLASH_MP3 = "Audio ext has been switched to .mp3 files [Experimental]"
+	ZL_SLASH_WAV = "Audio ext has been switched to .wav files [Recommended for better client support]"
+	ZL_SLASH_OGG = "Audio ext has been switched to .ogg files [Blizard Recommended, doesn't seem to work on all clients]"
+
+	ZL_SLASH_MASTER = "Audio channel was changed to Master [Not Recommended]"
+	ZL_SLASH_SFX = "Audio channel was changed to SFX (Sound) [Recommended]"
+	ZL_SLASH_MUSIC = "Audio channel was changed to Music"
+	ZL_SLASH_AMBIENCE = "Audio channel was changed to Ambience"
+	ZL_SLASH_DIALOG = "Audio channel was changed to Dialog [Recommended]"
+	ZL_SLASH_DEFAULT = 'Audio channel was changed to the default: "SFX" (Sound) [Recommended]'
+end

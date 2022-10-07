@@ -113,4 +113,32 @@ if (GetLocale() == "deDE") then
 	ZL_XML_TOOLTIP_FILE_TYPE = "Wählen Sie aus, welchen Dateityp Sie verwenden möchten"
 	ZL_XML_TOOLTIP_WARN = "Aktiviert/deaktiviert Warnungen\n\nEs wird empfohlen, dies aktiviert zu lassen."
 	ZL_XML_TOOLTIP_DEBUG = "Aktiviert/deaktiviert den Debug-Modus\n\n|cffff0000DAS WIRD DEN CHAT ÜBERFLUTEN!!"
+
+	-- SLASH COMMANDS
+	ZL_SLASH_DEBUG_ENABLED = "Debug-Modus wurde aktiviert"
+	ZL_SLASH_DEBUG_DISABLED = "Debug-Modus wurde deaktiviert"
+	ZL_SLASH_WARNING_ENABLED = "Warnungen wurden aktiviert"
+	ZL_SLASH_WARNING_DISABLED = "Warnungen wurden deaktiviert"
+
+	ZL_SLASH_OPEN_SETTINGS = "Öffnet die Einstellungen."
+	ZL_SLASH_DUMP_CONFIG = "Speichert die Konfiguration."
+	ZL_SLASH_DEBUG = "Aktiviert/Deaktiviert den Debug-Modus."
+	ZL_SLASH_WARNINGS = "Aktiviert/deaktiviert Warnungen."
+	ZL_SLASH_EXT = "Schaltet den Audiodateityp zwischen ogg und wav Dateien um."
+	ZL_SLASH_EXT_2 = "Wechselt den Kanal des abgespielten Audiodateityps. (Siehe `Typ-Optionen`)"
+	ZL_SLASH_EXT_EXTRA = 'Optionen eingeben: "wav", "ogg" [Standard], "mp3"'
+	ZL_SLASH_CHANNELS = "Schaltet den Kanal um, auf dem die Audiowiedergabe läuft. (Siehe `Kanaloptionen`)"
+	ZL_SLASH_CHANNELS_EXTRA = 'Kanaloptionen: "Master", "SFX" (Ton) [Standard], "Musik", "Ambiente", "Dialog"'
+	ZL_SLASH_RESETS = "Setzt die Konfiguration zurück."
+
+	ZL_SLASH_MP3 = "Audioerweiterung wurde auf .mp3 Dateien umgestellt [Experimentell]"
+	ZL_SLASH_WAV = "Audioerweiterung wurde auf .wav Dateien umgestellt [empfohlen für besseren Client-Support]"
+	ZL_SLASH_OGG = "Audioerweiterung wurde auf .ogg Dateien umgestellt [Von Blizard empfohlen, scheint nicht auf allen Clients zu funktionieren]"
+
+	ZL_SLASH_MASTER = "Audiokanal wurde auf Master geändert [Nicht empfohlen]"
+	ZL_SLASH_SFX = "Audiokanal wurde auf SFX (Ton) geändert [empfohlen]"
+	ZL_SLASH_MUSIC = "Audiokanal wurde auf Musik geändert"
+	ZL_SLASH_AMBIENCE = "Audiokanal wurde auf Umgebung geändert"
+	ZL_SLASH_DIALOG = "Audiokanal wurde auf Dialog geändert [empfohlen]"
+	ZL_SLASH_DEFAULT = 'Audiokanal wurde auf Standard geändert: "SFX" (Ton) [Empfohlen]'
 end

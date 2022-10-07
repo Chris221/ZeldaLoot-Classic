@@ -114,4 +114,31 @@ if (GetLocale() == "frFR") then
 	ZL_XML_TOOLTIP_WARN = "Active/Désactive les avertissements\n\nIl est recommandé de laisser ceci activé."
 	ZL_XML_TOOLTIP_DEBUG = "Active/Désactive le mode débogage\n\n|cffff0000CELA VA INONDER LE CHAT!!"
 
+	-- SLASH COMMANDS
+	ZL_SLASH_DEBUG_ENABLED = "Le mode débogage a été activé"
+	ZL_SLASH_DEBUG_DISABLED = "Le mode débogage a été désactivé"
+	ZL_SLASH_WARNING_ENABLED = "Les avertissements ont été activés"
+	ZL_SLASH_WARNING_DISABLED = "Les avertissements ont été désactivés"
+
+	ZL_SLASH_OPEN_SETTINGS = "Ouvre les paramètres."
+	ZL_SLASH_DUMP_CONFIG = "Décharges la configuration."
+	ZL_SLASH_DEBUG = "Active/Désactive le mode débogage."
+	ZL_SLASH_WARNINGS = "Active/Désactive les avertissements."
+	ZL_SLASH_EXT = "Permute le type de fichier audio entre les fichiers ogg et wav."
+	ZL_SLASH_EXT_2 = "Change le canal du type de fichier audio qui joue. (Voir `Options de saisie`)"
+	ZL_SLASH_EXT_EXTRA = 'Options de saisie: "wav", "ogg" [défaut], "mp3"'
+	ZL_SLASH_CHANNELS = "Change le canal sur lequel l'audio est lu. (Voir `Options de canal`)"
+	ZL_SLASH_CHANNELS_EXTRA = 'Options de canal: "Maître", "SFX" (Son) [Défaut], "Musique", "Ambiance", "Dialogue"'
+	ZL_SLASH_RESETS = "Réinitialise la configuration."
+
+	ZL_SLASH_MP3 = "L'extension audio a été basculée vers les fichiers .mp3 [Expérimental]"
+	ZL_SLASH_WAV = "L'extension audio a été basculée vers les fichiers .wav [Recommandé pour un meilleur support client]"
+	ZL_SLASH_OGG = "L'extension audio a été basculée vers les fichiers .ogg [Recommandé par Blizard, ne semble pas fonctionner sur tous les clients]"
+
+	ZL_SLASH_MASTER = "Le canal audio a été changé en Maître [Non recommandé]"
+	ZL_SLASH_SFX = "Le canal audio a été changé en SFX (Son) [Recommandé]"
+	ZL_SLASH_MUSIC = "Le canal audio a été remplacé par Musique"
+	ZL_SLASH_AMBIENCE = "Le canal audio a été changé en Ambiance"
+	ZL_SLASH_DIALOG = "Le canal audio a été changé en Dialogue [Recommandé]"
+	ZL_SLASH_DEFAULT = 'Le canal audio a été remplacé par le canal par défaut: "SFX" (Son) [Recommandé]'
 end
