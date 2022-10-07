@@ -3,7 +3,7 @@ Based on [ZeldaLoot Extended](https://www.curseforge.com/wow/addons/zeldaloot)�
 
 ## New features summary
 ### Version Support
-We now support all client versions
+We now support all client versions.
 
 ### Sounds
 4 new sounds for different item qualities, from uncommon (green) to legendary (orange). Note inherited objects (linked to account) can play sound when received too (same as for legandaries items). Sounds provided by: Darth Killer, from Zelda Ocarina of Time (original from games), and Chrisgess, from *Zelda Ocarina of Time Orchestrated* album [www.zreomusic.com](http://zreomusic.com/), even higher sound quality!
