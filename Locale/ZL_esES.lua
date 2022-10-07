@@ -40,8 +40,8 @@ if (GetLocale() == "esES") then
 	ZL_DUMP_START         = "Configuración de volcado"
 	ZL_DUMP_FINISH        = "Configuración de volcado finalizada"
 
-	ZL_STARTING_SOUND     = "Reproducción de sonido para "
-	ZL_STOPPING_SOUND     = "Detener el sonido para "
+	ZL_STARTING_SOUND     = "Reproducción de sonido para"
+	ZL_STOPPING_SOUND     = "Detener el sonido para"
 	ZL_WARNING            = "ADVERTENCIA"
 
 	ZL_DEBUG_ENABLED      = "El modo de depuración está habilitado"

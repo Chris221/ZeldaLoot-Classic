@@ -16,7 +16,7 @@ function Play_zeldaSound(index, sound_file)
 
 	if (ZL_soundHandle ~= 0 and ZL_soundHandle ~= nil) then
 		if (ZL_debug_bool) then
-			ZL_Print(ZL_STOPPING_SOUND .. ZL_soundHandle)
+			ZL_Print(ZL_STOPPING_SOUND .. " " .. ZL_soundHandle)
 		end
 		StopSound(ZL_soundHandle, 0)
 	end
@@ -31,10 +31,10 @@ function Play_zeldaSound(index, sound_file)
 	local mess = "[" .. sound_set .. "\\" .. sound_file .. "." .. sound_ext .. "] on sound channel [" .. sound_channel .. "]"
 	if (willPlay) then
 		if (ZL_debug_bool) then
-			ZL_Print(ZL_STARTING_SOUND .. mess)
+			ZL_Print(ZL_STARTING_SOUND .. " " .. mess)
 		end
 	elseif (ZL_warning_bool or ZL_debug_bool) then
-		ZL_Print(warning_text .. "NOT playing sound for " .. mess .. " likey due to [" .. sound_channel .. "] being muted")
+		ZL_Print(warning_text .. ZL_NOT_PLAYING .. " " .. mess .. " likey due to [" .. sound_channel .. "] being muted")
 	end
 end
 

@@ -39,8 +39,8 @@ if (GetLocale() == "ruRU") then
 	ZL_DUMP_START         = "Сброс конфига"
 	ZL_DUMP_FINISH        = "Готовый дамп конфига"
 
-	ZL_STARTING_SOUND     = "Воспроизведение звука для "
-	ZL_STOPPING_SOUND     = "Остановка звука для "
+	ZL_STARTING_SOUND     = "Воспроизведение звука для"
+	ZL_STOPPING_SOUND     = "Остановка звука для"
 	ZL_WARNING            = "ПРЕДУПРЕЖДЕНИЕ"
 
 	ZL_DEBUG_ENABLED      = "Режим отладки включен"

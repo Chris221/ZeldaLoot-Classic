@@ -40,8 +40,8 @@ if (GetLocale() == "frFR") then
 	ZL_DUMP_START         = "Configuration de vidage"
 	ZL_DUMP_FINISH        = "Configuration de vidage terminée"
 
-	ZL_STARTING_SOUND     = "Lecture du son pour "
-	ZL_STOPPING_SOUND     = "Arrêt du son pour "
+	ZL_STARTING_SOUND     = "Lecture du son pour"
+	ZL_STOPPING_SOUND     = "Arrêt du son pour"
 	ZL_WARNING            = "ATTENTION"
 
 	ZL_DEBUG_ENABLED      = "Le mode débogage est activé"

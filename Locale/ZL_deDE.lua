@@ -40,8 +40,8 @@ if (GetLocale() == "deDE") then
 	ZL_DUMP_START         = "Konfiguration ausgeben"
 	ZL_DUMP_FINISH        = "Fertige Dumping-Konfiguration"
 
-	ZL_STARTING_SOUND     = "Ton abspielen für "
-	ZL_STOPPING_SOUND     = "Stoppton für "
+	ZL_STARTING_SOUND     = "Ton abspielen für"
+	ZL_STOPPING_SOUND     = "Stoppton für"
 	ZL_WARNING            = "WARNUNG"
 
 	ZL_DEBUG_ENABLED      = "Der Debug-Modus ist aktiviert"

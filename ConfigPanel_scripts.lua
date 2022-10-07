@@ -135,13 +135,13 @@ end
 
 function Btn_ok_onclick()
 	if (ZL_debug_bool) then
-		Dump_config("Closed settings")
+		Dump_config(ZL_SETTINGS_CLOSED)
 	end
 end
 
 function Btn_cancel_onclick()
 	if (ZL_debug_bool) then
-		Dump_config("Closed settings")
+		Dump_config(ZL_SETTINGS_CLOSED)
 	end
 end
 

@@ -40,8 +40,8 @@ if ((GetLocale() ~= "frFR") and (GetLocale() ~= "esES") and (GetLocale() ~= "deD
 	ZL_DUMP_START         = "Dumping config"
 	ZL_DUMP_FINISH        = "Finished dumping config"
 
-	ZL_STARTING_SOUND     = "Playing sound for "
-	ZL_STOPPING_SOUND     = "Stopping sound for "
+	ZL_STARTING_SOUND     = "Playing sound for"
+	ZL_STOPPING_SOUND     = "Stopping sound for"
 	ZL_WARNING            = "WARNING"
 
 	ZL_DEBUG_ENABLED      = "Debug mode is enabled"
@@ -57,6 +57,8 @@ if ((GetLocale() ~= "frFR") and (GetLocale() ~= "esES") and (GetLocale() ~= "deD
 	ZL_SLASH_COMMANDS     = "Slash Commands:"
 
 	ZL_END_TEXT           = "end"
+	ZL_SETTINGS_CLOSED    = "Closed settings"
+	ZL_NOT_PLAYING        = "NOT playing sound for"
 
 	-- XML
 	ZL_XML_TITLE_GREEN_SET         = "Green Set"
@@ -109,3 +111,4 @@ if ((GetLocale() ~= "frFR") and (GetLocale() ~= "esES") and (GetLocale() ~= "deD
 	ZL_XML_TOOLTIP_WARN            = "Enables/Disables warnings\n\nRecommended to leave this on."
 	ZL_XML_TOOLTIP_DEBUG           = "Enables/Disables debug mode\n\n|cffff0000THIS WILL FLOOD THE CHAT!!"
 end
+
