@@ -58,15 +58,24 @@ function ZeldaFrame_OnEvent(self, event, ...)
 			ZL_Print(ZL_DEBUG_ENABLED)
 		end
 
-		local panel = getglobal("ZL_configPanel")
+		local panel = _G["ZL_configPanel"]
 		panel.name = ZL_AddonName
 		panel.okay = Btn_ok_onclick
 		panel.cancel = Btn_cancel_onclick
 		panel.default = Reset_config
 		panel.refresh = Refresh_zl_frame
 
-		InterfaceOptions_AddCategory(panel, true)
-		InterfaceAddOnsList_Update()
+		if Settings and Settings.RegisterCanvasLayoutCategory then
+			local category = Settings.RegisterCanvasLayoutCategory(panel, ZL_AddonName)
+			category.ID = ZL_AddonName
+			Settings.RegisterAddOnCategory(category)
+			ZL_SettingsCategory = category
+		elseif InterfaceOptions_AddCategory then
+			InterfaceOptions_AddCategory(panel, true)
+			if InterfaceAddOnsList_Update then
+				InterfaceAddOnsList_Update()
+			end
+		end
 	end
 
 	if (((event == "ADDON_LOADED") and (arg1 == "ZeldaLoot_Classic")) or (event == "PLAYER_LOGOUT")) then
@@ -78,24 +87,24 @@ function ZeldaFrame_OnEvent(self, event, ...)
 		if (event ~= "PLAYER_LOGOUT") then
 			for iCat, vCat in ipairs(scanCateg) do
 				for iSub, vSub in pairs(scanValues) do
-					obj = getglobal("check_" .. vCat .. vSub)
+					obj = _G["check_" .. vCat .. vSub]
 					if (obj ~= nil) then
 						obj:SetChecked(ZL_config[vCat][iSub])
 					end
 				end
 			end
 
-			obj = getglobal("check_inheritedstuff")
+			obj = _G["check_inheritedstuff"]
 			if (obj ~= nil) then
 				obj:SetChecked(ZL_config["inherited"]["include"])
 			end
 
-			obj = getglobal("check_warnings")
+			obj = _G["check_warnings"]
 			if (obj ~= nil) then
 				obj:SetChecked(ZL_warning_bool)
 			end
 
-			obj = getglobal("check_debug")
+			obj = _G["check_debug"]
 			if (obj ~= nil) then
 				obj:SetChecked(ZL_debug_bool)
 			end
@@ -104,7 +113,7 @@ function ZeldaFrame_OnEvent(self, event, ...)
 
 	if (event == "CHAT_MSG_LOOT") then
 		-- Inherited stuff ("artefacts", bind to account)
-		if (strfind(arg1, "cffe6cc80")) then
+		if (string.find(arg1, "cffe6cc80")) then
 			if (ZL_config["inherited"]["include"]) then
 				quality = 6
 			else
@@ -112,19 +121,19 @@ function ZeldaFrame_OnEvent(self, event, ...)
 			end
 
 		-- Legendary (orange)
-		elseif (strfind(arg1, "cffff8000")) then
+		elseif (string.find(arg1, "cffff8000")) then
 			quality = 6
 
 		-- Epic (purple)
-		elseif (strfind(arg1, "cffa335ee")) then
+		elseif (string.find(arg1, "cffa335ee")) then
 			quality = 5
 
 		-- Rare (blue)
-		elseif (strfind(arg1, "cff0070dd")) then
+		elseif (string.find(arg1, "cff0070dd")) then
 			quality = 4
 
 		-- Not common (green)
-		elseif (strfind(arg1, "cff1eff00")) then
+		elseif (string.find(arg1, "cff1eff00")) then
 			quality = 3
 
 		-- Trash: common and low quality (white and grey), no sound for those ones !
@@ -137,9 +146,9 @@ function ZeldaFrame_OnEvent(self, event, ...)
 
 			if (ZL_config[zl_group]["active"]) then
 				if (
-					(strfind(arg1, ZL_LOOTMESSAGE)) or
-					(((strfind(arg1, ZL_CRAFTMESSAGE)) or (strfind(arg1, ZL_CRAFTMESSAGE2))) and ZL_config[zl_group]["crafted"]) or
-					((strfind(arg1, ZL_RECEIVEMESSAGE)) and ZL_config[zl_group]["received"])
+					(string.find(arg1, ZL_LOOTMESSAGE)) or
+					(((string.find(arg1, ZL_CRAFTMESSAGE)) or (string.find(arg1, ZL_CRAFTMESSAGE2))) and ZL_config[zl_group]["crafted"]) or
+					((string.find(arg1, ZL_RECEIVEMESSAGE)) and ZL_config[zl_group]["received"])
 				) then
 					Play_zeldaSound(quality - 1, ZL_config[zl_group]["sound"])
 				end

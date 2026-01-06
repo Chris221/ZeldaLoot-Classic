@@ -1,4 +1,4 @@
-## Interface: 20504
+## Interface: 40402
 ## Title: ZeldaLoot Classic
 ## Notes: Plays a different Legend of Zelda Item Sound when you loot a legendary (orange), epic (purple), rare (blue) or non common (green) item. Based on ZeldaLoot from Rickyk.
 ## Notes-frFR: Joue différents sons de Zelda quand des objets légendaires (oranges), épiques (violets), rares (bleus) ou inhabituels (verts) sont récupérés. Basé sur ZeldaLoot par Rickyk.
@@ -6,7 +6,7 @@
 ## Notes-deDE: Spielen verschiedene Töne, wenn Objekte Zelda legendäre (orange), epische (lila), selten (blau) oder ungewöhnliche (grün). Basierend auf ZeldaLoot von Rickyk.
 ## Notes-ruRU: Воспроизводит другой звук предмета Legend of Zelda, когда вы получаете легендарный (оранжевый), эпический (фиолетовый), редкий (синий) или необычный (зеленый) предмет. На основе ZeldaLoot от Rickyk.
 ## Author: Chris221221
-## Version: 2.1.0
+## Version: 2.2.0
 ## SavedVariables: ZL_config ZL_debug_bool ZL_warning_bool
 ## OptionalDeps: 
 

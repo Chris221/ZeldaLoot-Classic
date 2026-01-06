@@ -33,9 +33,9 @@ if ((GetLocale() ~= "frFR") and (GetLocale() ~= "esES") and (GetLocale() ~= "deD
 	ZL_WARN               = "Enable warnings"
 
 	ZL_WARNING_ENABLING   = "Enabling warnings"
-	ZL_WARNING_DIDABLING  = "Disabling warnings"
+	ZL_WARNING_DISABLING  = "Disabling warnings"
 	ZL_DEBUG_ENABLING     = "Enabling debugging"
-	ZL_DEBUG_DIDABLING    = "Disabling debugging"
+	ZL_DEBUG_DISABLING    = "Disabling debugging"
 
 	ZL_DUMP_START         = "Dumping config"
 	ZL_DUMP_FINISH        = "Finished dumping config"

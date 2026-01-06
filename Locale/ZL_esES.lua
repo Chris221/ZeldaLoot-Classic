@@ -33,9 +33,9 @@ if (GetLocale() == "esES") then
 	ZL_WARN               = "Habilitar advertencias"
 
 	ZL_WARNING_ENABLING   = "Habilitación de advertencias"
-	ZL_WARNING_DIDABLING  = "Deshabilitar advertencias"
+	ZL_WARNING_DISABLING  = "Deshabilitar advertencias"
 	ZL_DEBUG_ENABLING     = "Habilitación de la depuración"
-	ZL_DEBUG_DIDABLING    = "Deshabilitar la depuración"
+	ZL_DEBUG_DISABLING    = "Deshabilitar la depuración"
 
 	ZL_DUMP_START         = "Configuración de volcado"
 	ZL_DUMP_FINISH        = "Configuración de volcado finalizada"

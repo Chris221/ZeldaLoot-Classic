@@ -114,7 +114,7 @@ function Dump_config(text)
 end
 
 function Refresh_zl_frame()
-	local frame = getglobal("ZL_configPanel")
+	local frame = _G["ZL_configPanel"]
 	if (frame) then
 		if (frame:IsVisible()) then
 			frame:Hide();
@@ -238,7 +238,7 @@ function Check_inheritedstuff_onclick(obj)
 end
 
 -- Debug prints to see when "UIDropDownMenu_Initialize" is called for your dropdown:
-hooksecurefunc("UIDropDownMenu_Initialize", function(frame, func) end)
+-- hooksecurefunc("UIDropDownMenu_Initialize", function(frame, func) end)
 
 function Dropdown_set_Initialize(self)
 	UIDropDownMenu_SetWidth(self, 90)
@@ -272,7 +272,7 @@ function Dropdown_set_Show(self)
 
 	local info
 	local items = {'ALTTP', 'OOT', 'TP'}
-	for k,v in pairs(items) do
+	for i, v in ipairs(items) do
 		info = UIDropDownMenu_CreateInfo()
 		info.text = v
 		info.value = v
@@ -327,7 +327,7 @@ function Dropdown_sound_Show(self)
 end
 
 function Dropdown_set_OnClick(self, arg1, arg2)
-	local item_level, selected
+	local item_level, selected, obj
 
 	for k, v in string.gmatch(arg2, "(%w+)_(%w+)") do
 		item_level = k
@@ -342,7 +342,7 @@ function Dropdown_set_OnClick(self, arg1, arg2)
 		ZL_config[item_level]["set"] = 1
 		if (ZL_config[item_level]["sound"] == 5) then
 			ZL_config[item_level]["sound"] = 4
-			obj = getglobal("dropdown_" .. item_level .. "loot_sound")
+			obj = _G["dropdown_" .. item_level .. "loot_sound"]
 			UIDropDownMenu_SetText(obj, 4)
 		end
 	elseif (selected == 'TP') then
@@ -380,7 +380,7 @@ function Dropdown_settings_Show(self)
 		ext = { "mp3", "ogg", "wav" }, 
 		channel = { "Ambience", "Dialog", "Master", "Music", "SFX"}
 	}
-	for k,v in pairs(settings[setting]) do
+	for k,v in ipairs(settings[setting]) do
 		info = UIDropDownMenu_CreateInfo()
 		info.text = v
 		info.value = v
@@ -415,7 +415,7 @@ function Toggle_warnings(obj)
 		if (b) then
 			ZL_Print(ZL_WARNING_ENABLING)
 		else
-			ZL_Print(ZL_WARNING_DIDABLING)
+			ZL_Print(ZL_WARNING_DISABLING)
 		end
 	end
 end
@@ -427,6 +427,6 @@ function Toggle_debug(obj)
 	if (b) then
 		ZL_Print(ZL_DEBUG_ENABLING)
 	else
-		ZL_Print(ZL_DEBUG_DIDABLING)
+		ZL_Print(ZL_DEBUG_DISABLING)
 	end
 end

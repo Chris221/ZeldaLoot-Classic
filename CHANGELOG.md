@@ -1,6 +1,14 @@
 # [ZeldaLoot Classic](https://www.curseforge.com/wow/addons/zeldaloot-classic)
 
 ## Changes
+### Changes in 2.2.0
+- Updated for The War Within (Retail 11.1.7)
+- Updated for Classic Era (1.15.7)
+- Updated for Cataclysm Classic (4.4.2)
+- Fixed compatibility with new Settings API (InterfaceOptions_AddCategory was removed in 10.0)
+- Added proper Cata.toc file for Cataclysm Classic
+- Cleaned up the code
+
 ### Changes in 2.1.0
 - Added Locale text for the tooltips and all text sent to the console
 
@@ -12,15 +20,15 @@
 - The settings panel has been moved in to the interface settings for easier access
 - The settings no longer need to be saved for them to take effect
 - You can control the file types and the audio channel from the settings now
-- The settings now has toggles for warnings and deubg mode (**VERY SPAMMY**)
+- The settings now has toggles for warnings and debug mode (**VERY SPAMMY**)
 - **/zl** and **/zeldaloot** now take you to the new panel
 - You can also default the settings from the new panel
 - Added support for Russian
 
 ### Changes in 1.3.0
 - There are new warnings if the sound fails to play for any reason. You can disable these with **/zl warnings**.
-- Use **/zl ext** to switch file types. This will be an actual settings opion in the future.
-- Use **/zl channel <channel>** to change the audio channel the sound effect plays on; **the default is SFX (Sound)**. This will be an actual settings opion in the future.
+- Use **/zl ext** to switch file types. This will be an actual settings option in the future.
+- Use **/zl channel <channel>** to change the audio channel the sound effect plays on; **the default is SFX (Sound)**. This will be an actual settings option in the future.
   - Channel options: 
     - "Master"
     - "SFX"
@@ -46,9 +54,9 @@
 
 ### Changes in 1.2.1
 - Added a help menu: **/zeldaloot help** or **/zl help**
-- Added a the ability to toggle debug mode: **/zeldaloot debug** or **/zl debug**
-- Added a the ability to reset the config: **/zeldaloot reset** or **/zl reset**
-- Added a the ability to dump the config: **/zeldaloot dump** or **/zl dump**
+- Added the ability to toggle debug mode: **/zeldaloot debug** or **/zl debug**
+- Added the ability to reset the config: **/zeldaloot reset** or **/zl reset**
+- Added the ability to dump the config: **/zeldaloot dump** or **/zl dump**
 - Fixed a bug where the sounds wouldn't play due to old config.
 
 ### Changes in 1.2.0

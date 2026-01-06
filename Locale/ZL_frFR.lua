@@ -33,9 +33,9 @@ if (GetLocale() == "frFR") then
 	ZL_WARN               = "Activer les avertissements"
 
 	ZL_WARNING_ENABLING   = "Activation des avertissements"
-	ZL_WARNING_DIDABLING  = "Désactivation des avertissements"
+	ZL_WARNING_DISABLING  = "Désactivation des avertissements"
 	ZL_DEBUG_ENABLING     = "Activation du débogage"
-	ZL_DEBUG_DIDABLING    = "Désactiver le débogage"
+	ZL_DEBUG_DISABLING    = "Désactiver le débogage"
 
 	ZL_DUMP_START         = "Configuration de vidage"
 	ZL_DUMP_FINISH        = "Configuration de vidage terminée"

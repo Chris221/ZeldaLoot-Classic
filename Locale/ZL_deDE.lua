@@ -33,9 +33,9 @@ if (GetLocale() == "deDE") then
 	ZL_WARN               = "Warnungen aktivieren"
 
 	ZL_WARNING_ENABLING   = "Warnungen aktivieren"
-	ZL_WARNING_DIDABLING  = "Warnungen deaktivieren"
+	ZL_WARNING_DISABLING  = "Warnungen deaktivieren"
 	ZL_DEBUG_ENABLING     = "Debugging aktivieren"
-	ZL_DEBUG_DIDABLING    = "Debugging deaktivieren"
+	ZL_DEBUG_DISABLING    = "Debugging deaktivieren"
 
 	ZL_DUMP_START         = "Konfiguration ausgeben"
 	ZL_DUMP_FINISH        = "Fertige Dumping-Konfiguration"

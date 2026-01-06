@@ -33,9 +33,9 @@ if (GetLocale() == "ruRU") then
 	ZL_WARN               = "Включить предупреждения"
 
 	ZL_WARNING_ENABLING   = "Включение предупреждений"
-	ZL_WARNING_DIDABLING  = "Отключение предупреждений"
+	ZL_WARNING_DISABLING  = "Отключение предупреждений"
 	ZL_DEBUG_ENABLING     = "Включение отладки"
-	ZL_DEBUG_DIDABLING    = "Отключение отладки"
+	ZL_DEBUG_DISABLING    = "Отключение отладки"
 
 	ZL_DUMP_START         = "Сброс конфига"
 	ZL_DUMP_FINISH        = "Готовый дамп конфига"

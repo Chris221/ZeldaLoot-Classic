@@ -39,14 +39,15 @@ function zl.SlashCommandHandler(msg)
 			ZL_warning_bool = true
 			ZL_Print(ZL_SLASH_WARNING_ENABLED)
 		end
-	elseif (msg:find('^ext') ~= nil) then
-		if (msg:find('[mM][pP]3') ~= nil) then
+	elseif (msg:find('^ext')) then
+		local msgLower = string.lower(msg)
+		if (msgLower:find('mp3')) then
 			ZL_config["settings"]["ext"] = "mp3"
 			ZL_Print(ZL_SLASH_MP3)
-		elseif (msg:find('[wW][aA][vV]') ~= nil) then
+		elseif (msgLower:find('wav')) then
 			ZL_config["settings"]["ext"] = "wav"
 			ZL_Print(ZL_SLASH_WAV)
-		elseif (msg:find('[oO][gG][gG]') ~= nil) then
+		elseif (msgLower:find('ogg')) then
 			ZL_config["settings"]["ext"] = "ogg"
 			ZL_Print(ZL_SLASH_OGG)
 		elseif (ZL_config["settings"]["ext"] == "wav") then
@@ -56,20 +57,21 @@ function zl.SlashCommandHandler(msg)
 			ZL_config["settings"]["ext"] = "wav"
 			ZL_Print(ZL_SLASH_WAV)
 		end
-	elseif (msg:find('^channel') ~= nil) then
-		if (msg:find('[mM]aster') ~= nil) then
+	elseif (msg:find('^channel')) then
+		local msgLower = string.lower(msg)
+		if (msgLower:find('master')) then
 			ZL_config["settings"]["channel"] = "Master"
 			ZL_Print(ZL_SLASH_MASTER)
-		elseif (msg:find('[sS][fF][xX]') ~= nil) then
+		elseif (msgLower:find('sfx')) then
 			ZL_config["settings"]["channel"] = "SFX"
 			ZL_Print(ZL_SLASH_SFX)
-		elseif (msg:find('[mM]usic') ~= nil) then
+		elseif (msgLower:find('music')) then
 			ZL_config["settings"]["channel"] = "Music"
 			ZL_Print(ZL_SLASH_MUSIC)
-		elseif (msg:find('[aA]mbience') ~= nil) then
+		elseif (msgLower:find('ambience')) then
 			ZL_config["settings"]["channel"] = "Ambience"
 			ZL_Print(ZL_SLASH_AMBIENCE)
-		elseif (msg:find('[dD]ialog') ~= nil) then
+		elseif (msgLower:find('dialog')) then
 			ZL_config["settings"]["channel"] = "Dialog"
 			ZL_Print(ZL_SLASH_DIALOG)
 		else
@@ -79,7 +81,11 @@ function zl.SlashCommandHandler(msg)
 	elseif (msg == 'reset') then
 		Reset_config(true)
 	else
-		InterfaceOptionsFrame_OpenToCategory(ZL_AddonName)
+		if Settings and Settings.OpenToCategory then
+			Settings.OpenToCategory(ZL_SettingsCategory or ZL_AddonName)
+		elseif InterfaceOptionsFrame_OpenToCategory then
+			InterfaceOptionsFrame_OpenToCategory(ZL_AddonName)
+		end
 	end
 end
 
