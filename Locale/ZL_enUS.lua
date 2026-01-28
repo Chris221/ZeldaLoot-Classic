@@ -1,6 +1,6 @@
 -- English translation (default)
 
-if ((GetLocale() ~= "frFR") and (GetLocale() ~= "esES") and (GetLocale() ~= "deDE") and (GetLocale() ~= "ruRU")) then
+if ((GetLocale() ~= "frFR") and (GetLocale() ~= "esES") and (GetLocale() ~= "deDE") and (GetLocale() ~= "ruRU") and (GetLocale() ~= "esMX") and (GetLocale() ~= "itIT") and (GetLocale() ~= "koKR") and (GetLocale() ~= "ptBR") and (GetLocale() ~= "zhCN") and (GetLocale() ~= "zhTW")) then
 
 	ZL_config_TITLE       = "ZeldaLoot Configuration"
 

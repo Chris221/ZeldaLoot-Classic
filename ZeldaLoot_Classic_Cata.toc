@@ -1,23 +1,50 @@
 ## Interface: 40402
-## Title: ZeldaLoot Classic
+## X-Min-Interface: 40400
+## Title: |cff00ffffZeldaLoot Classic
 ## Notes: Plays a different Legend of Zelda Item Sound when you loot a legendary (orange), epic (purple), rare (blue) or non common (green) item. Based on ZeldaLoot from Rickyk.
 ## Notes-frFR: Joue différents sons de Zelda quand des objets légendaires (oranges), épiques (violets), rares (bleus) ou inhabituels (verts) sont récupérés. Basé sur ZeldaLoot par Rickyk.
 ## Notes-esES: Escuchar los sonidos diferentes por los objetos legendario (naranja), épico (púrpura), raras (azul) o poco común (verde). Sobre la base de ZeldaLoot por Rickyk.
 ## Notes-deDE: Spielen verschiedene Töne, wenn Objekte Zelda legendäre (orange), epische (lila), selten (blau) oder ungewöhnliche (grün). Basierend auf ZeldaLoot von Rickyk.
 ## Notes-ruRU: Воспроизводит другой звук предмета Legend of Zelda, когда вы получаете легендарный (оранжевый), эпический (фиолетовый), редкий (синий) или необычный (зеленый) предмет. На основе ZeldaLoot от Rickyk.
+## Notes-esMX: Reproduce un sonido diferente de objetos de Legend of Zelda cuando obtienes un objeto legendario (naranja), épico (morado), raro (azul) o poco común (verde). Basado en ZeldaLoot de Rickyk.
+## Notes-itIT: Riproduce un suono diverso di Legend of Zelda quando ottieni un oggetto leggendario (arancione), epico (viola), raro (blu) o non comune (verde). Basato su ZeldaLoot di Rickyk.
+## Notes-koKR: 전설 (주황색), 영웅 (보라색), 희귀 (파란색) 또는 고급 (녹색) 아이템을 획득할 때 젤다의 전설 아이템 사운드를 재생합니다. Rickyk의 ZeldaLoot 기반.
+## Notes-ptBR: Toca um som diferente de item de Legend of Zelda quando você obtém um item lendário (laranja), épico (roxo), raro (azul) ou incomum (verde). Baseado em ZeldaLoot de Rickyk.
+## Notes-zhCN: 当你拾取传说（橙色）、史诗（紫色）、稀有（蓝色）或精良（绿色）物品时，播放不同的塞尔达传说物品音效。基于Rickyk的ZeldaLoot。
+## Notes-zhTW: 當你拾取傳說（橙色）、史詩（紫色）、稀有（藍色）或精良（綠色）物品時，播放不同的薩爾達傳說物品音效。基於Rickyk的ZeldaLoot。
 ## Author: Chris221221
-## Version: 2.30
-## SavedVariables: ZL_config ZL_debug_bool ZL_warning_bool
-## OptionalDeps: 
+## Version: 2.3.0
 
-## X-Localizations: enUS, enGB, deDE, frFR, esES, ruRU
-## X-CompatibleLocales: enUS, enGB, deDE, frFR, esES, ruRU
+## SavedVariables: ZL_config ZL_debug_bool ZL_warning_bool
+## Category: Audio & Video
+## Category-deDE: Audio & Video
+## Category-esES: Audio y vídeo
+## Category-esMX: Audio y video
+## Category-frFR: Audio et vidéo
+## Category-itIT: Audio e video
+## Category-koKR: 오디오 및 비디오
+## Category-ptBR: Áudio e vídeo
+## Category-ruRU: Аудио и видео
+## Category-zhCN: 音频和视频
+## Category-zhTW: 音訊和視訊
+
+## X-Localizations: enUS, enGB, deDE, frFR, esES, ruRU, esMX, zhTW, zhCN, itIT, koKR, ptBR
+## X-CompatibleLocales: enUS, enGB, deDE, frFR, esES, ruRU, esMX, zhTW, zhCN, itIT, koKR, ptBR
 ## X-License: GNU GPL v3, 29 June 2007
 ## X-Category: Audio & Video
+## X-Website: https://github.com/Chris221221/ZeldaLoot-BCC
+## X-BugGrabber-Display: ZeldaLoot
 ## X-Curse-Project-ID: 487037
 ## X-WoWI-ID: 26421
+## X-Wago-ID: 
 
 Locale\ZL_Globals.lua
+Locale\ZL_zhTW.lua
+Locale\ZL_zhCN.lua
+Locale\ZL_ptBR.lua
+Locale\ZL_koKR.lua
+Locale\ZL_itIT.lua
+Locale\ZL_esMX.lua
 Locale\ZL_ruRU.lua
 Locale\ZL_deDE.lua
 Locale\ZL_esES.lua

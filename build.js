@@ -23,6 +23,17 @@ const rootDirectoryPath = path.join(__dirname, '');
 
 //Addon Data
 const version = fs.readFileSync("ZeldaLoot_Classic.toc").toString().match(/## Version: ([0-9.]+)/)[1];
+
+function getFlavorMetadata(tocFile, flavor) {
+  const content = fs.readFileSync(tocFile).toString();
+  const interfacePattern = /## Interface: (\d+)(?:, (\d+))?(?:, (\d+))?(?:, (\d+))?(?:, (\d+))?(?:, (\d+))?/;
+  const minInterfacePattern = /## X-Min-Interface: (\d+)(?:, (\d+))?(?:, (\d+))?(?:, (\d+))?(?:, (\d+))?(?:, (\d+))?/;
+  return [
+    ...content.match(interfacePattern).map((x, index) => index > 0 ? parseInt(x) : null),
+    // ...content.match(minInterfacePattern).map((x, index) => index > 0 ? parseInt(x) : null)
+  ].filter(x => x).map(interface => ({ flavor: interface === 38000 ? 'titan' : flavor, interface }));
+}
+
 const dir = 'build/';
 const file_name = `ZeldaLoot_Classic_v${version}.zip`;
 
@@ -35,31 +46,13 @@ var release_data = {
       filename: file_name,
       nolib: false,
       metadata: [
-        {
-          flavor: "classic",
-          interface: parseInt(fs.readFileSync("ZeldaLoot_Classic_Vanilla.toc").toString().match(/## Interface: ([0-9]+)/)[1]),
-        },
-        {
-          flavor: "bcc",
-          interface: parseInt(fs.readFileSync("ZeldaLoot_Classic_TBC.toc").toString().match(/## Interface: ([0-9]+)/)[1]),
-        },
-        {
-          flavor: "wrath",
-          interface: parseInt(fs.readFileSync("ZeldaLoot_Classic_Wrath.toc").toString().match(/## Interface: ([0-9]+)/)[1]),
-        },
-        {
-          flavor: "cata",
-          interface: parseInt(fs.readFileSync("ZeldaLoot_Classic_Cata.toc").toString().match(/## Interface: ([0-9]+)/)[1]),
-        },
-        {
-          flavor: "mists",
-          interface: parseInt(fs.readFileSync("ZeldaLoot_Classic_Mists.toc").toString().match(/## Interface: ([0-9]+)/)[1]),
-        },
-        {
-          flavor: "mainline",
-          interface: parseInt(fs.readFileSync("ZeldaLoot_Classic_Mainline.toc").toString().match(/## Interface: ([0-9]+)/)[1]),
-        }
-      ]
+        getFlavorMetadata("ZeldaLoot_Classic_Vanilla.toc", "classic"),
+        getFlavorMetadata("ZeldaLoot_Classic_TBC.toc", "bcc"),
+        getFlavorMetadata("ZeldaLoot_Classic_Wrath.toc", "wrath"),
+        getFlavorMetadata("ZeldaLoot_Classic_Cata.toc", "cata"),
+        getFlavorMetadata("ZeldaLoot_Classic_Mists.toc", "mists"),
+        getFlavorMetadata("ZeldaLoot_Classic_Mainline.toc", "mainline")
+      ].flat().sort((a, b) => a.interface - b.interface)
     }
   ],
 };

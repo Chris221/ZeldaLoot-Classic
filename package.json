@@ -4,7 +4,8 @@
   "description": "build script for my addon",
   "main": "build.js",
   "scripts": {
-    "start": "node build.js"
+    "start": "npm run build",
+    "build": "node build.js"
   },
   "repository": {
     "type": "git",
