@@ -114,6 +114,9 @@ if (GetLocale() == "esES") then
 	ZL_XML_TOOLTIP_WARN = "Habilita/deshabilita las advertencias\n\nSe recomienda dejar esto activado."
 	ZL_XML_TOOLTIP_DEBUG = "Habilita/deshabilita el modo de depuración\n\n|cffff0000¡¡ESTO INUNDARÁ EL CHAT!!"
 
+	ZL_VOLUME = "Volumen"
+	ZL_XML_TOOLTIP_VOLUME = "Ajustar el volumen de los efectos de sonido (0-100%)\n\nAjusta temporalmente el volumen del canal de audio durante la reproducción."
+
 	-- SLASH COMMANDS
 	ZL_SLASH_DEBUG_ENABLED = "Se ha habilitado el modo de depuración"
 	ZL_SLASH_DEBUG_DISABLED = "Se ha deshabilitado el modo de depuración"
@@ -133,7 +136,7 @@ if (GetLocale() == "esES") then
 
 	ZL_SLASH_MP3 = "La extensión de audio se ha cambiado a archivos .mp3 [Experimental]"
 	ZL_SLASH_WAV = "La extensión de audio se ha cambiado a archivos .wav [Recomendado para una mejor asistencia al cliente]"
-	ZL_SLASH_OGG = "La extensión de audio se ha cambiado a archivos .ogg [Recomendado por Blizard, no parece funcionar en todos los clientes]"
+	ZL_SLASH_OGG = "La extensión de audio se ha cambiado a archivos .ogg [Recomendado por Blizzard, no parece funcionar en todos los clientes]"
 
 	ZL_SLASH_MASTER = "El canal de audio se cambió a Maestro [No recomendado]"
 	ZL_SLASH_SFX = "El canal de audio se cambió a SFX (Sonido) [Recomendado]"
@@ -141,4 +144,11 @@ if (GetLocale() == "esES") then
 	ZL_SLASH_AMBIENCE = "El canal de audio se cambió a Ambience"
 	ZL_SLASH_DIALOG = "El canal de audio se cambió a Diálogo [Recomendado]"
 	ZL_SLASH_DEFAULT = 'El canal de audio se cambió al predeterminado: "SFX" (Sonido) [Recomendado]'
+
+	ZL_SLASH_TEST = "Prueba un efecto de sonido."
+	ZL_SLASH_TEST_USAGE = "Uso: /zl test [green|blue|purple|orange]"
+	ZL_SLASH_TEST_GREEN = "Probando sonido verde (poco común)..."
+	ZL_SLASH_TEST_BLUE = "Probando sonido azul (raro)..."
+	ZL_SLASH_TEST_PURPLE = "Probando sonido púrpura (épico)..."
+	ZL_SLASH_TEST_ORANGE = "Probando sonido naranja (legendario)..."
 end

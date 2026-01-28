@@ -1,101 +1,60 @@
+local function Migrate_config()
+	local config_version = ZL_config["version"] or 0
+
+	if config_version < 1 then
+		local set = nil
+		if ZL_config["sounds"] and ZL_config["sounds"]["set"] then
+			set = ZL_config["sounds"]["set"]
+			ZL_config["sounds"] = nil
+		end
+
+		ZL_config["settings"] = ZL_config["settings"] or { ext = "wav", channel = "SFX" }
+		ZL_config["settings"]["ext"] = ZL_config["settings"]["ext"] or "wav"
+		ZL_config["settings"]["channel"] = ZL_config["settings"]["channel"] or "SFX"
+		ZL_config["settings"]["volume"] = ZL_config["settings"]["volume"] or 100
+
+		local defaults = { green = 1, blue = 2, purple = 3, orange = 4 }
+		for group, default_sound in pairs(defaults) do
+			ZL_config[group] = ZL_config[group] or {}
+			ZL_config[group]["set"] = ZL_config[group]["set"] or set or 0
+			ZL_config[group]["sound"] = ZL_config[group]["sound"] or default_sound
+			if ZL_config[group]["active"] == nil then ZL_config[group]["active"] = true end
+			if ZL_config[group]["received"] == nil then ZL_config[group]["received"] = true end
+			if ZL_config[group]["crafted"] == nil then ZL_config[group]["crafted"] = true end
+		end
+
+		ZL_config["inherited"] = ZL_config["inherited"] or { include = true }
+
+		ZL_config["version"] = 1
+	end
+end
+
 function Update_config(allow_debug)
-	local set
-	if (allow_debug == nil) then
+	if allow_debug == nil then
 		allow_debug = true
 	end
 
-	if (ZL_debug_bool == nil) then
+	if ZL_debug_bool == nil then
 		ZL_debug_bool = false
 	end
 
-	if (ZL_warning_bool == nil) then
+	if ZL_warning_bool == nil then
 		ZL_warning_bool = true
 	end
 
-	if (ZL_debug_bool and allow_debug) then
+	if ZL_debug_bool and allow_debug then
 		Dump_config("Update_config")
 	end
 
-	if (ZL_config == nil) then
+	if ZL_config == nil then
 		Reset_config(false)
 	end
 
-	if (ZL_config["sounds"] ~= nil) then
-		if (ZL_config["sounds"]["set"] ~= nil) then
-			set = ZL_config["sounds"]["set"]
-			ZL_config["sounds"]["set"] = nil
-		end
-	end
+	Migrate_config()
 
-	if (ZL_config["settings"] == nil) then
-		local settings = {
-			ext = "wav",
-			channel = "SFX"
-		}
-
-		ZL_config["settings"] = settings
-	end
-
-	if (ZL_config["settings"]["ext"] == nil) then
-		ZL_config["settings"]["ext"] = "wav"
-	end
-
-	if (ZL_config["settings"]["channel"] == nil) then
-		ZL_config["settings"]["channel"] = "SFX"
-	end
-
-	if (ZL_config["green"]["set"] == nil) then
-		if (set ~= nil) then
-			ZL_config["green"]["set"] = set
-		else
-			ZL_config["green"]["set"] = 0
-		end
-	end
-
-	if (ZL_config["blue"]["set"] == nil) then
-		if (set ~= nil) then
-			ZL_config["blue"]["set"] = set
-		else
-			ZL_config["blue"]["set"] = 0
-		end
-	end
-
-	if (ZL_config["purple"]["set"] == nil) then
-		if (set ~= nil) then
-			ZL_config["purple"]["set"] = set
-		else
-			ZL_config["purple"]["set"] = 0
-		end
-	end
-
-	if (ZL_config["orange"]["set"] == nil) then
-		if (set ~= nil) then
-			ZL_config["orange"]["set"] = set
-		else
-			ZL_config["orange"]["set"] = 0
-		end
-	end
-
-	if (ZL_config["green"]["sound"] == nil) then
-		ZL_config["green"]["sound"] = 1
-	end
-
-	if (ZL_config["blue"]["sound"] == nil) then
-		ZL_config["blue"]["sound"] = 2
-	end
-
-	if (ZL_config["purple"]["sound"] == nil) then
-		ZL_config["purple"]["sound"] = 3
-	end
-
-	if (ZL_config["orange"]["sound"] == nil) then
-		ZL_config["orange"]["sound"] = 4
-	end
-
-	if (ZL_debug_bool and allow_debug) then
+	if ZL_debug_bool and allow_debug then
 		Dump_config(ZL_END_TEXT .. " Update_config")
 	end
-
 end
 
 function Dump_config(text)
@@ -146,13 +105,7 @@ function Btn_cancel_onclick()
 end
 
 function ZL_toBool(num)
-	if (num == 1) then
-		return true
-	elseif (num == true) then
-		return true
-	else
-		return false
-	end
+	return num == 1 or num == true
 end
 
 function ZL_BoolToNum(b)
@@ -164,60 +117,41 @@ function ZL_BoolToNum(b)
 end
 
 function Get_sound_ext()
-	local sound_ext
-
-	sound_ext = ZL_config['settings'].ext
-
-	if ((sound_ext == nil) or (sound_ext == "wav"))
-		then return "wav"
-	elseif (sound_ext == "mp3")
-		then return "mp3"
-	elseif (sound_ext == "ogg")
-		then return "ogg"
-	else
-		return "wav"
-	end
+	local sound_ext = ZL_config['settings'].ext
+	local valid_exts = { mp3 = true, ogg = true, wav = true }
+	return valid_exts[sound_ext] and sound_ext or "wav"
 end
 
 function Get_sound_channel()
-	local sound_channel
+	local sound_channel = ZL_config['settings'].channel
+	local valid_channels = { Master = true, SFX = true, Music = true, Ambience = true, Dialog = true }
+	return valid_channels[sound_channel] and sound_channel or "SFX"
+end
 
-	sound_channel = ZL_config['settings'].channel
+function Get_sound_volume()
+	local volume = ZL_config and ZL_config.settings and ZL_config.settings.volume or 100
+	return math.max(0, math.min(100, volume)) / 100
+end
 
-	-- "Master", "SFX" (Sound), "Music", "Ambience", "Dialog"
-	if ((sound_channel == nil) or (sound_channel == "SFX"))
-		then return "SFX"
-	elseif (sound_channel == "Master")
-		then return "Master"
-	elseif (sound_channel == "Music")
-		then return "Music"
-	elseif (sound_channel == "Ambience")
-		then return "Ambience"
-	elseif (sound_channel == "Dialog")
-		then return "Dialog"
-	else
-		return "SFX"
+function Slider_volume_OnValueChanged(self, value)
+	local vol = math.floor(value + 0.5)
+	if ZL_config and ZL_config.settings then
+		ZL_config.settings.volume = vol
+	end
+	if self and self.Text then
+		self.Text:SetText(ZL_VOLUME .. ": " .. vol .. "%")
+	elseif self then
+		local textObj = _G[self:GetName().."Text"]
+		if textObj then
+			textObj:SetText(ZL_VOLUME .. ": " .. vol .. "%")
+		end
 	end
 end
 
 function Get_sound_set(index)
-	local sound_index
-
-	if (index == 5) then sound_index = ZL_config['orange'].set
-	elseif (index == 4) then sound_index = ZL_config['purple'].set
-	elseif (index == 3) then sound_index = ZL_config['blue'].set
-	elseif (index == 2) then sound_index = ZL_config['green'].set
-	end
-
-	if ((sound_index == nil) or (sound_index == 0))
-		then return "ALTTP"
-	elseif (sound_index == 1)
-		then return "OOT"
-	elseif (sound_index == 2)
-		then return "TP"
-	else
-		return "ALTTP"
-	end
+	local group = ZL_QUALITY_GROUPS[index]
+	local sound_index = group and ZL_config[group].set or 0
+	return ZL_SOUND_SETS[sound_index] or "ALTTP"
 end
 
 -- Main checkboxes
@@ -326,6 +260,8 @@ function Dropdown_sound_Show(self)
 	end
 end
 
+local QUALITY_INDEX = { green = 2, blue = 3, purple = 4, orange = 5 }
+
 function Dropdown_set_OnClick(self, arg1, arg2)
 	local item_level, selected, obj
 
@@ -348,6 +284,11 @@ function Dropdown_set_OnClick(self, arg1, arg2)
 	elseif (selected == 'TP') then
 		ZL_config[item_level]["set"] = 2
 	end
+
+	local index = QUALITY_INDEX[item_level]
+	if index then
+		Test_zl_sound(index)
+	end
 end
 
 function Dropdown_sound_OnClick(self, arg1, arg2)
@@ -360,6 +301,11 @@ function Dropdown_sound_OnClick(self, arg1, arg2)
 
 	UIDropDownMenu_SetText(arg1, selected)
 	ZL_config[item_level]["sound"] = selected
+
+	local index = QUALITY_INDEX[item_level]
+	if index then
+		Test_zl_sound(index)
+	end
 end
 
 function Dropdown_settings_Show(self)

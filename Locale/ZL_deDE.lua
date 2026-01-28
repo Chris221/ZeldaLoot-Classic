@@ -13,12 +13,12 @@ if (GetLocale() == "deDE") then
 	ZL_ORANGELOOT         = "Orange (legendär)"
 
 	ZL_CRAFTS             = "Hergestellt"
-	ZL_RECEIVED           = "Receipts"
+	ZL_RECEIVED           = "Empfangen"
 	ZL_INHERITED         = "Geerbt"
 
 	ZL_INCLUDEALSO       = "Auch diese Objekte einschließen:"
 
-	ZL_USE_SOUND_SET      = "Geluidssets:"
+	ZL_USE_SOUND_SET      = "Soundsets:"
 
 	-- Messages (for events)
 	ZL_LOOTMESSAGE        = "Ihr erhaltet Beute"
@@ -114,6 +114,9 @@ if (GetLocale() == "deDE") then
 	ZL_XML_TOOLTIP_WARN = "Aktiviert/deaktiviert Warnungen\n\nEs wird empfohlen, dies aktiviert zu lassen."
 	ZL_XML_TOOLTIP_DEBUG = "Aktiviert/deaktiviert den Debug-Modus\n\n|cffff0000DAS WIRD DEN CHAT ÜBERFLUTEN!!"
 
+	ZL_VOLUME = "Lautstärke"
+	ZL_XML_TOOLTIP_VOLUME = "Passen Sie die Lautstärke der Soundeffekte an (0-100%)\n\nPasst vorübergehend die Lautstärke des Audiokanals während der Wiedergabe an."
+
 	-- SLASH COMMANDS
 	ZL_SLASH_DEBUG_ENABLED = "Debug-Modus wurde aktiviert"
 	ZL_SLASH_DEBUG_DISABLED = "Debug-Modus wurde deaktiviert"
@@ -133,7 +136,7 @@ if (GetLocale() == "deDE") then
 
 	ZL_SLASH_MP3 = "Audioerweiterung wurde auf .mp3 Dateien umgestellt [Experimentell]"
 	ZL_SLASH_WAV = "Audioerweiterung wurde auf .wav Dateien umgestellt [empfohlen für besseren Client-Support]"
-	ZL_SLASH_OGG = "Audioerweiterung wurde auf .ogg Dateien umgestellt [Von Blizard empfohlen, scheint nicht auf allen Clients zu funktionieren]"
+	ZL_SLASH_OGG = "Audioerweiterung wurde auf .ogg Dateien umgestellt [Von Blizzard empfohlen, scheint nicht auf allen Clients zu funktionieren]"
 
 	ZL_SLASH_MASTER = "Audiokanal wurde auf Master geändert [Nicht empfohlen]"
 	ZL_SLASH_SFX = "Audiokanal wurde auf SFX (Ton) geändert [empfohlen]"
@@ -141,4 +144,11 @@ if (GetLocale() == "deDE") then
 	ZL_SLASH_AMBIENCE = "Audiokanal wurde auf Umgebung geändert"
 	ZL_SLASH_DIALOG = "Audiokanal wurde auf Dialog geändert [empfohlen]"
 	ZL_SLASH_DEFAULT = 'Audiokanal wurde auf Standard geändert: "SFX" (Ton) [Empfohlen]'
+
+	ZL_SLASH_TEST = "Testet einen Soundeffekt."
+	ZL_SLASH_TEST_USAGE = "Verwendung: /zl test [green|blue|purple|orange]"
+	ZL_SLASH_TEST_GREEN = "Teste grünen (ungewöhnlichen) Sound..."
+	ZL_SLASH_TEST_BLUE = "Teste blauen (seltenen) Sound..."
+	ZL_SLASH_TEST_PURPLE = "Teste lila (epischen) Sound..."
+	ZL_SLASH_TEST_ORANGE = "Teste orangefarbenen (legendären) Sound..."
 end

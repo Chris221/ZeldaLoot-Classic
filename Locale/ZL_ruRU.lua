@@ -10,7 +10,7 @@ if (GetLocale() == "ruRU") then
 	ZL_GREENLOOT          = "Зеленый (редко)"
 	ZL_BLUELOOT           = "Синий (редко)"
 	ZL_PURPLELOOT         = "Фиолетовый (эпический)"
-	ZL_ORANGELOOT         = "Апельсин (легендарный)"
+	ZL_ORANGELOOT         = "Оранжевый (легендарный)"
 
 	ZL_CRAFTS             = "Создано"
 	ZL_RECEIVED           = "Полученный"
@@ -79,7 +79,7 @@ if (GetLocale() == "ruRU") then
 	ZL_XML_TITLE_GREEN_CRAFTED = "Зеленый"
 	ZL_XML_TITLE_BLUE_CRAFTED = "Синий"
 	ZL_XML_TITLE_PURPLE_CRAFTED = "Создано фиолетовое"
-	ZL_XML_TITLE_ORANGE_CRAFTED = "Изготовлен апельсин"
+	ZL_XML_TITLE_ORANGE_CRAFTED = "Оранжевый созданный"
 	ZL_XML_TITLE_GREEN_RECEIVED = "Зеленый получен"
 	ZL_XML_TITLE_BLUE_RECEIVED = "Получено синее"
 	ZL_XML_TITLE_PURPLE_RECEIVED = "Фиолетовый получен"
@@ -114,6 +114,9 @@ if (GetLocale() == "ruRU") then
 	ZL_XML_TOOLTIP_WARN = "Включает/отключает предупреждения\n\nРекомендуется оставить этот параметр включенным."
 	ZL_XML_TOOLTIP_DEBUG = "Включает/отключает режим отладки\n\n|cffff0000ЭТО ЗАПОЛНИТ ЧАТ!!"
 
+	ZL_VOLUME = "Громкость"
+	ZL_XML_TOOLTIP_VOLUME = "Настройте громкость звуковых эффектов (0-100%)\n\nВременно регулирует громкость аудиоканала во время воспроизведения."
+
 	-- SLASH COMMANDS
 	ZL_SLASH_DEBUG_ENABLED = "Включен режим отладки"
 	ZL_SLASH_DEBUG_DISABLED = "Режим отладки отключен"
@@ -133,7 +136,7 @@ if (GetLocale() == "ruRU") then
 
 	ZL_SLASH_MP3 = "Дополнительное аудио было переключено на файлы .mp3 [экспериментально]"
 	ZL_SLASH_WAV = "Дополнительное аудио было переключено на файлы .wav [рекомендуется для улучшения поддержки клиентов]"
-	ZL_SLASH_OGG = "Дополнительное аудио было переключено на файлы .ogg [рекомендуется Blizard, похоже, работает не на всех клиентах]"
+	ZL_SLASH_OGG = "Дополнительное аудио было переключено на файлы .ogg [рекомендуется Blizzard, похоже, работает не на всех клиентах]"
 
 	ZL_SLASH_MASTER = "Аудиоканал был изменен на главный [не рекомендуется]"
 	ZL_SLASH_SFX = "Аудиоканал был изменен на SFX (звук) [рекомендуется]"
@@ -141,4 +144,11 @@ if (GetLocale() == "ruRU") then
 	ZL_SLASH_AMBIENCE = "Аудиоканал был изменен на Ambience"
 	ZL_SLASH_DIALOG = "Аудиоканал был изменен на диалог [рекомендуется]"
 	ZL_SLASH_DEFAULT = 'Аудиоканал изменен на значение по умолчанию: "SFX" (Звук) [рекомендуется]'
+
+	ZL_SLASH_TEST = "Проверяет звуковой эффект."
+	ZL_SLASH_TEST_USAGE = "Использование: /zl test [green|blue|purple|orange]"
+	ZL_SLASH_TEST_GREEN = "Проверка зеленого (необычного) звука..."
+	ZL_SLASH_TEST_BLUE = "Проверка синего (редкого) звука..."
+	ZL_SLASH_TEST_PURPLE = "Проверка фиолетового (эпического) звука..."
+	ZL_SLASH_TEST_ORANGE = "Проверка оранжевого (легендарного) звука..."
 end

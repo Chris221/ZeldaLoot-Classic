@@ -37,19 +37,27 @@ var release_data = {
       metadata: [
         {
           flavor: "classic",
-          interface: parseInt(fs.readFileSync("ZeldaLoot_Classic-Vanilla.toc").toString().match(/## Interface: ([0-9]+)/)[1]),
+          interface: parseInt(fs.readFileSync("ZeldaLoot_Classic_Vanilla.toc").toString().match(/## Interface: ([0-9]+)/)[1]),
         },
         {
           flavor: "bcc",
-          interface: parseInt(fs.readFileSync("ZeldaLoot_Classic-TBC.toc").toString().match(/## Interface: ([0-9]+)/)[1]),
+          interface: parseInt(fs.readFileSync("ZeldaLoot_Classic_TBC.toc").toString().match(/## Interface: ([0-9]+)/)[1]),
         },
         {
           flavor: "wrath",
-          interface: parseInt(fs.readFileSync("ZeldaLoot_Classic-WOTLKC.toc").toString().match(/## Interface: ([0-9]+)/)[1]),
+          interface: parseInt(fs.readFileSync("ZeldaLoot_Classic_Wrath.toc").toString().match(/## Interface: ([0-9]+)/)[1]),
+        },
+        {
+          flavor: "cata",
+          interface: parseInt(fs.readFileSync("ZeldaLoot_Classic_Cata.toc").toString().match(/## Interface: ([0-9]+)/)[1]),
+        },
+        {
+          flavor: "mists",
+          interface: parseInt(fs.readFileSync("ZeldaLoot_Classic_Mists.toc").toString().match(/## Interface: ([0-9]+)/)[1]),
         },
         {
           flavor: "mainline",
-          interface: parseInt(fs.readFileSync("ZeldaLoot_Classic.toc").toString().match(/## Interface: ([0-9]+)/)[1]),
+          interface: parseInt(fs.readFileSync("ZeldaLoot_Classic_Mainline.toc").toString().match(/## Interface: ([0-9]+)/)[1]),
         }
       ]
     }

@@ -1,26 +1,24 @@
 local zl = {};
 
+local function printCmd(cmd, desc)
+	print('|cffffaa00/zl ' .. cmd .. '|r- ' .. desc)
+	print('|cffffaa00/zeldaloot ' .. cmd .. '|r- ' .. desc)
+end
+
 function zl.SlashCommandHandler(msg)
 	if (msg == 'help' or msg == '?' or msg == 'h') then
 		ZL_Print(ZL_SLASH_COMMANDS)
-		print('|cffffaa00/zl |r- ' .. ZL_SLASH_OPEN_SETTINGS)
-		print('|cffffaa00/zeldaloot |r- ' .. ZL_SLASH_OPEN_SETTINGS)
-		print('|cffffaa00/zl dump |r- ' .. ZL_SLASH_DUMP_CONFIG)
-		print('|cffffaa00/zeldaloot dump |r- ' .. ZL_SLASH_DUMP_CONFIG)
-		print('|cffffaa00/zl debug |r- ' .. ZL_SLASH_DEBUG)
-		print('|cffffaa00/zeldaloot debug |r- ' .. ZL_SLASH_DEBUG)
-		print('|cffffaa00/zl [warnings|warning|warn] |r- ' .. ZL_SLASH_WARNINGS)
-		print('|cffffaa00/zeldaloot [warnings|warning|warn] |r- ' .. ZL_SLASH_WARNINGS)
-		print('|cffffaa00/zl ext |r- ' .. ZL_SLASH_EXT)
-		print('|cffffaa00/zeldaloot ext |r- ' .. ZL_SLASH_EXT)
-		print('|cffffaa00/zl ext [wav|ogg|mp3] |r- ' .. ZL_SLASH_EXT_2)
-		print('|cffffaa00/zeldaloot ext [wav|ogg|mp3] |r- ' .. ZL_SLASH_EXT_2)
+		printCmd('', ZL_SLASH_OPEN_SETTINGS)
+		printCmd('dump ', ZL_SLASH_DUMP_CONFIG)
+		printCmd('debug ', ZL_SLASH_DEBUG)
+		printCmd('[warnings|warning|warn] ', ZL_SLASH_WARNINGS)
+		printCmd('ext ', ZL_SLASH_EXT)
+		printCmd('ext [wav|ogg|mp3] ', ZL_SLASH_EXT_2)
 		print(ZL_SLASH_EXT_EXTRA)
-		print('|cffffaa00/zl channel [Master|SFX|Music|Ambience|Dialog] |r- ' .. ZL_SLASH_CHANNELS)
-		print('|cffffaa00/zeldaloot channel [Master|SFX|Music|Ambience|Dialog] |r- ' .. ZL_SLASH_CHANNELS)
+		printCmd('channel [Master|SFX|Music|Ambience|Dialog] ', ZL_SLASH_CHANNELS)
 		print(ZL_SLASH_CHANNELS_EXTRA)
-		print('|cffffaa00/zl reset |r- ' .. ZL_SLASH_RESETS)
-		print('|cffffaa00/zeldaloot reset |r- ' .. ZL_SLASH_RESETS)
+		printCmd('reset ', ZL_SLASH_RESETS)
+		print('|cffffaa00/zl test [green|blue|purple|orange] |r- ' .. ZL_SLASH_TEST)
 	elseif (msg == 'dump') then
 		Dump_config(msg)
 	elseif (msg == 'debug') then
@@ -80,6 +78,23 @@ function zl.SlashCommandHandler(msg)
 		end
 	elseif (msg == 'reset') then
 		Reset_config(true)
+	elseif (msg:find('^test')) then
+		local msgLower = string.lower(msg)
+		if (msgLower:find('green')) then
+			Test_zl_sound(2)
+			ZL_Print(ZL_SLASH_TEST_GREEN)
+		elseif (msgLower:find('blue')) then
+			Test_zl_sound(3)
+			ZL_Print(ZL_SLASH_TEST_BLUE)
+		elseif (msgLower:find('purple') or msgLower:find('epic')) then
+			Test_zl_sound(4)
+			ZL_Print(ZL_SLASH_TEST_PURPLE)
+		elseif (msgLower:find('orange') or msgLower:find('legendary')) then
+			Test_zl_sound(5)
+			ZL_Print(ZL_SLASH_TEST_ORANGE)
+		else
+			ZL_Print(ZL_SLASH_TEST_USAGE)
+		end
 	else
 		if Settings and Settings.OpenToCategory then
 			Settings.OpenToCategory(ZL_SettingsCategory or ZL_AddonName)
@@ -89,7 +104,6 @@ function zl.SlashCommandHandler(msg)
 	end
 end
 
-SLASH_ZL1 = "/zl";
-SLASH_ZELDALOOT1 = "/zeldaloot";
-SlashCmdList["ZL"] = zl.SlashCommandHandler;
+SLASH_ZELDALOOT1 = "/zl";
+SLASH_ZELDALOOT2 = "/zeldaloot";
 SlashCmdList["ZELDALOOT"] = zl.SlashCommandHandler;

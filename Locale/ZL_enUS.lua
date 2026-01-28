@@ -114,6 +114,9 @@ if ((GetLocale() ~= "frFR") and (GetLocale() ~= "esES") and (GetLocale() ~= "deD
 	ZL_XML_TOOLTIP_WARN            = "Enables/Disables warnings\n\nRecommended to leave this on."
 	ZL_XML_TOOLTIP_DEBUG           = "Enables/Disables debug mode\n\n|cffff0000THIS WILL FLOOD THE CHAT!!"
 
+	ZL_VOLUME                      = "Volume"
+	ZL_XML_TOOLTIP_VOLUME          = "Adjust the volume of the sound effects (0-100%)\n\nTemporarily adjusts the audio channel volume while playing."
+
 	-- SLASH COMMANDS
 	ZL_SLASH_DEBUG_ENABLED = "Debug mode has been enabled"
 	ZL_SLASH_DEBUG_DISABLED = "Debug mode has been disabled"
@@ -133,7 +136,7 @@ if ((GetLocale() ~= "frFR") and (GetLocale() ~= "esES") and (GetLocale() ~= "deD
 
 	ZL_SLASH_MP3 = "Audio ext has been switched to .mp3 files [Experimental]"
 	ZL_SLASH_WAV = "Audio ext has been switched to .wav files [Recommended for better client support]"
-	ZL_SLASH_OGG = "Audio ext has been switched to .ogg files [Blizard Recommended, doesn't seem to work on all clients]"
+	ZL_SLASH_OGG = "Audio ext has been switched to .ogg files [Blizzard Recommended, doesn't seem to work on all clients]"
 
 	ZL_SLASH_MASTER = "Audio channel was changed to Master [Not Recommended]"
 	ZL_SLASH_SFX = "Audio channel was changed to SFX (Sound) [Recommended]"
@@ -141,4 +144,11 @@ if ((GetLocale() ~= "frFR") and (GetLocale() ~= "esES") and (GetLocale() ~= "deD
 	ZL_SLASH_AMBIENCE = "Audio channel was changed to Ambience"
 	ZL_SLASH_DIALOG = "Audio channel was changed to Dialog [Recommended]"
 	ZL_SLASH_DEFAULT = 'Audio channel was changed to the default: "SFX" (Sound) [Recommended]'
+
+	ZL_SLASH_TEST = "Tests a sound effect."
+	ZL_SLASH_TEST_USAGE = "Usage: /zl test [green|blue|purple|orange]"
+	ZL_SLASH_TEST_GREEN = "Testing green (uncommon) sound..."
+	ZL_SLASH_TEST_BLUE = "Testing blue (rare) sound..."
+	ZL_SLASH_TEST_PURPLE = "Testing purple (epic) sound..."
+	ZL_SLASH_TEST_ORANGE = "Testing orange (legendary) sound..."
 end

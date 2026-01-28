@@ -2,12 +2,26 @@ function ZL_Print(msg)
 	DEFAULT_CHAT_FRAME:AddMessage(ZL_AddonColor .. ZL_AddonName .. '|r ' .. tostring(msg))
 end
 
+local ZL_CHANNEL_CVARS = {
+	Master = "Sound_MasterVolume",
+	SFX = "Sound_SFXVolume",
+	Music = "Sound_MusicVolume",
+	Ambience = "Sound_AmbienceVolume",
+	Dialog = "Sound_DialogVolume"
+}
+
 function Play_zeldaSound(index, sound_file)
 	local sound_set = Get_sound_set(index)
 	local willPlay = nil
 	local sound_ext = Get_sound_ext()
 	local sound_channel = Get_sound_channel()
 	local warning_text = ""
+	local volume = Get_sound_volume()
+
+	-- Skip if volume is 0
+	if volume <= 0 then
+		return
+	end
 
 	if (ZL_soundHandle ~= 0 and ZL_soundHandle ~= nil) then
 		if (ZL_debug_bool) then
@@ -21,7 +35,24 @@ function Play_zeldaSound(index, sound_file)
 	end
 
 	Update_config(false)
+
+	-- Apply volume by temporarily adjusting channel volume
+	local cvar = ZL_CHANNEL_CVARS[sound_channel]
+	local originalVolume = nil
+	if cvar and volume < 1 then
+		originalVolume = tonumber(GetCVar(cvar)) or 1
+		local adjustedVolume = originalVolume * volume
+		SetCVar(cvar, adjustedVolume)
+	end
+
 	willPlay, ZL_soundHandle = PlaySoundFile("Interface\\AddOns\\ZeldaLoot_Classic\\Sounds\\Sets\\" .. sound_set .. "\\" .. sound_file .. "." .. sound_ext, sound_channel)
+
+	-- Restore original volume after sound plays (3 second delay for typical sound length)
+	if originalVolume and cvar then
+		C_Timer.After(3, function()
+			SetCVar(cvar, originalVolume)
+		end)
+	end
 
 	local mess = "[" .. sound_set .. "\\" .. sound_file .. "." .. sound_ext .. "] " .. ZL_ON_SOUND_CHANNEL .. " [" .. sound_channel .. "]"
 	if (willPlay) then
@@ -33,13 +64,20 @@ function Play_zeldaSound(index, sound_file)
 	end
 end
 
+local ZL_QUALITY_COLORS = {
+	["cff1eff00"] = { quality = 3, group = "green" },   -- Uncommon (green)
+	["cff0070dd"] = { quality = 4, group = "blue" },    -- Rare (blue)
+	["cffa335ee"] = { quality = 5, group = "purple" },  -- Epic (purple)
+	["cffff8000"] = { quality = 6, group = "orange" },  -- Legendary (orange)
+	["cffe6cc80"] = { quality = 6, group = "orange", inherited = true }, -- Heirloom
+}
+
 function ZeldaFrame_OnEvent(self, event, ...)
 	local obj
 
 	local scanCateg = { "green", "blue", "purple", "orange" }
 	local scanValues = { active = "loot", crafted = "crafts", received = "received" }
 
-	local qualities_dic = { nil, nil, "green", "blue", "purple", "orange" }
 	local quality, zl_group
 
 	local arg1 = select(1, ...)
@@ -112,38 +150,18 @@ function ZeldaFrame_OnEvent(self, event, ...)
 	end
 
 	if (event == "CHAT_MSG_LOOT") then
-		-- Inherited stuff ("artefacts", bind to account)
-		if (string.find(arg1, "cffe6cc80")) then
-			if (ZL_config["inherited"]["include"]) then
-				quality = 6
-			else
-				quality = nil
+		for colorCode, info in pairs(ZL_QUALITY_COLORS) do
+			if (string.find(arg1, colorCode)) then
+				if (info.inherited and not ZL_config["inherited"]["include"]) then
+					break
+				end
+				quality = info.quality
+				zl_group = info.group
+				break
 			end
-
-		-- Legendary (orange)
-		elseif (string.find(arg1, "cffff8000")) then
-			quality = 6
-
-		-- Epic (purple)
-		elseif (string.find(arg1, "cffa335ee")) then
-			quality = 5
-
-		-- Rare (blue)
-		elseif (string.find(arg1, "cff0070dd")) then
-			quality = 4
-
-		-- Not common (green)
-		elseif (string.find(arg1, "cff1eff00")) then
-			quality = 3
-
-		-- Trash: common and low quality (white and grey), no sound for those ones !
-		else
-			quality = nil
 		end
 
-		if (quality) then
-			zl_group = qualities_dic[quality]
-
+		if (quality and zl_group) then
 			if (ZL_config[zl_group]["active"]) then
 				if (
 					(string.find(arg1, ZL_LOOTMESSAGE)) or
@@ -197,8 +215,11 @@ function Reset_config(print_text)
 
 		settings = {
 			ext = "wav",
-			channel = "SFX"
-		}
+			channel = "SFX",
+			volume = 100
+		},
+
+		version = 1
 	}
 
 	if (ZL_debug_bool) then
