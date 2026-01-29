@@ -1,6 +1,19 @@
 # [ZeldaLoot Classic](https://www.curseforge.com/wow/addons/zeldaloot-classic)
 
 ## Changes
+### Changes in 2.3.0
+- Added support for Midnight (Retail 12.0.1)
+- Added support for Mists of Pandaria Classic (5.5.3)
+- Updated for The War Within (Retail 11.2.7)
+- Updated for Cataclysm Classic (4.4.2)
+- Updated for Wrath of the Lich King Classic (3.4.5)
+- Updated for The Burning Crusade Classic (2.5.5)
+- Updated for Classic Era (1.15.8)
+- Added localized descriptions and categories in TOC files
+- Added language support for Korean, Italian, Portuguese, and Spanish (Mexico), Simplified Chinese, Traditional Chinese
+- Fixed Control Panel initialization bugs
+- Fixed sound not playing issue
+
 ### Changes in 2.2.0
 - Updated for The War Within (Retail 11.1.7)
 - Updated for Classic Era (1.15.7)

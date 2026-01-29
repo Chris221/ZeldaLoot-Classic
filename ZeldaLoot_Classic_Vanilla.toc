@@ -37,7 +37,6 @@
 ## X-BugGrabber-Display: ZeldaLoot
 ## X-Curse-Project-ID: 487037
 ## X-WoWI-ID: 26421
-## X-Wago-ID: 
 
 Locale\ZL_Globals.lua
 Locale\ZL_zhTW.lua
