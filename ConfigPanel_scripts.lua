@@ -11,7 +11,6 @@ local function Migrate_config()
 		ZL_config["settings"] = ZL_config["settings"] or { ext = "wav", channel = "SFX" }
 		ZL_config["settings"]["ext"] = ZL_config["settings"]["ext"] or "wav"
 		ZL_config["settings"]["channel"] = ZL_config["settings"]["channel"] or "SFX"
-		ZL_config["settings"]["volume"] = ZL_config["settings"]["volume"] or 100
 
 		local defaults = { green = 1, blue = 2, purple = 3, orange = 4 }
 		for group, default_sound in pairs(defaults) do
@@ -126,26 +125,6 @@ function Get_sound_channel()
 	local sound_channel = ZL_config['settings'].channel
 	local valid_channels = { Master = true, SFX = true, Music = true, Ambience = true, Dialog = true }
 	return valid_channels[sound_channel] and sound_channel or "SFX"
-end
-
-function Get_sound_volume()
-	local volume = ZL_config and ZL_config.settings and ZL_config.settings.volume or 100
-	return math.max(0, math.min(100, volume)) / 100
-end
-
-function Slider_volume_OnValueChanged(self, value)
-	local vol = math.floor(value + 0.5)
-	if ZL_config and ZL_config.settings then
-		ZL_config.settings.volume = vol
-	end
-	if self and self.Text then
-		self.Text:SetText(ZL_VOLUME .. ": " .. vol .. "%")
-	elseif self then
-		local textObj = _G[self:GetName().."Text"]
-		if textObj then
-			textObj:SetText(ZL_VOLUME .. ": " .. vol .. "%")
-		end
-	end
 end
 
 function Get_sound_set(index)

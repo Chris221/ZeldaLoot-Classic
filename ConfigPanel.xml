@@ -1,6 +1,6 @@
 <Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ http://wowprogramming.com/FrameXML/UI.xsd" xmlns="http://www.blizzard.com/wow/ui/">
 	<Script file="ConfigPanel_scripts.lua" />
-	<Frame enableMouse="true" resizeable="false" hidden="true" name="ZL_configPanel" parent="UIParent">
+	<Frame enableMouse="true" hidden="true" name="ZL_configPanel" parent="UIParent" inherits="BackdropTemplate">
 		<KeyValues>
 			<KeyValue key="backdropInfo" value="BACKDROP_DIALOG_32_32" type="global"/>
 			<KeyValue key="backdropBorderColorAlpha" value="1" type="number"/>
@@ -8,17 +8,6 @@
 		<Anchors>
 			<Anchor point="CENTER" relativeTo="UIParent"/>
 		</Anchors>
-		<Backdrop tile="true">
-			<BackgroundInsets>
-				<AbsInset left="11" right="12" top="12" bottom="11" />
-			</BackgroundInsets>
-			<TileSize>
-				<AbsValue val="32" />
-			</TileSize>
-			<EdgeSize>
-				<AbsValue val="32" />
-			</EdgeSize>
-		</Backdrop>
 		<Frames>
 			<CheckButton name="check_greenloot" inherits="UICheckButtonTemplate">
 				<Size>
@@ -722,42 +711,6 @@
 					</OnLeave>
 				</Scripts>
 			</Button>
-			<Slider name="slider_volume" inherits="OptionsSliderTemplate" minValue="0" maxValue="100" defaultValue="100" valueStep="5" orientation="HORIZONTAL">
-				<Size>
-					<AbsDimension x="140" y="17" />
-				</Size>
-				<Anchors>
-					<Anchor point="TOPLEFT">
-						<Offset x="310" y="-400" />
-					</Anchor>
-				</Anchors>
-				<Scripts>
-					<OnLoad>
-						self.title = ZL_VOLUME;
-						self.tooltip = ZL_XML_TOOLTIP_VOLUME;
-						self:SetObeyStepOnDrag(true);
-						_G[self:GetName().."Low"]:SetText("0%");
-						_G[self:GetName().."High"]:SetText("100%");
-						_G[self:GetName().."Text"]:SetText(ZL_VOLUME);
-					</OnLoad>
-					<OnShow>
-						local vol = ZL_config and ZL_config.settings and ZL_config.settings.volume or 100;
-						self:SetValue(vol);
-					</OnShow>
-					<OnValueChanged>
-						Slider_volume_OnValueChanged(self, value);
-					</OnValueChanged>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
-				</Scripts>
-			</Slider>
 			<CheckButton name="check_warnings" inherits="UICheckButtonTemplate">
 				<Size>
 					<AbsDimension x="20" y="20" />
@@ -1023,16 +976,6 @@
 					<Anchors>
 						<Anchor point="TOPLEFT">
 							<Offset x="170" y="-360" />
-						</Anchor>
-					</Anchors>
-				</FontString>
-				<FontString name="FontString22" inherits="GameFontNormal" text="ZL_VOLUME" justifyH="LEFT">
-					<Size>
-						<AbsDimension x="88" y="33" />
-					</Size>
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset x="310" y="-360" />
 						</Anchor>
 					</Anchors>
 				</FontString>

@@ -2,26 +2,12 @@ function ZL_Print(msg)
 	DEFAULT_CHAT_FRAME:AddMessage(ZL_AddonColor .. ZL_AddonName .. '|r ' .. tostring(msg))
 end
 
-local ZL_CHANNEL_CVARS = {
-	Master = "Sound_MasterVolume",
-	SFX = "Sound_SFXVolume",
-	Music = "Sound_MusicVolume",
-	Ambience = "Sound_AmbienceVolume",
-	Dialog = "Sound_DialogVolume"
-}
-
 function Play_zeldaSound(index, sound_file)
 	local sound_set = Get_sound_set(index)
 	local willPlay = nil
 	local sound_ext = Get_sound_ext()
 	local sound_channel = Get_sound_channel()
 	local warning_text = ""
-	local volume = Get_sound_volume()
-
-	-- Skip if volume is 0
-	if volume <= 0 then
-		return
-	end
 
 	if (ZL_soundHandle ~= 0 and ZL_soundHandle ~= nil) then
 		if (ZL_debug_bool) then
@@ -36,23 +22,7 @@ function Play_zeldaSound(index, sound_file)
 
 	Update_config(false)
 
-	-- Apply volume by temporarily adjusting channel volume
-	local cvar = ZL_CHANNEL_CVARS[sound_channel]
-	local originalVolume = nil
-	if cvar and volume < 1 then
-		originalVolume = tonumber(GetCVar(cvar)) or 1
-		local adjustedVolume = originalVolume * volume
-		SetCVar(cvar, adjustedVolume)
-	end
-
 	willPlay, ZL_soundHandle = PlaySoundFile("Interface\\AddOns\\ZeldaLoot_Classic\\Sounds\\Sets\\" .. sound_set .. "\\" .. sound_file .. "." .. sound_ext, sound_channel)
-
-	-- Restore original volume after sound plays (3 second delay for typical sound length)
-	if originalVolume and cvar then
-		C_Timer.After(3, function()
-			SetCVar(cvar, originalVolume)
-		end)
-	end
 
 	local mess = "[" .. sound_set .. "\\" .. sound_file .. "." .. sound_ext .. "] " .. ZL_ON_SOUND_CHANNEL .. " [" .. sound_channel .. "]"
 	if (willPlay) then
@@ -98,10 +68,6 @@ function ZeldaFrame_OnEvent(self, event, ...)
 
 		local panel = _G["ZL_configPanel"]
 		panel.name = ZL_AddonName
-		panel.okay = Btn_ok_onclick
-		panel.cancel = Btn_cancel_onclick
-		panel.default = Reset_config
-		panel.refresh = Refresh_zl_frame
 
 		if Settings and Settings.RegisterCanvasLayoutCategory then
 			local category = Settings.RegisterCanvasLayoutCategory(panel, ZL_AddonName)
@@ -215,8 +181,7 @@ function Reset_config(print_text)
 
 		settings = {
 			ext = "wav",
-			channel = "SFX",
-			volume = 100
+			channel = "SFX"
 		},
 
 		version = 1

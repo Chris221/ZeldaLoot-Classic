@@ -96,8 +96,10 @@ function zl.SlashCommandHandler(msg)
 			ZL_Print(ZL_SLASH_TEST_USAGE)
 		end
 	else
-		if Settings and Settings.OpenToCategory then
-			Settings.OpenToCategory(ZL_SettingsCategory or ZL_AddonName)
+		if SettingsPanel and SettingsPanel.OpenToCategory and ZL_SettingsCategory then
+			SettingsPanel:OpenToCategory(ZL_SettingsCategory)
+		elseif Settings and Settings.OpenToCategory and ZL_SettingsCategory then
+			Settings.OpenToCategory(ZL_SettingsCategory.ID)
 		elseif InterfaceOptionsFrame_OpenToCategory then
 			InterfaceOptionsFrame_OpenToCategory(ZL_AddonName)
 		end

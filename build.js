@@ -60,6 +60,7 @@ var release_data = {
 //For Zip
 const folderPaths = [
   'Locale',
+  'Media',
   'Sounds/Sets/ALTTP',
   'Sounds/Sets/OOT',
   'Sounds/Sets/TP',
@@ -82,6 +83,7 @@ var removeList = [
   'Old Sounds',
   'Sounds',
   'Locale',
+  'Media',
   'Images',
   'build',
 ];
