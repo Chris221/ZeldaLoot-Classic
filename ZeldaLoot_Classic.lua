@@ -88,6 +88,65 @@ local ZL_QUALITY_COLORS = {
 	["cffe6cc80"] = { quality = 6, group = "orange", inherited = true }, -- Heirloom
 }
 
+-- Loot detection is driven by Blizzard's own localized global strings rather than
+-- hardcoded English text, so it stays correct in every locale. Each format string
+-- (e.g. "You receive loot: %s.") is reduced to its longest literal run so we can do
+-- a plain substring match against the CHAT_MSG_LOOT line regardless of where the
+-- %s/%d placeholders sit in a given locale. The old locale keys are kept as a
+-- fallback for the unlikely case a global string is missing on some client.
+local function Longest_literal(fmt)
+	if (not fmt) then return nil end
+
+	-- Replace format specifiers (%s, %d, %1$s, %2$d, %.2f, ...) with a separator,
+	-- then keep the longest remaining literal piece.
+	local stripped = fmt:gsub("%%%d-%$?%-?%d*%.?%d*[%a]", "\1")
+	local longest = ""
+	for piece in string.gmatch(stripped, "[^\1]+") do
+		piece = piece:gsub("^%s+", ""):gsub("%s+$", "")
+		if (#piece > #longest) then longest = piece end
+	end
+
+	if (longest == "") then return nil end
+	return longest
+end
+
+-- global_fmts: Blizzard format strings to derive literals from.
+-- fallback: a locale literal used ONLY if no global produced a literal.
+-- always: extra literal(s) always included (for cases with no global equivalent).
+local function Build_loot_match(global_fmts, fallback, always)
+	local literals = {}
+	for _, fmt in ipairs(global_fmts) do
+		local lit = Longest_literal(fmt)
+		if (lit) then table.insert(literals, lit) end
+	end
+	if (#literals == 0 and fallback) then
+		table.insert(literals, fallback)
+	end
+	if (always) then
+		table.insert(literals, always)
+	end
+	return literals
+end
+
+local ZL_LOOT_MATCH = {
+	-- Items looted from a corpse/object (the always-on "active" category)
+	loot     = Build_loot_match({ LOOT_ITEM_SELF, LOOT_ITEM_SELF_MULTIPLE }, ZL_LOOTMESSAGE),
+	-- Items produced by crafting / professions. ZL_CRAFTMESSAGE2 ("You receive
+	-- object") has no global equivalent, so it is always kept.
+	crafted  = Build_loot_match({ LOOT_ITEM_CREATED_SELF, LOOT_ITEM_CREATED_SELF_MULTIPLE }, ZL_CRAFTMESSAGE, ZL_CRAFTMESSAGE2),
+	-- Items pushed to your bags (quests, mail, trade, vendor, etc.)
+	received = Build_loot_match({ LOOT_ITEM_PUSHED_SELF, LOOT_ITEM_PUSHED_SELF_MULTIPLE }, ZL_RECEIVEMESSAGE),
+}
+
+local function Matches_loot(msg, literals)
+	for _, lit in ipairs(literals) do
+		if (string.find(msg, lit, 1, true)) then
+			return true
+		end
+	end
+	return false
+end
+
 function ZeldaFrame_OnEvent(self, event, ...)
 	local quality, zl_group
 
@@ -139,7 +198,7 @@ function ZeldaFrame_OnEvent(self, event, ...)
 
 	if (event == "CHAT_MSG_LOOT") then
 		for colorCode, info in pairs(ZL_QUALITY_COLORS) do
-			if (string.find(arg1, colorCode)) then
+			if (string.find(arg1, colorCode, 1, true)) then
 				if (info.inherited and not ZL_config["inherited"]["include"]) then
 					break
 				end
@@ -149,15 +208,13 @@ function ZeldaFrame_OnEvent(self, event, ...)
 			end
 		end
 
-		if (quality and zl_group) then
-			if (ZL_config[zl_group]["active"]) then
-				if (
-					(string.find(arg1, ZL_LOOTMESSAGE)) or
-					(((string.find(arg1, ZL_CRAFTMESSAGE)) or (string.find(arg1, ZL_CRAFTMESSAGE2))) and ZL_config[zl_group]["crafted"]) or
-					((string.find(arg1, ZL_RECEIVEMESSAGE)) and ZL_config[zl_group]["received"])
-				) then
-					Play_zeldaSound(quality - 1, ZL_config[zl_group]["sound"])
-				end
+		if (quality and zl_group and ZL_config[zl_group]["active"]) then
+			if (
+				Matches_loot(arg1, ZL_LOOT_MATCH.loot) or
+				(ZL_config[zl_group]["crafted"] and Matches_loot(arg1, ZL_LOOT_MATCH.crafted)) or
+				(ZL_config[zl_group]["received"] and Matches_loot(arg1, ZL_LOOT_MATCH.received))
+			) then
+				Play_zeldaSound(quality - 1, ZL_config[zl_group]["sound"])
 			end
 		end
 	end
