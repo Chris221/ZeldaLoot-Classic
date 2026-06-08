@@ -39,4 +39,8 @@ ZL_QUALITY_GROUPS = {
 }
 
 -- Config version for migration
-ZL_CONFIG_VERSION = 1
+ZL_CONFIG_VERSION = 2
+
+-- Seconds to keep a temporarily-scaled channel volume before restoring it.
+-- Must comfortably exceed the longest sound in any set.
+ZL_VOLUME_RESTORE_DELAY = 5

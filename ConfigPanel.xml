@@ -560,6 +560,31 @@
 					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</CheckButton>
+			<Slider name="slider_setting_volume" inherits="OptionsSliderTemplate" minValue="0" maxValue="100" valueStep="5">
+				<Size>
+					<AbsDimension x="144" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="300" y="-396" />
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						self:SetMinMaxValues(0, 100)
+						self:SetValueStep(5)
+						self:SetObeyStepOnDrag(true)
+						_G[self:GetName() .. "Low"]:SetText("0")
+						_G[self:GetName() .. "High"]:SetText("100")
+						self.title = ZL_VOLUME;
+						self.tooltip = ZL_XML_TOOLTIP_VOLUME;
+					</OnLoad>
+					<OnShow function="Slider_volume_Show"/>
+					<OnValueChanged function="Slider_volume_OnValueChanged"/>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
+				</Scripts>
+			</Slider>
 		</Frames>
 		<Layers>
 			<Layer level="OVERLAY">
@@ -793,6 +818,16 @@
 					<Anchors>
 						<Anchor point="TOPLEFT">
 							<Offset x="71" y="-466" />
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="FontString_volume" inherits="GameFontNormal" text="ZL_VOLUME" justifyH="LEFT">
+					<Size>
+						<AbsDimension x="120" y="33" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset x="304" y="-360" />
 						</Anchor>
 					</Anchors>
 				</FontString>

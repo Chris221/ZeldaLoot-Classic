@@ -11,6 +11,7 @@ local function Migrate_config()
 		ZL_config["settings"] = ZL_config["settings"] or { ext = "wav", channel = "SFX" }
 		ZL_config["settings"]["ext"] = ZL_config["settings"]["ext"] or "wav"
 		ZL_config["settings"]["channel"] = ZL_config["settings"]["channel"] or "SFX"
+		ZL_config["settings"]["volume"] = ZL_config["settings"]["volume"] or 100
 
 		local defaults = { green = 1, blue = 2, purple = 3, orange = 4 }
 		for group, default_sound in pairs(defaults) do
@@ -25,6 +26,13 @@ local function Migrate_config()
 		ZL_config["inherited"] = ZL_config["inherited"] or { include = true }
 
 		ZL_config["version"] = 1
+	end
+
+	if config_version < 2 then
+		ZL_config["settings"] = ZL_config["settings"] or {}
+		ZL_config["settings"]["volume"] = ZL_config["settings"]["volume"] or 100
+
+		ZL_config["version"] = 2
 	end
 end
 
@@ -111,6 +119,9 @@ function Sync_panel_widgets()
 
 	obj = _G["check_debug"]
 	if (obj ~= nil) then obj:SetChecked(ZL_debug_bool) end
+
+	obj = _G["slider_setting_volume"]
+	if (obj ~= nil) then obj:SetValue(Get_sound_volume()) end
 end
 
 -- Sound test
@@ -137,6 +148,13 @@ function Get_sound_channel()
 	local sound_channel = ZL_config['settings'].channel
 	local valid_channels = { Master = true, SFX = true, Music = true, Ambience = true, Dialog = true }
 	return valid_channels[sound_channel] and sound_channel or "SFX"
+end
+
+function Get_sound_volume()
+	local v = tonumber(ZL_config['settings'].volume)
+	if (not v) then return 100 end
+	if (v < 0) then v = 0 elseif (v > 100) then v = 100 end
+	return v
 end
 
 -- Shared tooltip handlers used by every widget's OnEnter/OnLeave in the panel.
@@ -332,6 +350,31 @@ function Dropdown_settings_OnClick(self, arg1, arg2)
 
 	UIDropDownMenu_SetText(arg1, selected)
 	ZL_config["settings"][setting] = selected
+end
+
+-- Volume slider
+local function Update_volume_text(self, value)
+	local label = _G[self:GetName() .. "Text"]
+	if (label ~= nil) then
+		label:SetText(math.floor(value + 0.5) .. "%")
+	end
+end
+
+function Slider_volume_Show(self)
+	local value = Get_sound_volume()
+	self:SetValue(value)
+	Update_volume_text(self, value)
+end
+
+function Slider_volume_OnValueChanged(self, value)
+	value = math.floor((tonumber(value) or 100) + 0.5)
+	if (value < 0) then value = 0 elseif (value > 100) then value = 100 end
+
+	if (ZL_config ~= nil and ZL_config["settings"] ~= nil) then
+		ZL_config["settings"]["volume"] = value
+	end
+
+	Update_volume_text(self, value)
 end
 
 function Toggle_warnings(obj)

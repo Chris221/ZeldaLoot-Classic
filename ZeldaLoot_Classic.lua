@@ -2,6 +2,30 @@ function ZL_Print(msg)
 	DEFAULT_CHAT_FRAME:AddMessage(ZL_AddonColor .. ZL_AddonName .. '|r ' .. tostring(msg))
 end
 
+-- PlaySoundFile has no per-sound volume argument on any client, so the Volume
+-- setting works by temporarily scaling the chosen audio channel's CVar while a
+-- sound plays, then restoring it. This scales the whole channel for the restore
+-- window, which is an inherent limitation of having no per-sound gain API.
+local CHANNEL_CVARS = {
+	Master   = "Sound_MasterVolume",
+	SFX      = "Sound_SFXVolume",
+	Music    = "Sound_MusicVolume",
+	Ambience = "Sound_AmbienceVolume",
+	Dialog   = "Sound_DialogVolume",
+}
+
+-- nil when idle, else { cvar = <name>, original = <string value> }
+local ZL_volume_restore = nil
+-- bumped on every scaled playback so only the latest timer restores
+local ZL_volume_token = 0
+
+local function Restore_sound_volume()
+	if (ZL_volume_restore ~= nil) then
+		SetCVar(ZL_volume_restore.cvar, ZL_volume_restore.original)
+		ZL_volume_restore = nil
+	end
+end
+
 function Play_zeldaSound(index, sound_file)
 	local sound_set = Get_sound_set(index)
 	local willPlay = nil
@@ -14,6 +38,9 @@ function Play_zeldaSound(index, sound_file)
 			ZL_Print(ZL_STOPPING_SOUND .. " " .. ZL_soundHandle)
 		end
 		StopSound(ZL_soundHandle, 0)
+		-- Restore before re-saving the original for the new sound, so a rapid
+		-- re-trigger never saves an already-scaled value as the "original".
+		Restore_sound_volume()
 	end
 
 	if (ZL_warning_bool) then
@@ -21,6 +48,25 @@ function Play_zeldaSound(index, sound_file)
 	end
 
 	Update_config(false)
+
+	-- Temporarily scale the channel volume for this playback (no-op at 100%)
+	local volume = Get_sound_volume()
+	if (volume < 100) then
+		local cvar = CHANNEL_CVARS[sound_channel]
+		if (cvar and ZL_volume_restore == nil) then
+			local original = GetCVar(cvar)
+			ZL_volume_restore = { cvar = cvar, original = original }
+			SetCVar(cvar, tostring((tonumber(original) or 1) * volume / 100))
+
+			ZL_volume_token = ZL_volume_token + 1
+			local myToken = ZL_volume_token
+			C_Timer.After(ZL_VOLUME_RESTORE_DELAY, function()
+				if (myToken == ZL_volume_token) then
+					Restore_sound_volume()
+				end
+			end)
+		end
+	end
 
 	willPlay, ZL_soundHandle = PlaySoundFile("Interface\\AddOns\\ZeldaLoot_Classic\\Sounds\\Sets\\" .. sound_set .. "\\" .. sound_file .. "." .. sound_ext, sound_channel)
 
@@ -83,7 +129,10 @@ function ZeldaFrame_OnEvent(self, event, ...)
 			Reset_config(false)
 		end
 
-		if (event ~= "PLAYER_LOGOUT") then
+		if (event == "PLAYER_LOGOUT") then
+			-- Never leave a temporarily-scaled channel volume persisted across sessions
+			Restore_sound_volume()
+		else
 			Sync_panel_widgets()
 		end
 	end
@@ -154,10 +203,11 @@ function Reset_config(print_text)
 
 		settings = {
 			ext = "wav",
-			channel = "SFX"
+			channel = "SFX",
+			volume = 100
 		},
 
-		version = 1
+		version = ZL_CONFIG_VERSION
 	}
 
 	if (ZL_debug_bool) then
