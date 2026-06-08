@@ -43,11 +43,6 @@ local ZL_QUALITY_COLORS = {
 }
 
 function ZeldaFrame_OnEvent(self, event, ...)
-	local obj
-
-	local scanCateg = { "green", "blue", "purple", "orange" }
-	local scanValues = { active = "loot", crafted = "crafts", received = "received" }
-
 	local quality, zl_group
 
 	local arg1 = select(1, ...)
@@ -89,29 +84,7 @@ function ZeldaFrame_OnEvent(self, event, ...)
 		end
 
 		if (event ~= "PLAYER_LOGOUT") then
-			for iCat, vCat in ipairs(scanCateg) do
-				for iSub, vSub in pairs(scanValues) do
-					obj = _G["check_" .. vCat .. vSub]
-					if (obj ~= nil) then
-						obj:SetChecked(ZL_config[vCat][iSub])
-					end
-				end
-			end
-
-			obj = _G["check_inheritedstuff"]
-			if (obj ~= nil) then
-				obj:SetChecked(ZL_config["inherited"]["include"])
-			end
-
-			obj = _G["check_warnings"]
-			if (obj ~= nil) then
-				obj:SetChecked(ZL_warning_bool)
-			end
-
-			obj = _G["check_debug"]
-			if (obj ~= nil) then
-				obj:SetChecked(ZL_debug_bool)
-			end
+			Sync_panel_widgets()
 		end
 	end
 
@@ -200,4 +173,7 @@ function Reset_config(print_text)
 	if (print_text) then
 		ZL_Print(ZL_RESET_DONE)
 	end
+
+	-- Refresh an open panel so it never shows stale values after a reset
+	Sync_panel_widgets()
 end

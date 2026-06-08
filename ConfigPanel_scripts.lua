@@ -71,14 +71,46 @@ function Dump_config(text)
 	ZL_Print(ZL_DUMP_FINISH .. "... |cff00ff00" .. text)
 end
 
-function Refresh_zl_frame()
-	local frame = _G["ZL_configPanel"]
-	if (frame) then
-		if (frame:IsVisible()) then
-			frame:Hide();
-			frame:Show();
-		end
+local function Reinit_dropdown(name, init_func)
+	local dd = _G[name]
+	if (dd ~= nil) then
+		UIDropDownMenu_Initialize(dd, init_func)
 	end
+end
+
+-- Push the current ZL_config values into every panel widget. Safe to call
+-- before the panel exists (each widget is nil-guarded) and used both at load
+-- and after /zl reset so an open panel never shows stale values.
+function Sync_panel_widgets()
+	if (ZL_config == nil) then return end
+
+	local scanCateg = { "green", "blue", "purple", "orange" }
+	local scanValues = { active = "loot", crafted = "crafts", received = "received" }
+	local obj
+
+	for iCat, vCat in ipairs(scanCateg) do
+		for iSub, vSub in pairs(scanValues) do
+			obj = _G["check_" .. vCat .. vSub]
+			if (obj ~= nil) then
+				obj:SetChecked(ZL_config[vCat][iSub])
+			end
+		end
+
+		Reinit_dropdown("dropdown_" .. vCat .. "loot_set", Dropdown_set_Show)
+		Reinit_dropdown("dropdown_" .. vCat .. "loot_sound", Dropdown_sound_Show)
+	end
+
+	Reinit_dropdown("dropdown_setting_ext", Dropdown_settings_Show)
+	Reinit_dropdown("dropdown_setting_channel", Dropdown_settings_Show)
+
+	obj = _G["check_inheritedstuff"]
+	if (obj ~= nil) then obj:SetChecked(ZL_config["inherited"]["include"]) end
+
+	obj = _G["check_warnings"]
+	if (obj ~= nil) then obj:SetChecked(ZL_warning_bool) end
+
+	obj = _G["check_debug"]
+	if (obj ~= nil) then obj:SetChecked(ZL_debug_bool) end
 end
 
 -- Sound test
@@ -91,28 +123,8 @@ function Test_zl_sound(index)
 	Play_zeldaSound(index, ZL_config[zl_group]["sound"])
 end
 
-function Btn_ok_onclick()
-	if (ZL_debug_bool) then
-		Dump_config(ZL_SETTINGS_CLOSED)
-	end
-end
-
-function Btn_cancel_onclick()
-	if (ZL_debug_bool) then
-		Dump_config(ZL_SETTINGS_CLOSED)
-	end
-end
-
 function ZL_toBool(num)
 	return num == 1 or num == true
-end
-
-function ZL_BoolToNum(b)
-	if (b) then
-		return 1
-	else
-		return 0
-	end
 end
 
 function Get_sound_ext()
@@ -125,6 +137,19 @@ function Get_sound_channel()
 	local sound_channel = ZL_config['settings'].channel
 	local valid_channels = { Master = true, SFX = true, Music = true, Ambience = true, Dialog = true }
 	return valid_channels[sound_channel] and sound_channel or "SFX"
+end
+
+-- Shared tooltip handlers used by every widget's OnEnter/OnLeave in the panel.
+-- Each widget sets self.title / self.tooltip in its OnLoad.
+function ZL_ShowTooltip(self)
+	GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR)
+	GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true)
+	GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true)
+	GameTooltip:Show()
+end
+
+function ZL_HideTooltip(self)
+	GameTooltip:Hide()
 end
 
 function Get_sound_set(index)
@@ -142,7 +167,7 @@ function Check_loot_onclick(obj, quality, loot_type)
 		print('qualities_dic: '..qualities_dic[quality + 1]..' loot_types_dic: '..loot_types_dic[loot_type + 1]..' value:'..(obj:GetChecked() and 'true' or 'false'))
 	end
 
-	ZL_config[qualities_dic[quality + 1]][loot_types_dic[loot_type + 1]] = obj:GetChecked()
+	ZL_config[qualities_dic[quality + 1]][loot_types_dic[loot_type + 1]] = ZL_toBool(obj:GetChecked())
 end
 
 -- Include inherited stuff checkbox
@@ -153,15 +178,7 @@ end
 -- Debug prints to see when "UIDropDownMenu_Initialize" is called for your dropdown:
 -- hooksecurefunc("UIDropDownMenu_Initialize", function(frame, func) end)
 
-function Dropdown_set_Initialize(self)
-	UIDropDownMenu_SetWidth(self, 90)
-end
-
-function Dropdown_sound_Initialize(self)
-	UIDropDownMenu_SetWidth(self, 90)
-end
-
-function Dropdown_settings_Initialize(self)
+function Dropdown_width_Initialize(self)
 	UIDropDownMenu_SetWidth(self, 90)
 end
 
@@ -176,10 +193,7 @@ function Dropdown_set_Show(self)
 	elseif (name == 'dropdown_orangeloot_set') then item_level = 'orange'
 	end
 
-	if (ZL_config[item_level]["set"] == 0) then selected = 'ALTTP'
-	elseif (ZL_config[item_level]["set"] == 1) then selected = 'OOT'
-	elseif (ZL_config[item_level]["set"] == 2) then selected = 'TP'
-	end
+	selected = ZL_SOUND_SETS[ZL_config[item_level]["set"]] or 'ALTTP'
 
 	UIDropDownMenu_SetText(self, selected)
 
@@ -212,20 +226,12 @@ function Dropdown_sound_Show(self)
 
 	UIDropDownMenu_SetText(self, ZL_config[item_level]["sound"])
 
-	if (ZL_config[item_level]["set"] == 0) then sound_set = 'ALTTP'
-	elseif (ZL_config[item_level]["set"] == 1) then sound_set = 'OOT'
-	elseif (ZL_config[item_level]["set"] == 2) then sound_set = 'TP'
-	end
+	sound_set = ZL_SOUND_SETS[ZL_config[item_level]["set"]] or 'ALTTP'
 
 	local info
-	local item_sets = {
-		ALTTP = { 1, 2, 3, 4, 5 },
-		OOT = { 1, 2, 3, 4 },
-		TP = { 1, 2, 3, 4, 5 }
-	}
-	local items = item_sets[sound_set]
+	local count = ZL_SOUND_COUNTS[sound_set] or 0
 
-	for k,v in ipairs(items) do
+	for v = 1, count do
 		info = UIDropDownMenu_CreateInfo()
 		info.text = v
 		info.value = v
@@ -251,17 +257,14 @@ function Dropdown_set_OnClick(self, arg1, arg2)
 
 	UIDropDownMenu_SetText(arg1, selected)
 
-	if (selected == 'ALTTP') then
-		ZL_config[item_level]["set"] = 0
-	elseif (selected == 'OOT') then
-		ZL_config[item_level]["set"] = 1
-		if (ZL_config[item_level]["sound"] == 5) then
-			ZL_config[item_level]["sound"] = 4
-			obj = _G["dropdown_" .. item_level .. "loot_sound"]
-			UIDropDownMenu_SetText(obj, 4)
-		end
-	elseif (selected == 'TP') then
-		ZL_config[item_level]["set"] = 2
+	ZL_config[item_level]["set"] = ZL_SOUND_SET_IDS[selected] or 0
+
+	-- Clamp the selected sound if the new set offers fewer sounds (e.g. OOT has 4)
+	local max_sound = ZL_SOUND_COUNTS[selected] or 1
+	if (ZL_config[item_level]["sound"] > max_sound) then
+		ZL_config[item_level]["sound"] = max_sound
+		obj = _G["dropdown_" .. item_level .. "loot_sound"]
+		UIDropDownMenu_SetText(obj, max_sound)
 	end
 
 	local index = QUALITY_INDEX[item_level]

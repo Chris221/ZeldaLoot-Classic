@@ -33,8 +33,8 @@
 ## X-CompatibleLocales: enUS, enGB, deDE, frFR, esES, ruRU, esMX, zhTW, zhCN, itIT, koKR, ptBR
 ## X-License: GNU GPL v3, 29 June 2007
 ## X-Category: Audio & Video
-## X-Website: https://github.com/Chris221221/ZeldaLoot-BCC
-## X-BugGrabber-Display: ZeldaLoot
+## X-Website: https://github.com/Chris221/ZeldaLoot-Classic
+## X-BugGrabber-Display: ZeldaLoot_Classic
 ## X-Curse-Project-ID: 487037
 ## X-WoWI-ID: 26421
 

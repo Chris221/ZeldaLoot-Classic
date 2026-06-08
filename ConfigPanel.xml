@@ -24,15 +24,8 @@
 						self.title = ZL_GREENLOOT;
 						self.tooltip = ZL_XML_TOOLTIP_GREEN_LOOT;
 					</OnLoad>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</CheckButton>
 			<CheckButton name="check_blueloot" inherits="UICheckButtonTemplate">
@@ -50,15 +43,8 @@
 						self.title = ZL_BLUELOOT;
 						self.tooltip = ZL_XML_TOOLTIP_BLUE_LOOT;
 					</OnLoad>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</CheckButton>
 			<CheckButton name="check_purpleloot" inherits="UICheckButtonTemplate">
@@ -76,15 +62,8 @@
 						self.title = ZL_PURPLELOOT;
 						self.tooltip = ZL_XML_TOOLTIP_PURPLE_LOOT;
 					</OnLoad>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</CheckButton>
 			<CheckButton name="check_orangeloot" inherits="UICheckButtonTemplate">
@@ -102,15 +81,8 @@
 						self.title = ZL_ORANGELOOT;
 						self.tooltip = ZL_XML_TOOLTIP_ORANGE_LOOT;
 					</OnLoad>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</CheckButton>
 			<Button name="dropdown_greenloot_set" inherits="UIDropDownMenuTemplate">
@@ -121,22 +93,15 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, Dropdown_set_Initialize)
+						UIDropDownMenu_Initialize(self, Dropdown_width_Initialize)
 						self.title = ZL_XML_TITLE_GREEN_SET;
 						self.tooltip = ZL_XML_TOOLTIP_GREEN_SET;
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, Dropdown_set_Show)
 					</OnShow>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</Button>
 			<Button name="dropdown_blueloot_set" inherits="UIDropDownMenuTemplate">
@@ -147,22 +112,15 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, Dropdown_set_Initialize)
+						UIDropDownMenu_Initialize(self, Dropdown_width_Initialize)
 						self.title = ZL_XML_TITLE_BLUE_SET;
 						self.tooltip = ZL_XML_TOOLTIP_BLUE_SET;
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, Dropdown_set_Show)
 					</OnShow>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
       </Button>
 			<Button name="dropdown_purpleloot_set" inherits="UIDropDownMenuTemplate">
@@ -173,22 +131,15 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, Dropdown_set_Initialize)
+						UIDropDownMenu_Initialize(self, Dropdown_width_Initialize)
 						self.title = ZL_XML_TITLE_PURPLE_SET;
 						self.tooltip = ZL_XML_TOOLTIP_PURPLE_SET;
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, Dropdown_set_Show)
 					</OnShow>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
       </Button>
 			<Button name="dropdown_orangeloot_set" inherits="UIDropDownMenuTemplate">
@@ -199,22 +150,15 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, Dropdown_set_Initialize)
+						UIDropDownMenu_Initialize(self, Dropdown_width_Initialize)
 						self.title = ZL_XML_TITLE_ORANGE_SET;
 						self.tooltip = ZL_XML_TOOLTIP_ORANGE_SET;
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, Dropdown_set_Show)
 					</OnShow>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
       </Button>
 			<Button name="dropdown_greenloot_sound" inherits="UIDropDownMenuTemplate">
@@ -225,22 +169,15 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, Dropdown_sound_Initialize)
+						UIDropDownMenu_Initialize(self, Dropdown_width_Initialize)
 						self.title = ZL_XML_TITLE_GREEN_EFFECT;
 						self.tooltip = ZL_XML_TOOLTIP_GREEN_EFFECT;
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, Dropdown_sound_Show)
 					</OnShow>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</Button>
 			<Button name="dropdown_blueloot_sound" inherits="UIDropDownMenuTemplate">
@@ -251,22 +188,15 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, Dropdown_sound_Initialize)
+						UIDropDownMenu_Initialize(self, Dropdown_width_Initialize)
 						self.title = ZL_XML_TITLE_BLUE_EFFECT;
 						self.tooltip = ZL_XML_TOOLTIP_BLUE_EFFECT;
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, Dropdown_sound_Show)
 					</OnShow>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</Button>
 			<Button name="dropdown_purpleloot_sound" inherits="UIDropDownMenuTemplate">
@@ -277,22 +207,15 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, Dropdown_sound_Initialize)
+						UIDropDownMenu_Initialize(self, Dropdown_width_Initialize)
 						self.title = ZL_XML_TITLE_PURPLE_EFFECT;
 						self.tooltip = ZL_XML_TOOLTIP_PURPLE_EFFECT;
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, Dropdown_sound_Show)
 					</OnShow>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</Button>
 			<Button name="dropdown_orangeloot_sound" inherits="UIDropDownMenuTemplate">
@@ -303,22 +226,15 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, Dropdown_sound_Initialize)
+						UIDropDownMenu_Initialize(self, Dropdown_width_Initialize)
 						self.title = ZL_XML_TITLE_ORANGE_EFFECT;
 						self.tooltip = ZL_XML_TOOLTIP_ORANGE_EFFECT;
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, Dropdown_sound_Show)
 					</OnShow>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</Button>
 			<Button name="test_greensound" inherits="UIPanelButtonTemplate" text="ZL_TEST">
@@ -336,15 +252,8 @@
 						self.title = ZL_XML_TITLE_GREEN_TEST;
 						self.tooltip = ZL_XML_TOOLTIP_GREEN_TEST;
 					</OnLoad>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</Button>
 			<Button name="test_bluesound" inherits="UIPanelButtonTemplate" text="ZL_TEST">
@@ -362,15 +271,8 @@
 						self.title = ZL_XML_TITLE_BLUE_TEST;
 						self.tooltip = ZL_XML_TOOLTIP_BLUE_TEST;
 					</OnLoad>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</Button>
 			<Button name="test_epicsound" inherits="UIPanelButtonTemplate" text="ZL_TEST">
@@ -388,15 +290,8 @@
 						self.title = ZL_XML_TITLE_PURPLE_TEST;
 						self.tooltip = ZL_XML_TOOLTIP_PURPLE_TEST;
 					</OnLoad>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</Button>
 			<Button name="test_legendsound" inherits="UIPanelButtonTemplate" text="ZL_TEST">
@@ -414,15 +309,8 @@
 						self.title = ZL_XML_TITLE_ORANGE_TEST;
 						self.tooltip = ZL_XML_TOOLTIP_ORANGE_TEST;
 					</OnLoad>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</Button>
 			<CheckButton name="check_greencrafts" inherits="UICheckButtonTemplate">
@@ -440,15 +328,8 @@
 						self.title = ZL_XML_TITLE_GREEN_CRAFTED;
 						self.tooltip = ZL_XML_TOOLTIP_GREEN_CRAFTED;
 					</OnLoad>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</CheckButton>
 			<CheckButton name="check_greenreceived" inherits="UICheckButtonTemplate" >
@@ -466,15 +347,8 @@
 						self.title = ZL_XML_TITLE_GREEN_RECEIVED;
 						self.tooltip = ZL_XML_TOOLTIP_GREEN_RECEIVED;
 					</OnLoad>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</CheckButton>
 			<CheckButton name="check_bluecrafts" inherits="UICheckButtonTemplate">
@@ -492,15 +366,8 @@
 						self.title = ZL_XML_TITLE_BLUE_CRAFTED;
 						self.tooltip = ZL_XML_TOOLTIP_BLUE_CRAFTED;
 					</OnLoad>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</CheckButton>
 			<CheckButton name="check_bluereceived" inherits="UICheckButtonTemplate">
@@ -518,15 +385,8 @@
 						self.title = ZL_XML_TITLE_BLUE_RECEIVED;
 						self.tooltip = ZL_XML_TOOLTIP_BLUE_RECEIVED;
 					</OnLoad>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</CheckButton>
 			<CheckButton name="check_purplecrafts" inherits="UICheckButtonTemplate">
@@ -544,15 +404,8 @@
 						self.title = ZL_XML_TITLE_PURPLE_CRAFTED;
 						self.tooltip = ZL_XML_TOOLTIP_PURPLE_CRAFTED;
 					</OnLoad>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</CheckButton>
 			<CheckButton name="check_purplereceived" inherits="UICheckButtonTemplate">
@@ -570,15 +423,8 @@
 						self.title = ZL_XML_TITLE_PURPLE_RECEIVED;
 						self.tooltip = ZL_XML_TOOLTIP_PURPLE_RECEIVED;
 					</OnLoad>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</CheckButton>
 			<CheckButton name="check_orangecrafts" inherits="UICheckButtonTemplate">
@@ -596,15 +442,8 @@
 						self.title = ZL_XML_TITLE_ORANGE_CRAFTED;
 						self.tooltip = ZL_XML_TOOLTIP_ORANGE_CRAFTED;
 					</OnLoad>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</CheckButton>
 			<CheckButton name="check_orangereceived" inherits="UICheckButtonTemplate">
@@ -622,15 +461,8 @@
 						self.title = ZL_XML_TITLE_ORANGE_RECEIVED;
 						self.tooltip = ZL_XML_TOOLTIP_ORANGE_RECEIVED;
 					</OnLoad>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</CheckButton>
 			<CheckButton name="check_inheritedstuff" inherits="UICheckButtonTemplate">
@@ -648,15 +480,8 @@
 						self.title = ZL_INHERITED;
 						self.tooltip = ZL_XML_TOOLTIP_INHERITED;
 					</OnLoad>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</CheckButton>
 			<Button name="dropdown_setting_ext" inherits="UIDropDownMenuTemplate">
@@ -667,22 +492,15 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, Dropdown_settings_Initialize)
+						UIDropDownMenu_Initialize(self, Dropdown_width_Initialize)
 						self.title = ZL_FILE_TYPE;
 						self.tooltip = ZL_XML_TOOLTIP_FILE_TYPE;
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, Dropdown_settings_Show)
 					</OnShow>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</Button>
 			<Button name="dropdown_setting_channel" inherits="UIDropDownMenuTemplate">
@@ -693,22 +511,15 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, Dropdown_settings_Initialize)
+						UIDropDownMenu_Initialize(self, Dropdown_width_Initialize)
 						self.title = ZL_FILE_CHANNEL;
 						self.tooltip = ZL_XML_TOOLTIP_FILE_CHANNEL;
 					</OnLoad>
 					<OnShow>
 						UIDropDownMenu_Initialize(self, Dropdown_settings_Show)
 					</OnShow>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</Button>
 			<CheckButton name="check_warnings" inherits="UICheckButtonTemplate">
@@ -726,15 +537,8 @@
 						self.title = ZL_WARN;
 						self.tooltip = ZL_XML_TOOLTIP_WARN;
 					</OnLoad>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</CheckButton>
 			<CheckButton name="check_debug" inherits="UICheckButtonTemplate">
@@ -752,15 +556,8 @@
 						self.title = ZL_DEBUG;
 						self.tooltip = ZL_XML_TOOLTIP_DEBUG;
 					</OnLoad>
-					<OnEnter>
-						GameTooltip:SetOwner(self, ZL_TOOLTIP_ANCHOR);
-						GameTooltip:AddLine(self.title, 0.9215686275, 0.6823529412, 0.2039215686, 1, true);
-						GameTooltip:AddLine(self.tooltip, 1, 1, 1, 1, true);
-						GameTooltip:Show();
-					</OnEnter>
-					<OnLeave>
-						GameTooltip:Hide();
-					</OnLeave>
+					<OnEnter function="ZL_ShowTooltip"/>
+					<OnLeave function="ZL_HideTooltip"/>
 				</Scripts>
 			</CheckButton>
 		</Frames>
