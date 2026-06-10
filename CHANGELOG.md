@@ -1,6 +1,15 @@
 # [ZeldaLoot Classic](https://www.curseforge.com/wow/addons/zeldaloot-classic)
 
 ## Changes
+### Changes in 2.4.0
+- Added an adjustable volume setting (0-100%) with a slider in the config panel; it temporarily scales the chosen audio channel while a sound plays, then restores it
+- Loot detection now uses Blizzard's own localized strings, so it works in every language (including Korean and Russian grammar forms) instead of only English clients
+- `/zl reset` now refreshes the config panel immediately if it is open
+- Fixed `/zl dump` throwing a Lua error
+- Sound selection is now clamped to what the chosen sound set actually contains (e.g. OOT has 4 sounds)
+- Scripts no longer load twice on login
+- Removed dead code and duplicated logic; fixed TOC metadata (website link, BugGrabber name)
+
 ### Changes in 2.3.0
 - Added support for Midnight (Retail 12.0.1)
 - Added support for Mists of Pandaria Classic (5.5.3)

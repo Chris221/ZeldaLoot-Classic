@@ -1,6 +1,6 @@
 {
   "name": "zeldaloot_classic",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "build script for my addon",
   "main": "build.js",
   "scripts": {

@@ -13,7 +13,7 @@
 ## Notes-zhCN: 当你拾取传说（橙色）、史诗（紫色）、稀有（蓝色）或精良（绿色）物品时，播放不同的塞尔达传说物品音效。基于Rickyk的ZeldaLoot。
 ## Notes-zhTW: 當你拾取傳說（橙色）、史詩（紫色）、稀有（藍色）或精良（綠色）物品時，播放不同的薩爾達傳說物品音效。基於Rickyk的ZeldaLoot。
 ## Author: Chris221221
-## Version: 2.3.0
+## Version: 2.4.0
 ## IconTexture: Interface\AddOns\ZeldaLoot_Classic\Media\icon
 
 ## SavedVariables: ZL_config ZL_debug_bool ZL_warning_bool
