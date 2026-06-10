@@ -103,6 +103,14 @@ local function Longest_literal(fmt)
 	-- Replace format specifiers (%s, %d, %1$s, %2$d, %.2f, ...) with a separator,
 	-- then keep the longest remaining literal piece.
 	local stripped = fmt:gsub("%%%d-%$?%-?%d*%.?%d*[%a]", "\1")
+	-- Grammar tokens are resolved by the client before the message is shown, so
+	-- they must never end up inside a literal: ruRU declension wrappers like
+	-- "|3-6(%s)" (the placeholder is already \1 here) and koKR particle tokens
+	-- like "|1을;를;". Tradeoff: on koKR the surviving literal is also a suffix
+	-- of the other-player loot format, so party loot may trigger too — substring
+	-- matching cannot disambiguate, and matching something beats silent failure.
+	stripped = stripped:gsub("|%d+%-%d+%(\1%)", "\1")
+	stripped = stripped:gsub("|%d+[^;]*;[^;]*;", "\1")
 	local longest = ""
 	for piece in string.gmatch(stripped, "[^\1]+") do
 		piece = piece:gsub("^%s+", ""):gsub("%s+$", "")
