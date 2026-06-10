@@ -1,5 +1,4 @@
 <Ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ http://wowprogramming.com/FrameXML/UI.xsd" xmlns="http://www.blizzard.com/wow/ui/">
-	<Script file="ConfigPanel_scripts.lua" />
 	<Frame enableMouse="true" hidden="true" name="ZL_configPanel" parent="UIParent" inherits="BackdropTemplate">
 		<KeyValues>
 			<KeyValue key="backdropInfo" value="BACKDROP_DIALOG_32_32" type="global"/>
