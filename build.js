@@ -27,10 +27,8 @@ const version = fs.readFileSync("ZeldaLoot_Classic.toc").toString().match(/## Ve
 function getFlavorMetadata(tocFile, flavor) {
   const content = fs.readFileSync(tocFile).toString();
   const interfacePattern = /## Interface: (\d+)(?:, (\d+))?(?:, (\d+))?(?:, (\d+))?(?:, (\d+))?(?:, (\d+))?/;
-  const minInterfacePattern = /## X-Min-Interface: (\d+)(?:, (\d+))?(?:, (\d+))?(?:, (\d+))?(?:, (\d+))?(?:, (\d+))?/;
   return [
     ...content.match(interfacePattern).map((x, index) => index > 0 ? parseInt(x) : null),
-    // ...content.match(minInterfacePattern).map((x, index) => index > 0 ? parseInt(x) : null)
   ].filter(x => x).map(interface => ({ flavor: interface === 38000 ? 'titan' : flavor, interface }));
 }
 
@@ -70,6 +68,7 @@ var removeList = [
   //Remove Random Files
   '[]',
   '.DS_Store',
+  'IN_GAME_TESTING.md',
   //Remove Git Files
   '.gitignore',
   '.github',

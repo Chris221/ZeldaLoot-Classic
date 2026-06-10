@@ -5,8 +5,6 @@ if (GetLocale() == "ruRU") then
 	ZL_config_TITLE       = "Конфигурация ZeldaLoot"
 
 	ZL_TEST               = "Тест"
-	ZL_OK                 = "ОК"
-	ZL_CANCEL             = "Отмена"
 	ZL_GREENLOOT          = "Зеленый (необычный)"
 	ZL_BLUELOOT           = "Синий (редко)"
 	ZL_PURPLELOOT         = "Фиолетовый (эпический)"
@@ -57,7 +55,6 @@ if (GetLocale() == "ruRU") then
 	ZL_SLASH_COMMANDS     = "Слеш-команды:"
 
 	ZL_END_TEXT           = "конец"
-	ZL_SETTINGS_CLOSED    = "Настройки закрыты"
 	ZL_NOT_PLAYING        = "НЕ воспроизводит звук для"
 	ZL_LIKELY_DUE_TO      = "вероятно из-за"
 	ZL_BEING_MUTED        = "отключен"

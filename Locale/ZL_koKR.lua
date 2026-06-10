@@ -5,8 +5,6 @@ if (GetLocale() == "koKR") then
 	ZL_config_TITLE       = "ZeldaLoot 설정"
 
 	ZL_TEST               = "테스트"
-	ZL_OK                 = "확인"
-	ZL_CANCEL             = "취소"
 	ZL_GREENLOOT          = "녹색 (고급)"
 	ZL_BLUELOOT           = "파란색 (희귀)"
 	ZL_PURPLELOOT         = "보라색 (영웅)"
@@ -57,7 +55,6 @@ if (GetLocale() == "koKR") then
 	ZL_SLASH_COMMANDS     = "슬래시 명령어:"
 
 	ZL_END_TEXT           = "종료"
-	ZL_SETTINGS_CLOSED    = "설정 닫힘"
 	ZL_NOT_PLAYING        = "사운드 재생 안 함:"
 	ZL_LIKELY_DUE_TO      = "원인:"
 	ZL_BEING_MUTED        = "음소거됨"

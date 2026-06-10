@@ -5,8 +5,6 @@ if (GetLocale() == "esMX") then
 	ZL_config_TITLE       = "Configuración de ZeldaLoot"
 
 	ZL_TEST               = "Probar"
-	ZL_OK                 = "Aceptar"
-	ZL_CANCEL             = "Cancelar"
 	ZL_GREENLOOT          = "Verde (poco común)"
 	ZL_BLUELOOT           = "Azul (raro)"
 	ZL_PURPLELOOT         = "Morado (épico)"
@@ -57,7 +55,6 @@ if (GetLocale() == "esMX") then
 	ZL_SLASH_COMMANDS     = "Comandos de barra:"
 
 	ZL_END_TEXT           = "fin"
-	ZL_SETTINGS_CLOSED    = "Configuración cerrada"
 	ZL_NOT_PLAYING        = "NO reproduciendo sonido para"
 	ZL_LIKELY_DUE_TO      = "probablemente debido a"
 	ZL_BEING_MUTED        = "estar silenciado"

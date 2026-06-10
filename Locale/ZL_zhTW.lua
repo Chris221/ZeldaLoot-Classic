@@ -5,8 +5,6 @@ if (GetLocale() == "zhTW") then
 	ZL_config_TITLE       = "ZeldaLoot 設定"
 
 	ZL_TEST               = "測試"
-	ZL_OK                 = "確定"
-	ZL_CANCEL             = "取消"
 	ZL_GREENLOOT          = "綠色 (優良)"
 	ZL_BLUELOOT           = "藍色 (稀有)"
 	ZL_PURPLELOOT         = "紫色 (史詩)"
@@ -57,7 +55,6 @@ if (GetLocale() == "zhTW") then
 	ZL_SLASH_COMMANDS     = "斜線指令："
 
 	ZL_END_TEXT           = "結束"
-	ZL_SETTINGS_CLOSED    = "設定已關閉"
 	ZL_NOT_PLAYING        = "未播放音效："
 	ZL_LIKELY_DUE_TO      = "可能原因："
 	ZL_BEING_MUTED        = "已靜音"

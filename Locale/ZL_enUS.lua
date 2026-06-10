@@ -5,8 +5,6 @@ if ((GetLocale() ~= "frFR") and (GetLocale() ~= "esES") and (GetLocale() ~= "deD
 	ZL_config_TITLE       = "ZeldaLoot Configuration"
 
 	ZL_TEST               = "Test"
-	ZL_OK                 = "OK"
-	ZL_CANCEL             = "Cancel"
 	ZL_GREENLOOT          = "Green (uncommon)"
 	ZL_BLUELOOT           = "Blue (rare)"
 	ZL_PURPLELOOT         = "Purple (epic)"
@@ -57,7 +55,6 @@ if ((GetLocale() ~= "frFR") and (GetLocale() ~= "esES") and (GetLocale() ~= "deD
 	ZL_SLASH_COMMANDS     = "Slash Commands:"
 
 	ZL_END_TEXT           = "end"
-	ZL_SETTINGS_CLOSED    = "Settings closed"
 	ZL_NOT_PLAYING        = "NOT playing sound for"
 	ZL_LIKELY_DUE_TO      = "likely due to"
 	ZL_BEING_MUTED        = "being muted"

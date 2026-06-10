@@ -5,8 +5,6 @@ if (GetLocale() == "deDE") then
 	ZL_config_TITLE       = "Konfiguration von ZeldaLoot"
 
 	ZL_TEST               = "Test"
-	ZL_OK                 = "OK"
-	ZL_CANCEL             = "Abbrechen"
 	ZL_GREENLOOT          = "Grün (außergewöhnlich)"
 	ZL_BLUELOOT           = "Blau (rar)"
 	ZL_PURPLELOOT         = "Lila (episch)"
@@ -57,7 +55,6 @@ if (GetLocale() == "deDE") then
 	ZL_SLASH_COMMANDS     = "Slash-Befehle:"
 
 	ZL_END_TEXT           = "Ende"
-	ZL_SETTINGS_CLOSED    = "Einstellungen geschlossen"
 	ZL_NOT_PLAYING        = "KEINE Tonwiedergabe für"
 	ZL_LIKELY_DUE_TO      = "wahrscheinlich wegen"
 	ZL_BEING_MUTED        = "stummgeschaltet werden"
