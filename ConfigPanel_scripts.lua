@@ -68,12 +68,17 @@ function Dump_config(text)
 	local value
 	ZL_Print(ZL_DUMP_START .. "... |cff00ff00" .. text)
 	for top_level_key, top_level_value in pairs(ZL_config) do
-		for second_level_key, second_level_value in pairs(top_level_value) do
-			if (second_level_value == true) then value = "true"
-			elseif (second_level_value == false) then value = "false"
-			else value = second_level_value
+		if (type(top_level_value) == "table") then
+			for second_level_key, second_level_value in pairs(top_level_value) do
+				if (second_level_value == true) then value = "true"
+				elseif (second_level_value == false) then value = "false"
+				else value = second_level_value
+				end
+				ZL_Print("top_level_key: |cff00ffff" .. top_level_key .. "|r second_level_key: |cff00ffff" .. second_level_key .. "|r second_level_value: |cff00ffff" .. value)
 			end
-			ZL_Print("top_level_key: |cff00ffff" .. top_level_key .. "|r second_level_key: |cff00ffff" .. second_level_key .. "|r second_level_value: |cff00ffff" .. value)
+		else
+			-- Scalar entries like "version" have no second level
+			ZL_Print("top_level_key: |cff00ffff" .. top_level_key .. "|r value: |cff00ffff" .. tostring(top_level_value))
 		end
 	end
 	ZL_Print(ZL_DUMP_FINISH .. "... |cff00ff00" .. text)
