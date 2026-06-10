@@ -157,6 +157,15 @@ function Get_sound_volume()
 	return v
 end
 
+-- Clamp a sound index to what the given set actually ships (e.g. OOT has 4),
+-- so a bad saved config can never request a missing file like OOT\5.wav.
+function Get_clamped_sound(sound_set, sound)
+	local max_sound = ZL_SOUND_COUNTS[sound_set] or 1
+	sound = tonumber(sound) or 1
+	if (sound < 1) then sound = 1 elseif (sound > max_sound) then sound = max_sound end
+	return sound
+end
+
 -- Shared tooltip handlers used by every widget's OnEnter/OnLeave in the panel.
 -- Each widget sets self.title / self.tooltip in its OnLoad.
 function ZL_ShowTooltip(self)
@@ -278,11 +287,11 @@ function Dropdown_set_OnClick(self, arg1, arg2)
 	ZL_config[item_level]["set"] = ZL_SOUND_SET_IDS[selected] or 0
 
 	-- Clamp the selected sound if the new set offers fewer sounds (e.g. OOT has 4)
-	local max_sound = ZL_SOUND_COUNTS[selected] or 1
-	if (ZL_config[item_level]["sound"] > max_sound) then
-		ZL_config[item_level]["sound"] = max_sound
+	local clamped = Get_clamped_sound(selected, ZL_config[item_level]["sound"])
+	if (ZL_config[item_level]["sound"] ~= clamped) then
+		ZL_config[item_level]["sound"] = clamped
 		obj = _G["dropdown_" .. item_level .. "loot_sound"]
-		UIDropDownMenu_SetText(obj, max_sound)
+		UIDropDownMenu_SetText(obj, clamped)
 	end
 
 	local index = QUALITY_INDEX[item_level]

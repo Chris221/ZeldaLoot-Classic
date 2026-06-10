@@ -33,6 +33,9 @@ function Play_zeldaSound(index, sound_file)
 	local sound_channel = Get_sound_channel()
 	local warning_text = ""
 
+	-- Defensive: never request a sound the active set doesn't ship
+	sound_file = Get_clamped_sound(sound_set, sound_file)
+
 	if (ZL_soundHandle ~= 0 and ZL_soundHandle ~= nil) then
 		if (ZL_debug_bool) then
 			ZL_Print(ZL_STOPPING_SOUND .. " " .. ZL_soundHandle)
