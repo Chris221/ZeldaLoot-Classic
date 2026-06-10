@@ -41,10 +41,14 @@ function Play_zeldaSound(index, sound_file)
 			ZL_Print(ZL_STOPPING_SOUND .. " " .. ZL_soundHandle)
 		end
 		StopSound(ZL_soundHandle, 0)
-		-- Restore before re-saving the original for the new sound, so a rapid
-		-- re-trigger never saves an already-scaled value as the "original".
-		Restore_sound_volume()
 	end
+
+	-- Restore before re-saving the original for the new sound, so a rapid
+	-- re-trigger never saves an already-scaled value as the "original". Runs
+	-- outside the handle guard because a failed PlaySoundFile (e.g. muted
+	-- channel) leaves no handle, and the stale timer would otherwise restore
+	-- full volume mid-playback of the next sound.
+	Restore_sound_volume()
 
 	if (ZL_warning_bool) then
 		warning_text = "|cffffff00" .. ZL_WARNING .. "|r "
