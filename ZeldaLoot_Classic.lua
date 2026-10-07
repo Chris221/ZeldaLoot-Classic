@@ -63,11 +63,18 @@ function Play_zeldaSound(index, sound_file)
 
 	Update_config(false)
 
-	-- Temporarily scale the channel volume for this playback (no-op at 100%)
+	-- At 0% there is nothing to hear, so don't play at all rather than muting
+	-- the whole channel for the length of the sound
 	local volume = Get_sound_volume()
+	if (volume == 0) then
+		return
+	end
+
+	-- Temporarily scale the channel volume for this playback (no-op at 100%).
+	-- Restore_sound_volume above has already cleared any previous scaling.
 	if (volume < 100) then
 		local cvar = CHANNEL_CVARS[sound_channel]
-		if (cvar and ZL_volume_restore == nil) then
+		if (cvar) then
 			local original = GetCVar(cvar)
 			local scaled = (tonumber(original) or 1) * volume / 100
 			SetCVar(cvar, tostring(scaled))
