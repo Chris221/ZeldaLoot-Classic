@@ -14,15 +14,25 @@ local CHANNEL_CVARS = {
 	Dialog   = "Sound_DialogVolume",
 }
 
--- nil when idle, else { cvar = <name>, original = <string value> }
+-- nil when idle, else { cvar = <name>, original = <string value>, scaled = <number> }.
+-- Mirrored into ZL_config.volume_restore so a session that ends before the
+-- restore timer fires is put right on the next load.
 local ZL_volume_restore = nil
 -- bumped on every scaled playback so only the latest timer restores
 local ZL_volume_token = 0
 
+-- Puts the channel back to its pre-scaling value, but only if it still holds
+-- the value we set: a change the player made meanwhile (e.g. in Blizzard's
+-- Sound settings) wins and is kept.
 local function Restore_sound_volume()
-	if (ZL_volume_restore ~= nil) then
-		SetCVar(ZL_volume_restore.cvar, ZL_volume_restore.original)
+	local pending = ZL_volume_restore or (ZL_config and ZL_config["volume_restore"])
+	if (pending ~= nil) then
+		local current = tonumber(GetCVar(pending.cvar))
+		if (current and math.abs(current - pending.scaled) < 0.001) then
+			SetCVar(pending.cvar, pending.original)
+		end
 		ZL_volume_restore = nil
+		if (ZL_config) then ZL_config["volume_restore"] = nil end
 	end
 end
 
@@ -62,8 +72,10 @@ function Play_zeldaSound(index, sound_file)
 		local cvar = CHANNEL_CVARS[sound_channel]
 		if (cvar and ZL_volume_restore == nil) then
 			local original = GetCVar(cvar)
-			ZL_volume_restore = { cvar = cvar, original = original }
-			SetCVar(cvar, tostring((tonumber(original) or 1) * volume / 100))
+			local scaled = (tonumber(original) or 1) * volume / 100
+			ZL_volume_restore = { cvar = cvar, original = original, scaled = scaled }
+			ZL_config["volume_restore"] = ZL_volume_restore
+			SetCVar(cvar, tostring(scaled))
 
 			ZL_volume_token = ZL_volume_token + 1
 			local myToken = ZL_volume_token
@@ -297,6 +309,8 @@ function ZeldaFrame_OnEvent(self, event, ...)
 		end
 
 		Update_config(false)
+		-- A previous session may have ended with the channel still scaled
+		Restore_sound_volume()
 		ZL_Print(ZL_AddonVersion .. ZL_LOADED)
 		ZL_Print(ZL_LOADED_TEXT_1)
 		ZL_Print(ZL_LOADED_TEXT_2)
@@ -412,7 +426,7 @@ function Reset_config(print_text)
 		settings = {
 			ext = "wav",
 			channel = "SFX",
-			volume = 100
+			volume = ZL_DEFAULT_VOLUME
 		},
 
 		version = ZL_CONFIG_VERSION

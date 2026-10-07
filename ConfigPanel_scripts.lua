@@ -11,7 +11,6 @@ local function Migrate_config()
 		ZL_config["settings"] = ZL_config["settings"] or { ext = "wav", channel = "SFX" }
 		ZL_config["settings"]["ext"] = ZL_config["settings"]["ext"] or "wav"
 		ZL_config["settings"]["channel"] = ZL_config["settings"]["channel"] or "SFX"
-		ZL_config["settings"]["volume"] = ZL_config["settings"]["volume"] or 100
 
 		local defaults = { green = 1, blue = 2, purple = 3, orange = 4 }
 		for group, default_sound in pairs(defaults) do
@@ -30,7 +29,7 @@ local function Migrate_config()
 
 	if config_version < 2 then
 		ZL_config["settings"] = ZL_config["settings"] or {}
-		ZL_config["settings"]["volume"] = ZL_config["settings"]["volume"] or 100
+		ZL_config["settings"]["volume"] = ZL_config["settings"]["volume"] or ZL_DEFAULT_VOLUME
 
 		ZL_config["version"] = 2
 	end
@@ -157,7 +156,7 @@ end
 
 function Get_sound_volume()
 	local v = tonumber(ZL_config['settings'].volume)
-	if (not v) then return 100 end
+	if (not v) then return ZL_DEFAULT_VOLUME end
 	if (v < 0) then v = 0 elseif (v > 100) then v = 100 end
 	return v
 end
@@ -381,10 +380,10 @@ function Slider_volume_Show(self)
 end
 
 function Slider_volume_OnValueChanged(self, value)
-	value = math.floor((tonumber(value) or 100) + 0.5)
-	if (value < 0) then value = 0 elseif (value > 100) then value = 100 end
-
 	if (ZL_config ~= nil and ZL_config["settings"] ~= nil) then
+		-- Get_sound_volume does the clamping, so store the rounded value, read it back clamped
+		ZL_config["settings"]["volume"] = math.floor((tonumber(value) or ZL_DEFAULT_VOLUME) + 0.5)
+		value = Get_sound_volume()
 		ZL_config["settings"]["volume"] = value
 	end
 

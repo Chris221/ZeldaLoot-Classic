@@ -44,3 +44,6 @@ ZL_CONFIG_VERSION = 2
 -- Seconds to keep a temporarily-scaled channel volume before restoring it.
 -- Must comfortably exceed the longest sound in any set.
 ZL_VOLUME_RESTORE_DELAY = 5
+
+-- Volume setting (0-100%) for new or migrated configs
+ZL_DEFAULT_VOLUME = 100
