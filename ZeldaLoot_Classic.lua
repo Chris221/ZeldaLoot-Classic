@@ -134,25 +134,39 @@ local function Quality_sound_index(quality)
 end
 
 -- Loot detection is driven by Blizzard's own localized global strings rather than
--- hardcoded English text, so it stays correct in every locale. Each format string
--- (e.g. "You receive loot: %s.") is reduced to its longest literal run so we can do
--- a plain substring match against the CHAT_MSG_LOOT line regardless of where the
--- %s/%d placeholders sit in a given locale. The old locale keys are kept as a
--- fallback for the unlikely case a global string is missing on some client.
-local function Longest_literal(fmt)
+-- hardcoded English text, so it stays correct in every locale. Each "self" format
+-- string (e.g. "You receive loot: %s.") is reduced to one literal run that is
+-- matched against the CHAT_MSG_LOOT line, wherever the %s/%d placeholders sit in a
+-- given locale. The old locale keys are kept as a fallback for the unlikely case a
+-- global string is missing on some client.
+--
+-- Another player's loot line often contains the self literal too (koKR self loot
+-- is "아이템을 획득했습니다: %s", party loot "%s 님이 아이템을 획득했습니다: %s"), so
+-- each literal also records where it must sit:
+--   "start" - the format opens with this literal, so the line must too;
+--   "link"  - the format opens with the item placeholder, so the line must open
+--             with an item link (another player's line opens with their name);
+--   nil     - plain substring match (locale fallbacks).
+local function Loot_literal(fmt)
 	if (not fmt) then return nil end
 
-	-- Replace format specifiers (%s, %d, %1$s, %2$d, %.2f, ...) with a separator,
-	-- then keep the longest remaining literal piece.
+	-- Replace format specifiers (%s, %d, %1$s, %2$d, %.2f, ...) with a separator.
 	local stripped = fmt:gsub("%%%d-%$?%-?%d*%.?%d*[%a]", "\1")
 	-- Grammar tokens are resolved by the client before the message is shown, so
 	-- they must never end up inside a literal: ruRU declension wrappers like
 	-- "|3-6(%s)" (the placeholder is already \1 here) and koKR particle tokens
-	-- like "|1을;를;". Tradeoff: on koKR the surviving literal is also a suffix
-	-- of the other-player loot format, so party loot may trigger too — substring
-	-- matching cannot disambiguate, and matching something beats silent failure.
+	-- like "|1을;를;".
 	stripped = stripped:gsub("|%d+%-%d+%(\1%)", "\1")
 	stripped = stripped:gsub("|%d+[^;]*;[^;]*;", "\1")
+
+	local leading = stripped:match("^([^\1]+)")
+	if (leading) then
+		leading = leading:gsub("%s+$", "")
+		if (leading ~= "") then
+			return { text = leading, anchor = "start" }
+		end
+	end
+
 	local longest = ""
 	for piece in string.gmatch(stripped, "[^\1]+") do
 		piece = piece:gsub("^%s+", ""):gsub("%s+$", "")
@@ -160,40 +174,50 @@ local function Longest_literal(fmt)
 	end
 
 	if (longest == "") then return nil end
-	return longest
+	return { text = longest, anchor = "link" }
 end
 
--- global_fmts: Blizzard format strings to derive literals from.
+-- global_fmts: Blizzard format strings to derive literals from. It may hold
+-- globals that are nil on some clients, so it carries its own count (n).
 -- fallback: a locale literal used ONLY if no global produced a literal.
 -- always: extra literal(s) always included (for cases with no global equivalent).
 local function Build_loot_match(global_fmts, fallback, always)
 	local literals = {}
-	for _, fmt in ipairs(global_fmts) do
-		local lit = Longest_literal(fmt)
+	for i = 1, global_fmts.n do
+		local lit = Loot_literal(global_fmts[i])
 		if (lit) then table.insert(literals, lit) end
 	end
 	if (#literals == 0 and fallback) then
-		table.insert(literals, fallback)
+		table.insert(literals, { text = fallback })
 	end
 	if (always) then
-		table.insert(literals, always)
+		table.insert(literals, { text = always })
 	end
 	return literals
 end
 
 local ZL_LOOT_MATCH = {
-	-- Items looted from a corpse/object (the always-on "active" category)
-	loot     = Build_loot_match({ LOOT_ITEM_SELF, LOOT_ITEM_SELF_MULTIPLE }, ZL_LOOTMESSAGE),
+	-- Items looted from a corpse/object or won with a bonus roll (the always-on
+	-- "active" category). The bonus-roll globals don't exist on every client.
+	loot     = Build_loot_match({ n = 4, LOOT_ITEM_SELF, LOOT_ITEM_SELF_MULTIPLE,
+		LOOT_ITEM_BONUS_ROLL_SELF, LOOT_ITEM_BONUS_ROLL_SELF_MULTIPLE }, ZL_LOOTMESSAGE),
 	-- Items produced by crafting / professions. ZL_CRAFTMESSAGE2 ("You receive
 	-- object") has no global equivalent, so it is always kept.
-	crafted  = Build_loot_match({ LOOT_ITEM_CREATED_SELF, LOOT_ITEM_CREATED_SELF_MULTIPLE }, ZL_CRAFTMESSAGE, ZL_CRAFTMESSAGE2),
-	-- Items pushed to your bags (quests, mail, trade, vendor, etc.)
-	received = Build_loot_match({ LOOT_ITEM_PUSHED_SELF, LOOT_ITEM_PUSHED_SELF_MULTIPLE }, ZL_RECEIVEMESSAGE),
+	crafted  = Build_loot_match({ n = 2, LOOT_ITEM_CREATED_SELF, LOOT_ITEM_CREATED_SELF_MULTIPLE }, ZL_CRAFTMESSAGE, ZL_CRAFTMESSAGE2),
+	-- Items pushed to your bags (quests, mail, trade, vendor, etc.). On koKR
+	-- these formats are identical to the loot ones, so there every received
+	-- item counts as looted and the Received toggle has no effect.
+	received = Build_loot_match({ n = 2, LOOT_ITEM_PUSHED_SELF, LOOT_ITEM_PUSHED_SELF_MULTIPLE }, ZL_RECEIVEMESSAGE),
 }
 
 local function Matches_loot(msg, literals)
 	for _, lit in ipairs(literals) do
-		if (string.find(msg, lit, 1, true)) then
+		local pos = string.find(msg, lit.text, 1, true)
+		if (pos and (
+			(lit.anchor == "start" and pos == 1) or
+			(lit.anchor == "link" and string.sub(msg, 1, 2) == "|c") or
+			lit.anchor == nil
+		)) then
 			return true
 		end
 	end
