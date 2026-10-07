@@ -248,60 +248,90 @@ end
 -- loot window instead: slot qualities are snapshotted on LOOT_OPENED, and a
 -- looted slot only plays if a secret loot message lands within
 -- ZL_SECRET_LOOT_WINDOW of it, so readable chat never plays a sound twice.
--- An ITEM_PUSH (an item entering the player's own bags) must land in the same
--- window, so a slot another player takes from a shared corpse stays silent.
--- Loot that skips the loot window (personal boss loot, crafts, quest
--- rewards) has nothing to read and stays silent while chat is secret.
+-- The slot must also be matched by an ITEM_PUSH (an item entering the
+-- player's own bags) with the same icon in that window, so a slot another
+-- player takes from a shared corpse stays silent even while the player loots
+-- something else. Loot that skips the loot window (personal boss loot,
+-- crafts, quest rewards) has nothing to read and stays silent while chat is
+-- secret.
 local ZL_SECRET_LOOT_WINDOW = 0.5
-local ZL_loot_slot_quality = {}
+local ZL_loot_slots = {} -- slot -> { quality = <enum>, icon = <fileID> }
 local ZL_last_secret_loot = nil -- GetTime() of the last secret CHAT_MSG_LOOT
-local ZL_last_item_push = nil -- GetTime() of the last ITEM_PUSH
-local ZL_pending_loot_index = nil -- best sound index looted in this window
-local ZL_pending_loot_time = 0
+local ZL_cleared_slots = {} -- { index, icon, time } cleared since the timer started
+local ZL_item_pushes = {} -- { icon, time } of recent ITEM_PUSH events
 
 local function Is_secret(value)
 	return issecretvalue ~= nil and issecretvalue(value)
 end
 
+local function Within_window(a, b)
+	return math.abs(a - b) <= ZL_SECRET_LOOT_WINDOW
+end
+
+local function Pushed_to_bags(cleared)
+	for _, push in ipairs(ZL_item_pushes) do
+		if (push.icon == cleared.icon and Within_window(push.time, cleared.time)) then
+			return true
+		end
+	end
+	return false
+end
+
+-- Auto-loot clears several slots at once; play only the best one that went
+-- into the player's own bags
 local function Play_pending_loot()
-	local index = ZL_pending_loot_index
-	ZL_pending_loot_index = nil
-	if (index and ZL_last_secret_loot and ZL_last_item_push and
-		math.abs(ZL_last_secret_loot - ZL_pending_loot_time) <= ZL_SECRET_LOOT_WINDOW and
-		math.abs(ZL_last_item_push - ZL_pending_loot_time) <= ZL_SECRET_LOOT_WINDOW) then
-		Play_zeldaSound(index, ZL_config[ZL_QUALITY_GROUPS[index]]["sound"])
+	local best = nil
+	if (ZL_last_secret_loot and Within_window(ZL_last_secret_loot, ZL_cleared_slots[1].time)) then
+		for _, cleared in ipairs(ZL_cleared_slots) do
+			if (Pushed_to_bags(cleared) and (best == nil or cleared.index > best)) then
+				best = cleared.index
+			end
+		end
+	end
+	wipe(ZL_cleared_slots)
+	wipe(ZL_item_pushes)
+	if (best) then
+		Play_zeldaSound(best, ZL_config[ZL_QUALITY_GROUPS[best]]["sound"])
 	end
 end
 
 -- Every value read from the client is checked with Is_secret before it is
 -- compared, indexed or looped on, since any of those throws on a secret.
 local function Snapshot_loot_window()
-	wipe(ZL_loot_slot_quality)
+	wipe(ZL_loot_slots)
 	local count = GetNumLootItems()
 	if (Is_secret(count)) then return end
 	for slot = 1, count do
-		local quality = select(5, GetLootSlotInfo(slot))
-		if (not Is_secret(quality) and quality ~= nil) then
-			ZL_loot_slot_quality[slot] = quality
+		local icon, _, _, _, quality = GetLootSlotInfo(slot)
+		if (not Is_secret(quality) and not Is_secret(icon) and quality ~= nil and icon ~= nil) then
+			ZL_loot_slots[slot] = { quality = quality, icon = icon }
 		end
 	end
 end
 
 local function On_loot_slot_cleared(slot)
 	if (Is_secret(slot)) then return end
-	local quality = ZL_loot_slot_quality[slot]
-	ZL_loot_slot_quality[slot] = nil
-	local index = quality and Quality_sound_index(quality)
+	local info = ZL_loot_slots[slot]
+	ZL_loot_slots[slot] = nil
+	local index = info and Quality_sound_index(info.quality)
 	if (not index) then return end
 
-	-- Auto-loot clears several slots at once; play only the best one
-	if (ZL_pending_loot_index == nil) then
-		ZL_pending_loot_time = GetTime()
+	if (#ZL_cleared_slots == 0) then
 		C_Timer.After(ZL_SECRET_LOOT_WINDOW, Play_pending_loot)
 	end
-	if (ZL_pending_loot_index == nil or index > ZL_pending_loot_index) then
-		ZL_pending_loot_index = index
+	table.insert(ZL_cleared_slots, { index = index, icon = info.icon, time = GetTime() })
+end
+
+local function On_item_push(icon)
+	if (Is_secret(icon) or icon == nil) then return end
+	-- Drop pushes too old to match anything so the list can't grow unbounded
+	local now = GetTime()
+	for i = #ZL_item_pushes, 1, -1 do
+		if (not Within_window(ZL_item_pushes[i].time, now)) then
+			table.remove(ZL_item_pushes, i)
+		end
 	end
+	table.insert(ZL_item_pushes, { icon = icon, time = now })
 end
 
 function ZeldaFrame_OnEvent(self, event, ...)
@@ -363,7 +393,7 @@ function ZeldaFrame_OnEvent(self, event, ...)
 	end
 
 	if (event == "ITEM_PUSH") then
-		if (issecretvalue) then ZL_last_item_push = GetTime() end
+		if (issecretvalue) then On_item_push(select(2, ...)) end
 		return
 	end
 
