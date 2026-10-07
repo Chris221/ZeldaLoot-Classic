@@ -2,6 +2,13 @@
 
 ## Changes
 ### Changes in 2.4.0
+- Added support for World of Warcraft: Forever
+- Updated for Midnight (Retail 12.1.0)
+- Updated for Mists of Pandaria Classic (5.5.4)
+- Updated for The Burning Crusade Classic Anniversary (2.5.6)
+- Updated for Classic Era (1.15.9)
+- Updated for Wrath of the Lich King Titan Reforged
+- Fixed a Lua error on Midnight when looting during boss encounters, Mythic+ and PvP, where loot messages are hidden from addons; items looted from the loot window still play their sound there (items that go straight to your bags stay silent while messages are hidden)
 - Added an adjustable volume setting (0-100%) with a slider in the config panel; it temporarily scales the chosen audio channel while a sound plays, then restores it
 - Loot detection now uses Blizzard's own localized strings, so it works in every language (including Korean and Russian grammar forms) instead of only English clients
 - `/zl reset` now refreshes the config panel immediately if it is open

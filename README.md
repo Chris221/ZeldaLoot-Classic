@@ -3,7 +3,7 @@ Based on [ZeldaLoot Extended](https://www.curseforge.com/wow/addons/zeldaloot)�
 
 ## New features summary
 ### Version Support
-We now support all client versions.
+We support every live client: Retail (Midnight), World of Warcraft: Forever, Mists of Pandaria Classic, Cataclysm Classic, Wrath of the Lich King Classic and Titan Reforged, The Burning Crusade Classic Anniversary, and Classic Era (including Hardcore and Season of Discovery).
 
 ### Sounds
 4 new sounds for different item qualities, from uncommon (green) to legendary (orange). Note inherited objects (linked to account) can play sound when received too (same as for legendaries items). Sounds provided by: Darth Killer, from Zelda Ocarina of Time (original from games), and Chrisgess, from *Zelda Ocarina of Time Orchestrated* album [www.zreomusic.com](http://zreomusic.com/), even higher sound quality!
@@ -19,6 +19,22 @@ English, French, Spanish, German, and Russian languages are supported, and you c
 **If you are using another language please let me know to ensure you are receiving the notifications and not missing the sound effects**
 
 ## Changes
+### Changes in 2.4.0
+- Added support for World of Warcraft: Forever
+- Updated for Midnight (Retail 12.1.0)
+- Updated for Mists of Pandaria Classic (5.5.4)
+- Updated for The Burning Crusade Classic Anniversary (2.5.6)
+- Updated for Classic Era (1.15.9)
+- Updated for Wrath of the Lich King Titan Reforged
+- Fixed a Lua error on Midnight when looting during boss encounters, Mythic+ and PvP, where loot messages are hidden from addons; items looted from the loot window still play their sound there (items that go straight to your bags stay silent while messages are hidden)
+- Added an adjustable volume setting (0-100%) with a slider in the config panel; it temporarily scales the chosen audio channel while a sound plays, then restores it
+- Loot detection now uses Blizzard's own localized strings, so it works in every language (including Korean and Russian grammar forms) instead of only English clients
+- `/zl reset` now refreshes the config panel immediately if it is open
+- Fixed `/zl dump` throwing a Lua error
+- Sound selection is now clamped to what the chosen sound set actually contains (e.g. OOT has 4 sounds)
+- Scripts no longer load twice on login
+- Removed dead code and duplicated logic; fixed TOC metadata (website link, BugGrabber name)
+
 ### Changes in 2.3.0
 - Added support for Midnight (Retail 12.0.1)
 - Added support for Mists of Pandaria Classic (5.5.3)
