@@ -29,7 +29,7 @@ function getFlavorMetadata(tocFile, flavor) {
   const interfacePattern = /## Interface: (\d+)(?:, (\d+))?(?:, (\d+))?(?:, (\d+))?(?:, (\d+))?(?:, (\d+))?/;
   return [
     ...content.match(interfacePattern).map((x, index) => index > 0 ? parseInt(x) : null),
-  ].filter(x => x).map(interface => ({ flavor: interface === 38000 ? 'titan' : flavor, interface }));
+  ].filter(x => x).map(interface => ({ flavor: interface >= 38000 && interface < 39000 ? 'titan' : flavor, interface }));
 }
 
 const dir = 'build/';
@@ -49,7 +49,7 @@ var release_data = {
         getFlavorMetadata("ZeldaLoot_Classic_Wrath.toc", "wrath"),
         getFlavorMetadata("ZeldaLoot_Classic_Cata.toc", "cata"),
         getFlavorMetadata("ZeldaLoot_Classic_Mists.toc", "mists"),
-        getFlavorMetadata("ZeldaLoot_Classic_Mainline.toc", "mainline")
+        getFlavorMetadata("ZeldaLoot_Classic_Mainline.toc", "mainline"),
       ].flat().sort((a, b) => a.interface - b.interface)
     }
   ],
