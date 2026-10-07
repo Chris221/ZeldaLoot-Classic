@@ -196,19 +196,20 @@ end
 
 -- global_fmts: Blizzard format strings to derive literals from. It may hold
 -- globals that are nil on some clients, so it carries its own count (n).
--- fallback: a locale literal used ONLY if no global produced a literal.
--- always: extra literal(s) always included (for cases with no global equivalent).
-local function Build_loot_match(global_fmts, fallback, always)
+-- ...: locale literals used ONLY if no global produced a literal. They are
+-- plain substrings, so they must never be matched alongside the globals:
+-- e.g. frFR "Vous recevez l'objet" would also match received items.
+local function Build_loot_match(global_fmts, ...)
 	local literals = {}
 	for i = 1, global_fmts.n do
 		local lit = Loot_literal(global_fmts[i])
 		if (lit) then table.insert(literals, lit) end
 	end
-	if (#literals == 0 and fallback) then
-		table.insert(literals, { text = fallback })
-	end
-	if (always) then
-		table.insert(literals, { text = always })
+	if (#literals == 0) then
+		for i = 1, select("#", ...) do
+			local fallback = select(i, ...)
+			if (fallback) then table.insert(literals, { text = fallback }) end
+		end
 	end
 	return literals
 end
@@ -218,8 +219,7 @@ local ZL_LOOT_MATCH = {
 	-- "active" category). The bonus-roll globals don't exist on every client.
 	loot     = Build_loot_match({ n = 4, LOOT_ITEM_SELF, LOOT_ITEM_SELF_MULTIPLE,
 		LOOT_ITEM_BONUS_ROLL_SELF, LOOT_ITEM_BONUS_ROLL_SELF_MULTIPLE }, ZL_LOOTMESSAGE),
-	-- Items produced by crafting / professions. ZL_CRAFTMESSAGE2 ("You receive
-	-- object") has no global equivalent, so it is always kept.
+	-- Items produced by crafting / professions
 	crafted  = Build_loot_match({ n = 2, LOOT_ITEM_CREATED_SELF, LOOT_ITEM_CREATED_SELF_MULTIPLE }, ZL_CRAFTMESSAGE, ZL_CRAFTMESSAGE2),
 	-- Items pushed to your bags (quests, mail, trade, vendor, etc.). On koKR
 	-- these formats are identical to the loot ones, so there every received
