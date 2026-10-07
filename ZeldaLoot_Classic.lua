@@ -231,11 +231,14 @@ end
 -- loot window instead: slot qualities are snapshotted on LOOT_OPENED, and a
 -- looted slot only plays if a secret loot message lands within
 -- ZL_SECRET_LOOT_WINDOW of it, so readable chat never plays a sound twice.
+-- An ITEM_PUSH (an item entering the player's own bags) must land in the same
+-- window, so a slot another player takes from a shared corpse stays silent.
 -- Loot that skips the loot window (personal boss loot, crafts, quest
 -- rewards) has nothing to read and stays silent while chat is secret.
 local ZL_SECRET_LOOT_WINDOW = 0.5
 local ZL_loot_slot_quality = {}
 local ZL_last_secret_loot = nil -- GetTime() of the last secret CHAT_MSG_LOOT
+local ZL_last_item_push = nil -- GetTime() of the last ITEM_PUSH
 local ZL_pending_loot_index = nil -- best sound index looted in this window
 local ZL_pending_loot_time = 0
 
@@ -246,8 +249,9 @@ end
 local function Play_pending_loot()
 	local index = ZL_pending_loot_index
 	ZL_pending_loot_index = nil
-	if (index and ZL_last_secret_loot and
-		math.abs(ZL_last_secret_loot - ZL_pending_loot_time) <= ZL_SECRET_LOOT_WINDOW) then
+	if (index and ZL_last_secret_loot and ZL_last_item_push and
+		math.abs(ZL_last_secret_loot - ZL_pending_loot_time) <= ZL_SECRET_LOOT_WINDOW and
+		math.abs(ZL_last_item_push - ZL_pending_loot_time) <= ZL_SECRET_LOOT_WINDOW) then
 		Play_zeldaSound(index, ZL_config[ZL_QUALITY_GROUPS[index]]["sound"])
 	end
 end
@@ -338,6 +342,11 @@ function ZeldaFrame_OnEvent(self, event, ...)
 
 	if (event == "LOOT_SLOT_CLEARED") then
 		if (issecretvalue) then On_loot_slot_cleared(arg1) end
+		return
+	end
+
+	if (event == "ITEM_PUSH") then
+		if (issecretvalue) then ZL_last_item_push = GetTime() end
 		return
 	end
 
