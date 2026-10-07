@@ -2,21 +2,25 @@
   "releases": [
     {
       "name": "ZeldaLoot Classic",
-      "version": "v2.3.0",
-      "filename": "ZeldaLoot_Classic_v2.3.0.zip",
+      "version": "v2.4.0",
+      "filename": "ZeldaLoot_Classic_v2.4.0.zip",
       "nolib": false,
       "metadata": [
-        {
-          "flavor": "classic",
-          "interface": 11507
-        },
         {
           "flavor": "classic",
           "interface": 11508
         },
         {
+          "flavor": "classic",
+          "interface": 11509
+        },
+        {
+          "flavor": "forever",
+          "interface": 16001
+        },
+        {
           "flavor": "bcc",
-          "interface": 20505
+          "interface": 20506
         },
         {
           "flavor": "wrath",
@@ -24,7 +28,7 @@
         },
         {
           "flavor": "titan",
-          "interface": 38000
+          "interface": 38002
         },
         {
           "flavor": "cata",
@@ -32,23 +36,15 @@
         },
         {
           "flavor": "mists",
-          "interface": 50502
-        },
-        {
-          "flavor": "mists",
-          "interface": 50503
+          "interface": 50504
         },
         {
           "flavor": "mainline",
-          "interface": 110207
+          "interface": 120100
         },
         {
           "flavor": "mainline",
-          "interface": 120000
-        },
-        {
-          "flavor": "mainline",
-          "interface": 120001
+          "interface": 120105
         }
       ]
     }
