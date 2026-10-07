@@ -1,0 +1,41 @@
+name: Update TOC Interface versions
+
+on:
+  schedule:
+    - cron: 0 12 * * *
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: p3lim/toc-interface-updater@v4
+        with:
+          ptr: true
+
+      # The updater picks a flavor from the filename suffix, which misfires on two of our files:
+      # - ZeldaLoot_Classic.toc ends in "_Classic", so it gets the Mists Classic version.
+      #   This fallback TOC mirrors Mainline, so copy Mainline's versions into it. Restore it
+      #   first, since the updater's rewrite also strips this file's CRLF line ending.
+      # - Its Camelot pattern never matches "_Camelot.toc", so that file gets retail versions.
+      #   There is no live Camelot build to read from, so keep it as committed.
+      - name: Correct files the updater misreads
+        run: |
+          git checkout -- ZeldaLoot_Classic_Camelot.toc ZeldaLoot_Classic.toc
+          versions="$(sed -nE 's/^## Interface:\s*([0-9, ]*[0-9]).*/\1/p' ZeldaLoot_Classic_Mainline.toc)"
+          sed -i -E "s/^(## Interface:)\s*[0-9, ]*[0-9]/\1 ${versions}/" ZeldaLoot_Classic.toc
+          git diff --stat
+
+      - uses: peter-evans/create-pull-request@v8
+        with:
+          title: Update Interface versions
+          commit-message: Update Interface versions
+          body: Automated bump from Blizzard's live/PTR version servers. Test in-game before releasing.
+          branch: interface-version
+          delete-branch: true
