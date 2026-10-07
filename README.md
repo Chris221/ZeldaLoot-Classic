@@ -34,6 +34,7 @@ If you play in a language that isn't listed, or sounds aren't playing for you in
 - Fixed heirlooms not being detected on Retail; artifacts now play the legendary (orange) sound
 - Fixed a Lua error on Midnight when looting during boss encounters, Mythic+ and PvP, where loot messages are hidden from addons; items you take from the loot window still play their sound there (items that go straight to your bags stay silent while messages are hidden)
 - Bonus-roll loot plays its sound again
+- Turning off "Received" now silences received items on French, Spanish and Portuguese clients even with "Crafted" on (they were being mistaken for crafted items)
 - Added an adjustable volume setting (0-100%) with a slider in the config panel; it temporarily scales the chosen audio channel while a sound plays, then restores it without overriding any volume change you make in the meantime
 - Loot detection now uses Blizzard's own localized strings, so it works in every language (including Korean and Russian grammar forms) instead of only English clients, and other players' loot no longer triggers your sounds on Korean clients
 - The config panel's dropdowns are only built while the panel is open, avoiding interference with Blizzard's own dropdowns
