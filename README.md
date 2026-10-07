@@ -38,6 +38,7 @@ If you play in a language that isn't listed, or sounds aren't playing for you in
 - Added an adjustable volume setting (0-100%) with a slider in the config panel; it temporarily scales the chosen audio channel while a sound plays, then restores it without overriding any volume change you make in the meantime
 - Loot detection now uses Blizzard's own localized strings, so it works in every language (including Korean and Russian grammar forms) instead of only English clients, and other players' loot no longer triggers your sounds on Korean clients
 - The config panel's dropdowns are only built while the panel is open, avoiding interference with Blizzard's own dropdowns
+- `/zl` opens the ZeldaLoot settings page again instead of the game's Controls page
 - `/zl reset` now refreshes the config panel immediately if it is open
 - Fixed `/zl dump` throwing a Lua error
 - Sound selection is now clamped to what the chosen sound set actually contains (e.g. OOT has 4 sounds)
