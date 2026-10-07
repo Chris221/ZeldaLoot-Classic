@@ -1,4 +1,4 @@
-## Interface: 11509, 11508
+## Interface: 11509
 ## X-Min-Interface: 11503
 ## Title: |cff00ffffZeldaLoot Classic
 ## Notes: Plays a different Legend of Zelda Item Sound when you loot a legendary (orange), epic (purple), rare (blue) or non common (green) item. Based on ZeldaLoot from Rickyk.
