@@ -573,8 +573,10 @@
 						self:SetMinMaxValues(0, 100)
 						self:SetValueStep(5)
 						self:SetObeyStepOnDrag(true)
-						_G[self:GetName() .. "Low"]:SetText("0")
-						_G[self:GetName() .. "High"]:SetText("100")
+						-- OptionsSliderTemplate is deprecated on Retail; tolerate missing labels
+						local low, high = _G[self:GetName() .. "Low"], _G[self:GetName() .. "High"]
+						if (low) then low:SetText("0") end
+						if (high) then high:SetText("100") end
 						self.title = ZL_VOLUME;
 						self.tooltip = ZL_XML_TOOLTIP_VOLUME;
 					</OnLoad>

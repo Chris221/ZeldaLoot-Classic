@@ -164,11 +164,15 @@ function Get_sound_channel()
 	return valid_channels[sound_channel] and sound_channel or "SFX"
 end
 
-function Get_sound_volume()
-	local v = tonumber(ZL_config['settings'].volume)
+-- Rounds and clamps a volume to a whole 0-100 percentage
+function Clamp_volume(v)
+	v = tonumber(v)
 	if (not v) then return ZL_DEFAULT_VOLUME end
-	if (v < 0) then v = 0 elseif (v > 100) then v = 100 end
-	return v
+	return math.max(0, math.min(100, math.floor(v + 0.5)))
+end
+
+function Get_sound_volume()
+	return Clamp_volume(ZL_config['settings'].volume)
 end
 
 -- Clamp a sound index to what the given set actually ships (e.g. OOT has 4),
@@ -223,6 +227,8 @@ function Dropdown_width_Initialize(self)
 	UIDropDownMenu_SetWidth(self, 90)
 end
 
+local QUALITY_INDEX = { green = 2, blue = 3, purple = 4, orange = 5 }
+
 function Dropdown_set_Show(self)
 	local selected
 	local name = self:GetName()
@@ -234,7 +240,7 @@ function Dropdown_set_Show(self)
 	elseif (name == 'dropdown_orangeloot_set') then item_level = 'orange'
 	end
 
-	selected = ZL_SOUND_SETS[ZL_config[item_level]["set"]] or 'ALTTP'
+	selected = Get_sound_set(QUALITY_INDEX[item_level])
 
 	UIDropDownMenu_SetText(self, selected)
 
@@ -265,9 +271,11 @@ function Dropdown_sound_Show(self)
 	elseif (name == 'dropdown_orangeloot_sound') then item_level = 'orange'
 	end
 
-	UIDropDownMenu_SetText(self, ZL_config[item_level]["sound"])
+	sound_set = Get_sound_set(QUALITY_INDEX[item_level])
+	-- Show the sound that actually plays (a set may offer fewer sounds than saved)
+	selected = Get_clamped_sound(sound_set, ZL_config[item_level]["sound"])
 
-	sound_set = ZL_SOUND_SETS[ZL_config[item_level]["set"]] or 'ALTTP'
+	UIDropDownMenu_SetText(self, selected)
 
 	local info
 	local count = ZL_SOUND_COUNTS[sound_set] or 0
@@ -276,7 +284,7 @@ function Dropdown_sound_Show(self)
 		info = UIDropDownMenu_CreateInfo()
 		info.text = v
 		info.value = v
-		if (ZL_config[item_level]["sound"] == v) then info.checked = true
+		if (selected == v) then info.checked = true
 		else info.checked = false
 		end
 		info.arg1 = self
@@ -285,8 +293,6 @@ function Dropdown_sound_Show(self)
 		UIDropDownMenu_AddButton(info)
 	end
 end
-
-local QUALITY_INDEX = { green = 2, blue = 3, purple = 4, orange = 5 }
 
 function Dropdown_set_OnClick(self, arg1, arg2)
 	local item_level, selected, obj
@@ -391,9 +397,7 @@ end
 
 function Slider_volume_OnValueChanged(self, value)
 	if (ZL_config ~= nil and ZL_config["settings"] ~= nil) then
-		-- Get_sound_volume does the clamping, so store the rounded value, read it back clamped
-		ZL_config["settings"]["volume"] = math.floor((tonumber(value) or ZL_DEFAULT_VOLUME) + 0.5)
-		value = Get_sound_volume()
+		value = Clamp_volume(value)
 		ZL_config["settings"]["volume"] = value
 	end
 
