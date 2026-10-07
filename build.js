@@ -50,6 +50,7 @@ var release_data = {
         getFlavorMetadata("ZeldaLoot_Classic_Cata.toc", "cata"),
         getFlavorMetadata("ZeldaLoot_Classic_Mists.toc", "mists"),
         getFlavorMetadata("ZeldaLoot_Classic_Mainline.toc", "mainline"),
+        getFlavorMetadata("ZeldaLoot_Classic_Camelot.toc", "forever")
       ].flat().sort((a, b) => a.interface - b.interface)
     }
   ],
