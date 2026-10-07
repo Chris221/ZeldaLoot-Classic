@@ -14,9 +14,13 @@ The audio plays on the SFX audio channel.
 Configure which sounds you want and when: loot from enemies, received (letterbox, seller, etc), crafted (professions and some special items like Eternal Water). Settings will be saved between sessions for all your characters. Type **/zeldaloot** or **/zl** for the settings menu.
 
 ### Localization
-English, French, German, Spanish (Spain and Mexico), Italian, Portuguese (Brazil), Russian, Korean, Simplified Chinese, and Traditional Chinese are supported, and you can write your own, see files in **\Locale** subdirectory
+English, French, German, Spanish (Spain and Mexico), Italian, Portuguese (Brazil), Russian, Korean, Simplified Chinese, and Traditional Chinese are supported. Loot detection uses the game's own text, so sounds work in every language; the translations only cover the settings panel, tooltips and chat messages.
 
-**If you are using another language please let me know to ensure you are receiving the notifications and not missing the sound effects**
+**Translations welcome!** If you're a native speaker and spot a wording that's awkward or wrong, or a line that's still in English, please help improve it:
+- Edit your language's file in the [**Locale**](https://github.com/Chris221/ZeldaLoot-Classic/tree/main/Locale) folder (e.g. `ZL_deDE.lua`) and open a pull request, or
+- [Open an issue](https://github.com/Chris221/ZeldaLoot-Classic/issues) with the corrected text, or leave a comment on CurseForge.
+
+If you play in a language that isn't listed, or sounds aren't playing for you in your language, please let me know.
 
 ## Changes
 ### Changes in 2.4.0
