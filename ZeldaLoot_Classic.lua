@@ -73,9 +73,12 @@ function Play_zeldaSound(index, sound_file)
 		if (cvar and ZL_volume_restore == nil) then
 			local original = GetCVar(cvar)
 			local scaled = (tonumber(original) or 1) * volume / 100
+			SetCVar(cvar, tostring(scaled))
+			-- Remember what the client actually stored (it may round), so the
+			-- "still untouched?" check in Restore_sound_volume can match it
+			scaled = tonumber(GetCVar(cvar)) or scaled
 			ZL_volume_restore = { cvar = cvar, original = original, scaled = scaled }
 			ZL_config["volume_restore"] = ZL_volume_restore
-			SetCVar(cvar, tostring(scaled))
 
 			ZL_volume_token = ZL_volume_token + 1
 			local myToken = ZL_volume_token
