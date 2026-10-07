@@ -87,13 +87,51 @@ function Play_zeldaSound(index, sound_file)
 	end
 end
 
-local ZL_QUALITY_COLORS = {
-	["cff1eff00"] = { quality = 3, group = "green" },   -- Uncommon (green)
-	["cff0070dd"] = { quality = 4, group = "blue" },    -- Rare (blue)
-	["cffa335ee"] = { quality = 5, group = "purple" },  -- Epic (purple)
-	["cffff8000"] = { quality = 6, group = "orange" },  -- Legendary (orange)
-	["cffe6cc80"] = { quality = 6, group = "orange", inherited = true }, -- Heirloom
+-- Item quality enum values with special handling (2-5 map straight to a group
+-- through ZL_QUALITY_GROUPS).
+local ZL_ARTIFACT_QUALITY = 6
+local ZL_HEIRLOOM_QUALITY = 7
+
+-- Link colors on clients that still color item links with a hex code.
+local ZL_LEGACY_QUALITY_COLORS = {
+	["cff1eff00"] = 2, -- Uncommon
+	["cff0070dd"] = 3, -- Rare
+	["cffa335ee"] = 4, -- Epic
+	["cffff8000"] = 5, -- Legendary
+	["cffe6cc80"] = ZL_HEIRLOOM_QUALITY, -- Heirloom on Classic flavors
+	["cff00ccff"] = ZL_HEIRLOOM_QUALITY, -- Heirloom on modern clients
 }
+
+-- Since Retail 11.1.5 (and on Forever) item links carry the quality enum
+-- directly as "|cnIQ<n>" so players can recolor qualities; older clients
+-- use a fixed hex color.
+local function Chat_quality(msg)
+	local quality = tonumber(msg:match("|cnIQ(%d+)"))
+	if (quality) then return quality end
+	for colorCode, legacy_quality in pairs(ZL_LEGACY_QUALITY_COLORS) do
+		if (string.find(msg, colorCode, 1, true)) then
+			return legacy_quality
+		end
+	end
+	return nil
+end
+
+-- Item quality -> Play_zeldaSound index, applying the Inherited and
+-- per-quality on/off settings. nil means no sound. Shared by the chat path
+-- and the loot-window fallback so both classify items the same way.
+local function Quality_sound_index(quality)
+	if (quality == ZL_HEIRLOOM_QUALITY) then
+		if (not ZL_config["inherited"]["include"]) then return nil end
+		quality = 5 -- heirlooms use the orange sound
+	elseif (quality == ZL_ARTIFACT_QUALITY) then
+		quality = 5 -- artifacts use the orange sound
+	end
+	local group = ZL_QUALITY_GROUPS[quality]
+	if (group and ZL_config[group]["active"]) then
+		return quality
+	end
+	return nil
+end
 
 -- Loot detection is driven by Blizzard's own localized global strings rather than
 -- hardcoded English text, so it stays correct in every locale. Each format string
@@ -172,7 +210,6 @@ end
 -- Loot that skips the loot window (personal boss loot, crafts, quest
 -- rewards) has nothing to read and stays silent while chat is secret.
 local ZL_SECRET_LOOT_WINDOW = 0.5
-local ZL_HEIRLOOM_QUALITY = 7
 local ZL_loot_slot_quality = {}
 local ZL_last_secret_loot = nil -- GetTime() of the last secret CHAT_MSG_LOOT
 local ZL_pending_loot_index = nil -- best sound index looted in this window
@@ -180,20 +217,6 @@ local ZL_pending_loot_time = 0
 
 local function Is_secret(value)
 	return issecretvalue ~= nil and issecretvalue(value)
-end
-
--- Item quality -> Play_zeldaSound index, applying the Inherited and per-quality
--- on/off settings. nil means no sound.
-local function Loot_window_sound_index(quality)
-	if (quality == ZL_HEIRLOOM_QUALITY) then
-		if (not ZL_config["inherited"]["include"]) then return nil end
-		quality = 5 -- heirlooms use the orange sound, as in the chat path
-	end
-	local group = ZL_QUALITY_GROUPS[quality]
-	if (group and ZL_config[group]["active"]) then
-		return quality
-	end
-	return nil
 end
 
 local function Play_pending_loot()
@@ -223,7 +246,7 @@ local function On_loot_slot_cleared(slot)
 	if (Is_secret(slot)) then return end
 	local quality = ZL_loot_slot_quality[slot]
 	ZL_loot_slot_quality[slot] = nil
-	local index = quality and Loot_window_sound_index(quality)
+	local index = quality and Quality_sound_index(quality)
 	if (not index) then return end
 
 	-- Auto-loot clears several slots at once; play only the best one
@@ -237,8 +260,6 @@ local function On_loot_slot_cleared(slot)
 end
 
 function ZeldaFrame_OnEvent(self, event, ...)
-	local quality, zl_group
-
 	local arg1 = select(1, ...)
 
 	if ((event == "ADDON_LOADED") and (arg1 == "ZeldaLoot_Classic")) then
@@ -302,24 +323,16 @@ function ZeldaFrame_OnEvent(self, event, ...)
 			return
 		end
 
-		for colorCode, info in pairs(ZL_QUALITY_COLORS) do
-			if (string.find(arg1, colorCode, 1, true)) then
-				if (info.inherited and not ZL_config["inherited"]["include"]) then
-					break
-				end
-				quality = info.quality
-				zl_group = info.group
-				break
-			end
-		end
-
-		if (quality and zl_group and ZL_config[zl_group]["active"]) then
+		local quality = Chat_quality(arg1)
+		local index = quality and Quality_sound_index(quality)
+		if (index) then
+			local zl_group = ZL_QUALITY_GROUPS[index]
 			if (
 				Matches_loot(arg1, ZL_LOOT_MATCH.loot) or
 				(ZL_config[zl_group]["crafted"] and Matches_loot(arg1, ZL_LOOT_MATCH.crafted)) or
 				(ZL_config[zl_group]["received"] and Matches_loot(arg1, ZL_LOOT_MATCH.received))
 			) then
-				Play_zeldaSound(quality - 1, ZL_config[zl_group]["sound"])
+				Play_zeldaSound(index, ZL_config[zl_group]["sound"])
 			end
 		end
 	end
