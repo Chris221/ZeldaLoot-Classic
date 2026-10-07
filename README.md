@@ -14,7 +14,7 @@ The audio plays on the SFX audio channel.
 Configure which sounds you want and when: loot from enemies, received (letterbox, seller, etc), crafted (professions and some special items like Eternal Water). Settings will be saved between sessions for all your characters. Type **/zeldaloot** or **/zl** for the settings menu.
 
 ### Localization
-English, French, Spanish, German, and Russian languages are supported, and you can write your own, see files in **\Locale** subdirectory
+English, French, German, Spanish (Spain and Mexico), Italian, Portuguese (Brazil), Russian, Korean, Simplified Chinese, and Traditional Chinese are supported, and you can write your own, see files in **\Locale** subdirectory
 
 **If you are using another language please let me know to ensure you are receiving the notifications and not missing the sound effects**
 
