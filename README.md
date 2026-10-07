@@ -26,9 +26,13 @@ English, French, Spanish, German, and Russian languages are supported, and you c
 - Updated for The Burning Crusade Classic Anniversary (2.5.6)
 - Updated for Classic Era (1.15.9)
 - Updated for Wrath of the Lich King Titan Reforged
-- Fixed a Lua error on Midnight when looting during boss encounters, Mythic+ and PvP, where loot messages are hidden from addons; items looted from the loot window still play their sound there (items that go straight to your bags stay silent while messages are hidden)
-- Added an adjustable volume setting (0-100%) with a slider in the config panel; it temporarily scales the chosen audio channel while a sound plays, then restores it
-- Loot detection now uses Blizzard's own localized strings, so it works in every language (including Korean and Russian grammar forms) instead of only English clients
+- Fixed no sound playing for any loot on Retail since 11.1.5, which changed how item links mark their quality (also needed for WoW Forever)
+- Fixed heirlooms not being detected on Retail; artifacts now play the legendary (orange) sound
+- Fixed a Lua error on Midnight when looting during boss encounters, Mythic+ and PvP, where loot messages are hidden from addons; items you take from the loot window still play their sound there (items that go straight to your bags stay silent while messages are hidden)
+- Bonus-roll loot plays its sound again
+- Added an adjustable volume setting (0-100%) with a slider in the config panel; it temporarily scales the chosen audio channel while a sound plays, then restores it without overriding any volume change you make in the meantime
+- Loot detection now uses Blizzard's own localized strings, so it works in every language (including Korean and Russian grammar forms) instead of only English clients, and other players' loot no longer triggers your sounds on Korean clients
+- The config panel's dropdowns are only built while the panel is open, avoiding interference with Blizzard's own dropdowns
 - `/zl reset` now refreshes the config panel immediately if it is open
 - Fixed `/zl dump` throwing a Lua error
 - Sound selection is now clamped to what the chosen sound set actually contains (e.g. OOT has 4 sounds)
