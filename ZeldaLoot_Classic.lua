@@ -162,6 +162,75 @@ local function Matches_loot(msg, literals)
 	return false
 end
 
+-- Midnight and Forever hand CHAT_MSG_LOOT text to addons as a secret value
+-- during boss encounters, M+ keys and PvP matches, and string functions throw
+-- on it. issecretvalue only exists on those clients, so Classic never takes
+-- these paths. While chat is secret, corpse/chest loot is recovered from the
+-- loot window instead: slot qualities are snapshotted on LOOT_OPENED, and a
+-- looted slot only plays if a secret loot message lands within
+-- ZL_SECRET_LOOT_WINDOW of it, so readable chat never plays a sound twice.
+-- Loot that skips the loot window (personal boss loot, crafts, quest
+-- rewards) has nothing to read and stays silent while chat is secret.
+local ZL_SECRET_LOOT_WINDOW = 0.5
+local ZL_HEIRLOOM_QUALITY = 7
+local ZL_loot_slot_quality = {}
+local ZL_last_secret_loot = nil -- GetTime() of the last secret CHAT_MSG_LOOT
+local ZL_pending_loot_index = nil -- best sound index looted in this window
+local ZL_pending_loot_time = 0
+
+local function Is_secret(value)
+	return issecretvalue ~= nil and issecretvalue(value)
+end
+
+-- Item quality -> Play_zeldaSound index, applying the Inherited and per-quality
+-- on/off settings. nil means no sound.
+local function Loot_window_sound_index(quality)
+	if (quality == ZL_HEIRLOOM_QUALITY) then
+		if (not ZL_config["inherited"]["include"]) then return nil end
+		quality = 5 -- heirlooms use the orange sound, as in the chat path
+	end
+	local group = ZL_QUALITY_GROUPS[quality]
+	if (group and ZL_config[group]["active"]) then
+		return quality
+	end
+	return nil
+end
+
+local function Play_pending_loot()
+	local index = ZL_pending_loot_index
+	ZL_pending_loot_index = nil
+	if (index and ZL_last_secret_loot and
+		math.abs(ZL_last_secret_loot - ZL_pending_loot_time) <= ZL_SECRET_LOOT_WINDOW) then
+		Play_zeldaSound(index, ZL_config[ZL_QUALITY_GROUPS[index]]["sound"])
+	end
+end
+
+local function Snapshot_loot_window()
+	wipe(ZL_loot_slot_quality)
+	for slot = 1, GetNumLootItems() do
+		local quality = select(5, GetLootSlotInfo(slot))
+		if (quality ~= nil and not Is_secret(quality)) then
+			ZL_loot_slot_quality[slot] = quality
+		end
+	end
+end
+
+local function On_loot_slot_cleared(slot)
+	local quality = ZL_loot_slot_quality[slot]
+	ZL_loot_slot_quality[slot] = nil
+	local index = quality and Loot_window_sound_index(quality)
+	if (not index) then return end
+
+	-- Auto-loot clears several slots at once; play only the best one
+	if (ZL_pending_loot_index == nil) then
+		ZL_pending_loot_time = GetTime()
+		C_Timer.After(ZL_SECRET_LOOT_WINDOW, Play_pending_loot)
+	end
+	if (ZL_pending_loot_index == nil or index > ZL_pending_loot_index) then
+		ZL_pending_loot_index = index
+	end
+end
+
 function ZeldaFrame_OnEvent(self, event, ...)
 	local quality, zl_group
 
@@ -211,7 +280,22 @@ function ZeldaFrame_OnEvent(self, event, ...)
 		end
 	end
 
+	if (event == "LOOT_OPENED") then
+		if (issecretvalue) then Snapshot_loot_window() end
+		return
+	end
+
+	if (event == "LOOT_SLOT_CLEARED") then
+		if (issecretvalue) then On_loot_slot_cleared(arg1) end
+		return
+	end
+
 	if (event == "CHAT_MSG_LOOT") then
+		if (Is_secret(arg1)) then
+			ZL_last_secret_loot = GetTime()
+			return
+		end
+
 		for colorCode, info in pairs(ZL_QUALITY_COLORS) do
 			if (string.find(arg1, colorCode, 1, true)) then
 				if (info.inherited and not ZL_config["inherited"]["include"]) then
