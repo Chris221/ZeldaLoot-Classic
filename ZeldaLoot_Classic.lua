@@ -14,9 +14,7 @@ local CHANNEL_CVARS = {
 	Dialog   = "Sound_DialogVolume",
 }
 
--- nil when idle, else { cvar = <name>, original = <string value>, scaled = <number> }.
--- Mirrored into ZL_config.volume_restore so a session that ends before the
--- restore timer fires is put right on the next load.
+-- nil when idle, else { cvar = <name>, original = <string value>, scaled = <number> }
 local ZL_volume_restore = nil
 -- bumped on every scaled playback so only the latest timer restores
 local ZL_volume_token = 0
@@ -25,14 +23,13 @@ local ZL_volume_token = 0
 -- the value we set: a change the player made meanwhile (e.g. in Blizzard's
 -- Sound settings) wins and is kept.
 local function Restore_sound_volume()
-	local pending = ZL_volume_restore or (ZL_config and ZL_config["volume_restore"])
+	local pending = ZL_volume_restore
 	if (pending ~= nil) then
 		local current = tonumber(GetCVar(pending.cvar))
 		if (current and math.abs(current - pending.scaled) < 0.001) then
 			SetCVar(pending.cvar, pending.original)
 		end
 		ZL_volume_restore = nil
-		if (ZL_config) then ZL_config["volume_restore"] = nil end
 	end
 end
 
@@ -78,11 +75,12 @@ function Play_zeldaSound(index, sound_file)
 			-- "still untouched?" check in Restore_sound_volume can match it
 			scaled = tonumber(GetCVar(cvar)) or scaled
 			ZL_volume_restore = { cvar = cvar, original = original, scaled = scaled }
-			ZL_config["volume_restore"] = ZL_volume_restore
 
 			ZL_volume_token = ZL_volume_token + 1
 			local myToken = ZL_volume_token
-			C_Timer.After(ZL_VOLUME_RESTORE_DELAY, function()
+			local durations = ZL_SOUND_DURATIONS[sound_set]
+			local duration = durations and durations[sound_file] or 20
+			C_Timer.After(duration + ZL_VOLUME_RESTORE_MARGIN, function()
 				if (myToken == ZL_volume_token) then
 					Restore_sound_volume()
 				end
@@ -97,8 +95,12 @@ function Play_zeldaSound(index, sound_file)
 		if (ZL_debug_bool) then
 			ZL_Print(ZL_STARTING_SOUND .. " " .. mess)
 		end
-	elseif (ZL_warning_bool or ZL_debug_bool) then
-		ZL_Print(warning_text .. ZL_NOT_PLAYING .. " " .. mess .. " " .. ZL_LIKELY_DUE_TO .. " [" .. sound_channel .. "] " .. ZL_BEING_MUTED)
+	else
+		-- Nothing is playing, so don't leave the channel quieter until the timer
+		Restore_sound_volume()
+		if (ZL_warning_bool or ZL_debug_bool) then
+			ZL_Print(warning_text .. ZL_NOT_PLAYING .. " " .. mess .. " " .. ZL_LIKELY_DUE_TO .. " [" .. sound_channel .. "] " .. ZL_BEING_MUTED)
+		end
 	end
 end
 
@@ -312,8 +314,6 @@ function ZeldaFrame_OnEvent(self, event, ...)
 		end
 
 		Update_config(false)
-		-- A previous session may have ended with the channel still scaled
-		Restore_sound_volume()
 		ZL_Print(ZL_AddonVersion .. ZL_LOADED)
 		ZL_Print(ZL_LOADED_TEXT_1)
 		ZL_Print(ZL_LOADED_TEXT_2)

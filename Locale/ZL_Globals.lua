@@ -41,9 +41,16 @@ ZL_QUALITY_GROUPS = {
 -- Config version for migration
 ZL_CONFIG_VERSION = 2
 
--- Seconds to keep a temporarily-scaled channel volume before restoring it.
--- Must comfortably exceed the longest sound in any set.
-ZL_VOLUME_RESTORE_DELAY = 5
+-- Length in seconds of each bundled sound (the same audio in every format), so
+-- a temporarily-scaled channel volume is kept for exactly as long as it plays.
+ZL_SOUND_DURATIONS = {
+	ALTTP = { 5.2, 5.1, 5.5, 17.0, 1.3 },
+	OOT   = { 3.3, 2.9, 4.2, 16.0 },
+	TP    = { 3.3, 4.0, 3.6, 6.9, 20.0 },
+}
+
+-- Extra seconds after a sound ends before the scaled volume is restored
+ZL_VOLUME_RESTORE_MARGIN = 1
 
 -- Volume setting (0-100%) for new or migrated configs
 ZL_DEFAULT_VOLUME = 100
