@@ -205,17 +205,22 @@ local function Play_pending_loot()
 	end
 end
 
+-- Every value read from the client is checked with Is_secret before it is
+-- compared, indexed or looped on, since any of those throws on a secret.
 local function Snapshot_loot_window()
 	wipe(ZL_loot_slot_quality)
-	for slot = 1, GetNumLootItems() do
+	local count = GetNumLootItems()
+	if (Is_secret(count)) then return end
+	for slot = 1, count do
 		local quality = select(5, GetLootSlotInfo(slot))
-		if (quality ~= nil and not Is_secret(quality)) then
+		if (not Is_secret(quality) and quality ~= nil) then
 			ZL_loot_slot_quality[slot] = quality
 		end
 	end
 end
 
 local function On_loot_slot_cleared(slot)
+	if (Is_secret(slot)) then return end
 	local quality = ZL_loot_slot_quality[slot]
 	ZL_loot_slot_quality[slot] = nil
 	local index = quality and Loot_window_sound_index(quality)
@@ -280,7 +285,8 @@ function ZeldaFrame_OnEvent(self, event, ...)
 		end
 	end
 
-	if (event == "LOOT_OPENED") then
+	-- With auto-loot, LOOT_READY can fire and slots can clear before LOOT_OPENED
+	if (event == "LOOT_READY" or event == "LOOT_OPENED") then
 		if (issecretvalue) then Snapshot_loot_window() end
 		return
 	end
