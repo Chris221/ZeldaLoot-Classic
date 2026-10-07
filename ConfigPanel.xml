@@ -92,7 +92,7 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, Dropdown_width_Initialize)
+						UIDropDownMenu_SetWidth(self, 90)
 						self.title = ZL_XML_TITLE_GREEN_SET;
 						self.tooltip = ZL_XML_TOOLTIP_GREEN_SET;
 					</OnLoad>
@@ -111,7 +111,7 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, Dropdown_width_Initialize)
+						UIDropDownMenu_SetWidth(self, 90)
 						self.title = ZL_XML_TITLE_BLUE_SET;
 						self.tooltip = ZL_XML_TOOLTIP_BLUE_SET;
 					</OnLoad>
@@ -130,7 +130,7 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, Dropdown_width_Initialize)
+						UIDropDownMenu_SetWidth(self, 90)
 						self.title = ZL_XML_TITLE_PURPLE_SET;
 						self.tooltip = ZL_XML_TOOLTIP_PURPLE_SET;
 					</OnLoad>
@@ -149,7 +149,7 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, Dropdown_width_Initialize)
+						UIDropDownMenu_SetWidth(self, 90)
 						self.title = ZL_XML_TITLE_ORANGE_SET;
 						self.tooltip = ZL_XML_TOOLTIP_ORANGE_SET;
 					</OnLoad>
@@ -168,7 +168,7 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, Dropdown_width_Initialize)
+						UIDropDownMenu_SetWidth(self, 90)
 						self.title = ZL_XML_TITLE_GREEN_EFFECT;
 						self.tooltip = ZL_XML_TOOLTIP_GREEN_EFFECT;
 					</OnLoad>
@@ -187,7 +187,7 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, Dropdown_width_Initialize)
+						UIDropDownMenu_SetWidth(self, 90)
 						self.title = ZL_XML_TITLE_BLUE_EFFECT;
 						self.tooltip = ZL_XML_TOOLTIP_BLUE_EFFECT;
 					</OnLoad>
@@ -206,7 +206,7 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, Dropdown_width_Initialize)
+						UIDropDownMenu_SetWidth(self, 90)
 						self.title = ZL_XML_TITLE_PURPLE_EFFECT;
 						self.tooltip = ZL_XML_TOOLTIP_PURPLE_EFFECT;
 					</OnLoad>
@@ -225,7 +225,7 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, Dropdown_width_Initialize)
+						UIDropDownMenu_SetWidth(self, 90)
 						self.title = ZL_XML_TITLE_ORANGE_EFFECT;
 						self.tooltip = ZL_XML_TOOLTIP_ORANGE_EFFECT;
 					</OnLoad>
@@ -491,7 +491,7 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, Dropdown_width_Initialize)
+						UIDropDownMenu_SetWidth(self, 90)
 						self.title = ZL_FILE_TYPE;
 						self.tooltip = ZL_XML_TOOLTIP_FILE_TYPE;
 					</OnLoad>
@@ -510,7 +510,7 @@
         </Anchors>
 				<Scripts>
 					<OnLoad>
-						UIDropDownMenu_Initialize(self, Dropdown_width_Initialize)
+						UIDropDownMenu_SetWidth(self, 90)
 						self.title = ZL_FILE_CHANNEL;
 						self.tooltip = ZL_XML_TOOLTIP_FILE_CHANNEL;
 					</OnLoad>

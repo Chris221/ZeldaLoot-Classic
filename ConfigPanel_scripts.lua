@@ -223,22 +223,16 @@ end
 -- Debug prints to see when "UIDropDownMenu_Initialize" is called for your dropdown:
 -- hooksecurefunc("UIDropDownMenu_Initialize", function(frame, func) end)
 
-function Dropdown_width_Initialize(self)
-	UIDropDownMenu_SetWidth(self, 90)
-end
-
 local QUALITY_INDEX = { green = 2, blue = 3, purple = 4, orange = 5 }
+
+-- "dropdown_greenloot_set" / "dropdown_greenloot_sound" -> "green"
+local function Dropdown_quality(self)
+	return self:GetName():match("^dropdown_(%a+)loot_")
+end
 
 function Dropdown_set_Show(self)
 	local selected
-	local name = self:GetName()
-	local item_level
-
-	if (name == 'dropdown_greenloot_set') then item_level = 'green'
-	elseif (name == 'dropdown_blueloot_set') then item_level = 'blue'
-	elseif (name == 'dropdown_purpleloot_set') then item_level = 'purple'
-	elseif (name == 'dropdown_orangeloot_set') then item_level = 'orange'
-	end
+	local item_level = Dropdown_quality(self)
 
 	selected = Get_sound_set(QUALITY_INDEX[item_level])
 
@@ -262,14 +256,7 @@ end
 
 function Dropdown_sound_Show(self)
 	local sound_set, selected
-	local name = self:GetName()
-	local item_level
-
-	if (name == 'dropdown_greenloot_sound') then item_level = 'green'
-	elseif (name == 'dropdown_blueloot_sound') then item_level = 'blue'
-	elseif (name == 'dropdown_purpleloot_sound') then item_level = 'purple'
-	elseif (name == 'dropdown_orangeloot_sound') then item_level = 'orange'
-	end
+	local item_level = Dropdown_quality(self)
 
 	sound_set = Get_sound_set(QUALITY_INDEX[item_level])
 	-- Show the sound that actually plays (a set may offer fewer sounds than saved)
