@@ -93,11 +93,17 @@ end
 -- Push the current ZL_config values into every panel widget. Safe to call
 -- before the panel exists (each widget is nil-guarded) and used both at load
 -- and after /zl reset so an open panel never shows stale values.
+-- Dropdowns are only rebuilt while the panel is open: each one's OnShow
+-- initializes it when the panel opens, and touching the shared UIDropDownMenu
+-- state from addon code at other times (login, /zl reset with the panel
+-- closed) risks tainting Blizzard's own dropdowns on Classic clients.
 function Sync_panel_widgets()
 	if (ZL_config == nil) then return end
 
 	local scanCateg = { "green", "blue", "purple", "orange" }
 	local scanValues = { active = "loot", crafted = "crafts", received = "received" }
+	local panel = _G["ZL_configPanel"]
+	local panel_open = (panel ~= nil and panel:IsShown())
 	local obj
 
 	for iCat, vCat in ipairs(scanCateg) do
@@ -108,12 +114,16 @@ function Sync_panel_widgets()
 			end
 		end
 
-		Reinit_dropdown("dropdown_" .. vCat .. "loot_set", Dropdown_set_Show)
-		Reinit_dropdown("dropdown_" .. vCat .. "loot_sound", Dropdown_sound_Show)
+		if (panel_open) then
+			Reinit_dropdown("dropdown_" .. vCat .. "loot_set", Dropdown_set_Show)
+			Reinit_dropdown("dropdown_" .. vCat .. "loot_sound", Dropdown_sound_Show)
+		end
 	end
 
-	Reinit_dropdown("dropdown_setting_ext", Dropdown_settings_Show)
-	Reinit_dropdown("dropdown_setting_channel", Dropdown_settings_Show)
+	if (panel_open) then
+		Reinit_dropdown("dropdown_setting_ext", Dropdown_settings_Show)
+		Reinit_dropdown("dropdown_setting_channel", Dropdown_settings_Show)
+	end
 
 	obj = _G["check_inheritedstuff"]
 	if (obj ~= nil) then obj:SetChecked(ZL_config["inherited"]["include"]) end
