@@ -252,20 +252,21 @@ end
 -- during boss encounters, M+ keys and PvP matches, and string functions throw
 -- on it. issecretvalue only exists on those clients, so Classic never takes
 -- these paths. While chat is secret, corpse/chest loot is recovered from the
--- loot window instead: slot qualities are snapshotted on LOOT_OPENED, and a
--- looted slot only plays if a secret loot message lands within
--- ZL_SECRET_LOOT_WINDOW of it, so readable chat never plays a sound twice.
--- The slot must also be matched by an ITEM_PUSH (an item entering the
--- player's own bags) with the same icon in that window, so a slot another
--- player takes from a shared corpse stays silent even while the player loots
--- something else. Loot that skips the loot window (personal boss loot,
--- crafts, quest rewards) has nothing to read and stays silent while chat is
--- secret.
-local ZL_SECRET_LOOT_WINDOW = 0.5
+-- loot window instead: slot qualities and icons are snapshotted on
+-- LOOT_OPENED, and a looted slot plays only if, within ZL_SECRET_LOOT_WINDOW
+-- of it, both a secret loot message arrived (so readable chat, which plays
+-- through the normal path, never plays a sound twice) and an ITEM_PUSH with
+-- the same icon put an item in the player's own bags (so a slot another
+-- player takes from a shared corpse stays silent). Each slot is judged once
+-- its window has fully passed, so a push or chat line that lags the clear
+-- still counts. Loot that skips the loot window (personal boss loot, crafts,
+-- quest rewards) has nothing to read and stays silent while chat is secret.
+local ZL_SECRET_LOOT_WINDOW = 1
 local ZL_loot_slots = {} -- slot -> { quality = <enum>, icon = <fileID> }
-local ZL_last_secret_loot = nil -- GetTime() of the last secret CHAT_MSG_LOOT
-local ZL_cleared_slots = {} -- { index, icon, time } cleared since the timer started
+local ZL_secret_chats = {} -- { time } of recent secret CHAT_MSG_LOOT lines
 local ZL_item_pushes = {} -- { icon, time } of recent ITEM_PUSH events
+local ZL_cleared_slots = {} -- { index, icon, time } waiting to be judged
+local ZL_loot_timer_pending = false
 
 local function Is_secret(value)
 	return issecretvalue ~= nil and issecretvalue(value)
@@ -275,28 +276,61 @@ local function Within_window(a, b)
 	return math.abs(a - b) <= ZL_SECRET_LOOT_WINDOW
 end
 
-local function Pushed_to_bags(cleared)
-	for _, push in ipairs(ZL_item_pushes) do
+-- Drop entries too old to match anything still waiting, so lists stay small
+local function Prune(list, now)
+	for i = #list, 1, -1 do
+		if (now - list[i].time > 3 * ZL_SECRET_LOOT_WINDOW) then
+			table.remove(list, i)
+		end
+	end
+end
+
+local function Secret_chat_near(time)
+	for _, chat in ipairs(ZL_secret_chats) do
+		if (Within_window(chat.time, time)) then return true end
+	end
+	return false
+end
+
+-- Finds and consumes the push that put this slot's item in the player's bags
+local function Take_push(cleared)
+	for i, push in ipairs(ZL_item_pushes) do
 		if (push.icon == cleared.icon and Within_window(push.time, cleared.time)) then
+			table.remove(ZL_item_pushes, i)
 			return true
 		end
 	end
 	return false
 end
 
+local Play_pending_loot
+
+local function Schedule_loot_check()
+	if (not ZL_loot_timer_pending) then
+		ZL_loot_timer_pending = true
+		C_Timer.After(ZL_SECRET_LOOT_WINDOW, Play_pending_loot)
+	end
+end
+
 -- Auto-loot clears several slots at once; play only the best one that went
 -- into the player's own bags
-local function Play_pending_loot()
+Play_pending_loot = function()
+	ZL_loot_timer_pending = false
+	local now = GetTime()
 	local best = nil
-	if (ZL_last_secret_loot and Within_window(ZL_last_secret_loot, ZL_cleared_slots[1].time)) then
-		for _, cleared in ipairs(ZL_cleared_slots) do
-			if (Pushed_to_bags(cleared) and (best == nil or cleared.index > best)) then
-				best = cleared.index
-			end
+	local waiting = {}
+	for _, cleared in ipairs(ZL_cleared_slots) do
+		if (now - cleared.time < ZL_SECRET_LOOT_WINDOW) then
+			table.insert(waiting, cleared) -- its push or chat line may still arrive
+		elseif (Secret_chat_near(cleared.time) and Take_push(cleared)) then
+			if (best == nil or cleared.index > best) then best = cleared.index end
 		end
 	end
-	wipe(ZL_cleared_slots)
-	wipe(ZL_item_pushes)
+	ZL_cleared_slots = waiting
+	Prune(ZL_secret_chats, now)
+	Prune(ZL_item_pushes, now)
+	if (#waiting > 0) then Schedule_loot_check() end
+
 	if (best) then
 		Play_zeldaSound(best, ZL_config[ZL_QUALITY_GROUPS[best]]["sound"])
 	end
@@ -323,22 +357,21 @@ local function On_loot_slot_cleared(slot)
 	local index = info and Quality_sound_index(info.quality)
 	if (not index) then return end
 
-	if (#ZL_cleared_slots == 0) then
-		C_Timer.After(ZL_SECRET_LOOT_WINDOW, Play_pending_loot)
-	end
 	table.insert(ZL_cleared_slots, { index = index, icon = info.icon, time = GetTime() })
+	Schedule_loot_check()
 end
 
 local function On_item_push(icon)
 	if (Is_secret(icon) or icon == nil) then return end
-	-- Drop pushes too old to match anything so the list can't grow unbounded
 	local now = GetTime()
-	for i = #ZL_item_pushes, 1, -1 do
-		if (not Within_window(ZL_item_pushes[i].time, now)) then
-			table.remove(ZL_item_pushes, i)
-		end
-	end
+	Prune(ZL_item_pushes, now)
 	table.insert(ZL_item_pushes, { icon = icon, time = now })
+end
+
+local function On_secret_loot_chat()
+	local now = GetTime()
+	Prune(ZL_secret_chats, now)
+	table.insert(ZL_secret_chats, { time = now })
 end
 
 function ZeldaFrame_OnEvent(self, event, ...)
@@ -406,7 +439,7 @@ function ZeldaFrame_OnEvent(self, event, ...)
 
 	if (event == "CHAT_MSG_LOOT") then
 		if (Is_secret(arg1)) then
-			ZL_last_secret_loot = GetTime()
+			On_secret_loot_chat()
 			return
 		end
 
