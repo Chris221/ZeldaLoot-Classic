@@ -5,12 +5,14 @@
 				self:RegisterEvent("CHAT_MSG_LOOT")
 				self:RegisterEvent("ADDON_LOADED")
 				self:RegisterEvent("PLAYER_LOGOUT")
-				self:RegisterEvent("LOOT_OPENED")
-				self:RegisterEvent("LOOT_SLOT_CLEARED")
-				-- Only used by the Midnight/Forever loot-window fallback; not every
-				-- client documents them, and an unknown event name would error
-				pcall(self.RegisterEvent, self, "LOOT_READY")
-				pcall(self.RegisterEvent, self, "ITEM_PUSH")
+				-- The loot-window fallback only runs where loot chat can be secret
+				-- (Midnight/Forever). pcall: not every client documents these events,
+				-- and registering an unknown one errors.
+				if (issecretvalue) then
+					for _, event in ipairs({ "LOOT_READY", "LOOT_OPENED", "LOOT_SLOT_CLEARED", "ITEM_PUSH" }) do
+						pcall(self.RegisterEvent, self, event)
+					end
+				end
 			</OnLoad>
 			<OnEvent function="ZeldaFrame_OnEvent"/>
 		</Scripts>
