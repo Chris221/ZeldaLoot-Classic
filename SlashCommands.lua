@@ -96,10 +96,9 @@ function zl.SlashCommandHandler(msg)
 			ZL_Print(ZL_SLASH_TEST_USAGE)
 		end
 	else
-		if SettingsPanel and SettingsPanel.OpenToCategory and ZL_SettingsCategory then
-			SettingsPanel:OpenToCategory(ZL_SettingsCategory)
-		elseif Settings and Settings.OpenToCategory and ZL_SettingsCategory then
-			Settings.OpenToCategory(ZL_SettingsCategory.ID)
+		-- The settings panel looks categories up by ID, not by the category table
+		if Settings and Settings.OpenToCategory and ZL_SettingsCategory then
+			Settings.OpenToCategory(ZL_SettingsCategory:GetID())
 		elseif InterfaceOptionsFrame_OpenToCategory then
 			InterfaceOptionsFrame_OpenToCategory(ZL_AddonName)
 		end

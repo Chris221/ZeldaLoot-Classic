@@ -396,7 +396,6 @@ function ZeldaFrame_OnEvent(self, event, ...)
 
 		if Settings and Settings.RegisterCanvasLayoutCategory then
 			local category = Settings.RegisterCanvasLayoutCategory(panel, ZL_AddonName)
-			category.ID = ZL_AddonName
 			Settings.RegisterAddOnCategory(category)
 			ZL_SettingsCategory = category
 		elseif InterfaceOptions_AddCategory then
