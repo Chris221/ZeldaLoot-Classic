@@ -24,12 +24,22 @@ jobs:
       #   This fallback TOC mirrors Mainline, so copy Mainline's versions into it. Restore it
       #   first, since the updater's rewrite also strips this file's CRLF line ending.
       # - Its Camelot pattern never matches "_Camelot.toc", so that file gets retail versions.
-      #   There is no live Camelot build to read from, so keep it as committed.
+      #   Camelot shipped as WoW Forever (product "wowf"), so read its live version from
+      #   Blizzard's patch server instead. If that lookup fails, keep the file as committed.
       - name: Correct files the updater misreads
         run: |
           git checkout -- ZeldaLoot_Classic_Camelot.toc ZeldaLoot_Classic.toc
           versions="$(sed -nE 's/^## Interface:\s*([0-9, ]*[0-9]).*/\1/p' ZeldaLoot_Classic_Mainline.toc)"
           sed -i -E "s/^(## Interface:)\s*[0-9, ]*[0-9]/\1 ${versions}/" ZeldaLoot_Classic.toc
+
+          forever="$(curl -fsS --max-time 30 http://us.patch.battle.net:1119/wowf/versions | awk -F'|' '$1 == "us" { print $6; exit }')" || true
+          if [[ "$forever" =~ ^([0-9]+)\.([0-9]+)\.([0-9]+)\. ]]; then
+            interface="$(printf '%d%02d%02d' "${BASH_REMATCH[1]}" "${BASH_REMATCH[2]}" "${BASH_REMATCH[3]}")"
+            echo "WoW Forever $forever -> Interface $interface"
+            sed -i -E "s/^(## Interface:)\s*[0-9, ]*[0-9]/\1 ${interface}/" ZeldaLoot_Classic_Camelot.toc
+          else
+            echo "::warning::Could not read the WoW Forever version; leaving ZeldaLoot_Classic_Camelot.toc unchanged"
+          fi
           git diff --stat
 
       - uses: peter-evans/create-pull-request@v8
